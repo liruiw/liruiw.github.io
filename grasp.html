@@ -9,20 +9,24 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="assets/css/custom.css" rel="stylesheet"> -->
+    <!-- Custom styles for this template -->
+   <!--  <link href="css/justified-nav.css" rel="stylesheet"> -->
+    <link href="css/custom.css" rel="stylesheet">
     <title>Grasping</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/custom.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="css/justified-nav.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <style>
+    hr {
+    margin-top:40px;
+    margin-bottom:40px;
+    }
+    </style>
   </head>
 
   <body>
@@ -34,10 +38,10 @@
       <div class="masthead" style="border-top-width: 20px; margin-top: 20px;">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li><a href="index.html">Back</a></li>
+            <li><a href="index.html">Home</a></li>
             <li class="active"><a href="#">Abstract</a></li>
       <li><a href="grasp_gallery.html">Gallery</a></li>
-      <li><a href="grasp_details.html">Project Details</a></li>
+      <li><a href="grasp_details.html">Details</a></li>
           </ul>
         </nav>
       </div>
@@ -51,14 +55,19 @@
         Generating grasp poses is a crucial component for robot object manipulation tasks. Here we aspire to build a framework that optimize motion planning and grasp planning jointly. This planner would integrate the four main tasks needed for grasping an object: building a feasible grasp set, selecting the best grasp, solving the inverse kinematics problem, and determining a collision-free trajectory. Previous trajectory optimization methods such as CHOMP offers goal set variant and GPMP2 offers fast replanning methods. We are interested in leveraging the diverse grasp set to improve the local minimum issues suffered in previous work.
     </p>
   </div>
-  <hr>
+
   <div >
-  <iframe style="border: none; padding: 0; margin: 0;" src="https://drive.google.com/file/d/1bfNXua7AAcV6XJEaJksbGQZ7HF4TyAIT/preview" width="960" height="640" align="center" marginwidth="0" marginheight="0"  frameborder="0" scrolling="no" allowfullscreen="allowfullscreen" ></iframe>
+  <iframe  src="https://drive.google.com/file/d/1bfNXua7AAcV6XJEaJksbGQZ7HF4TyAIT/preview" width="960" height="640" align="center" ></iframe>
 </div>
       </div>
-    </div> <!-- /container -->
-
+       <div class="footer">
+    <div class="row">
+    <div class="col-sm-8">
+    <p><small>&copy; Lirui Wang 2019</small></p>
+    </div>
+    </div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   </body>
+     
 </html>
