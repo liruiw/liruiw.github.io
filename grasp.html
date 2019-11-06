@@ -52,8 +52,7 @@
 
   <div class="col-lg-16">
     <p align="justify">
-        Generating grasp poses is a crucial component for robot object manipulation tasks. Here we aspire to build a framework that optimize motion planning and grasp planning jointly. This planner would integrate the three main tasks needed for grasping an object: grasp synthesis, grasp selection, and motion planning. Previous trajectory optimization methods such as CHOMP offers goal set variant and GPMP2 offers fast replanning methods. Instead, we are interested in leveraging the diverse grasp set to plan optimal grasp strategy by online learning. Moreover, we provide a grasp refinement procedure that can optimize
-        initial grasp configurations.
+We introduce an integrate planner that models joint motion and grasp planning as an optimization problem. The computation of feasible and reachable grasps and the search for collision-free motions are connected within this framework. An online learning framework and a grasp synthesis approach are used to generate grasp and select grasp online. We showcase our algorithms in three domains in planning, simulation, and the real world. 
     </p>
   </div>
 
