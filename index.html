@@ -94,13 +94,9 @@
 
                 <p  style="max-width:350px;">
     The challenges of robust 6D grasping in cluttered 
-    scenes with visual input lie in partial observation and generalization highlighted by standard ML and POMDP analysis.
-    Model-free RL is known to require large amount of environment interactions, even with full state information. 
-    Without the knowledge of cost function, inverse RL method such as GAIL can be used to learn with demonstrations. 
-    However it can be hard to train successfully and again requires numerous data. Traditionally, optimal control and 
-    robust control literature provides elegant ways to solve the dynamical system with models.  
-    This work attempts to explore some of these ideas and issues. In this preliminary video, 
-    an imitation policy is learned to grasp a bleach cleanser on a tabletop environment. <a target='_blank' href='https://drive.google.com/file/d/1ynfNwamSlKOFNRXT398EDG1uE92nlXRc/view?usp=sharing'>Domain Randomization</a>
+    scenes with visual input lie in partial observation and generalization.
+    Model-free RL requires large amount of environment interactions, even with full state information and shaped rewards. Direct learning from demonstrations such as imitation learning and inverse RL method either requires numerous demonstration data or environment interactions. Model-based methods can be used to generate plans and robust execution, but querying such models in real world is hard problem. 
+    This work attempts to explore some of these ideas and issues, starting with a policy in simulator. In this preliminary video, a baseline policy is learned to grasp a bleach cleanser on a tabletop environment. <a target='_blank' href='https://drive.google.com/file/d/1ynfNwamSlKOFNRXT398EDG1uE92nlXRc/view?usp=sharing'>Domain Randomization</a>
                 </p>
               </div>
             </div>
