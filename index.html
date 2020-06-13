@@ -48,10 +48,9 @@
         </div>
             <ul class="nav nav-pills pull-right" style="border-top-width: 20px; margin-top: 20px;">
       <li class="active"><a href="#">Home</a></li>
-	    <li role="presentation"><a href="#projects">Projects</a></li>
-	    <li role="presentation"><a href="#education">Education</a></li>
-<!-- 	    <li role="presentation"><a href="#publications">Publications</a></li>
- -->    </ul>
+	    <li role="presentation"><a href="projects.html">Projects</a></li>
+	    <li role="presentation"><a href="misc.html">Misc</a></li>
+  </ul>
 	<div class="row">
 	  <div class="col-md-10">
 	  	<br>
@@ -65,11 +64,11 @@
 	      liruiw (at) cs (dot) washington (dot) edu
 	    </p>
 	    	    <p>
-		I am currently studying in Computer Science and Electrical 
+		I study Computer Science and Electrical 
 		Engineerig at the University of Washington</a>. I am an undergraduate researcher advised by Prof. <a rel='nofollow' target='_blank' href='http://homes.cs.washington.edu/~fox/'>Dieter Fox</a> 
 		in <a rel='nofollow' target='_blank' href='https://rse-lab.cs.washington.edu/'>Robotics and State Estimation</a> 
 		Lab. I also work closely with Dr. <a rel='nofollow' target='_blank' href='https://yuxng.github.io/'>Yu Xiang</a> 
-		in NVIDIA Robotics Lab. My research focus lie in Computer Vision and Robotics. I also have broad
+		in NVIDIA Robotics Lab. My research focus lies in Computer Vision and Robotics. I also have broad
 		interests in Optimization and Machine Learning.  <br>
 		 <a target='_blank' href='Lirui_Wang_CV.pdf'>[CV]</a> <a href="https://github.com/liruiw">[Github]</a> 
 	    </p>
@@ -80,322 +79,35 @@
 	<div class="col-lg-2">
 	</div>
 
-	  <hr>
-	  <div id="projects">
-	  	<h2 style="font-family:verdana;">Research</h2>
-            <br>
-            <h3 class="text-center" style="margin-bottom:40px">6D Cluttered-Scene Manipulation from Imitation and Reinforcement (Ongoing)</h3>
-<iframe src="https://drive.google.com/file/d/1LQmHQJyMRo33COYfzzn8L6LC-qQWkGnL/preview" width="512" height="384" frameborder="0" scrolling="no" allowfullscreen  align="right"></iframe>
  
-            <div class="row">
-              <div class="col-lg-6">
-              </div>
-              <div class="col-lg-6">
-
-                <p  style="max-width:350px;">
-    The challenges of robust 6D grasping in cluttered 
-    scenes with visual input lie in multimodality, partial observation, and generalization. 
-    Model-free RL requires large amount of environment interactions, even with full state information and shaped rewards. For long-horizon tasks that are often solved by planning methods, abundant demonstrations from a model-based planner in simulators should help reduce the amount of interactions. Moreover, IL and IRL methods in an interactive learning setting often suffer less from the compounding error issues. While image-based inputs are often used for top-down grasping, it has certain generalization limits in sim-to-real transfer. This work attempts to explore some of these ideas by mapping from perception to control. In this preliminary video, a baseline policy learns to grasp a bleach cleanser on a tabletop environment. <a target='_blank' href='https://drive.google.com/file/d/1ynfNwamSlKOFNRXT398EDG1uE92nlXRc/view?usp=sharing'>Domain Randomization</a> 
-                </p>
-              </div>
-            </div>
-
-            <br>
-            <h3 class="text-center" style="margin-bottom:40px">Manipulation Trajectory Optimization with Online Grasp Synthesis and Selection</h3>
-		<iframe src="https://drive.google.com/file/d/1gtwY_f0nyiBiKdkxBZkTcTh9bdb3rlKZ/preview" width="512" height="384" align="right" frameborder="0" scrolling="no"></iframe>
-            <div class="row">
-              <div class="col-lg-6">
-              </div>
-              <div class="col-lg-6">
-                <p  style="max-width:350px;">
-		In robot manipulation, planning the motion of a robot manipulator to grasp an object is a fundamental problem. A manipulation planner needs to generate a trajectory of the manipulator arm to avoid obstacles in the environment and plan an end-effector pose for grasping. While trajectory planning and grasp planning are often tackled separately, how to efficiently integrate the two planning problems remains a challenge. In this work, we present a novel method for joint motion and grasp planning. Our method integrates manipulation trajectory optimization with online grasp synthesis and selection, where we apply online learning techniques to select goal configurations for grasping, and introduce a new grasp synthesis algorithm to generate grasps online. We evaluate our planning approach and demonstrate that our method generates robust and efficient motion plans for grasping in cluttered scenes. More information can be found in <a href="planning.html">project webpage</a>.
-                </p>
-              </div>
-            </div>
-             <br>
-            <h3 class="text-center" style="margin-bottom:40px">6D Object Pose Tracking with the Deep Iterative Matching Network</h3>
-            <div class="row">
-              <div class="col-lg-6">
-                  <iframe src="https://drive.google.com/file/d/1KWp4XPG3ytDZFO3gOz_y2Tmo9X6_DSsW/preview" width="512" height="384" align="right" frameborder="0" scrolling="no"></iframe>              </div>
-
-              <div class="col-lg-6">
-                <p style="max-width:350px;">
-				Pose estimation has been studied extensively by
-				computer vision and robotics researchers. While direct pose
-				regression from RGB image is limited by various factors, DeepIM
-				(Deep Iterative Matching Network) takes an iterative approach to refine
-				initial pose estimation by matching rendered image against real
-				image. This project mainly addresses the performance of DeepIM 
-				on YCB dataset and tracking, trained with only synthetic data. This natural extension works surprisingly well even under occlusions.
-        		More information can be found in <a href="perception.html">project webpage</a>.
-                </p>
-              </div>
-            </div>
-            <br>
-             <br>
-
-    
-</tbody></table>
-	  </div>
-
-	  <hr>
 <div id="education">
-<h2 style="font-family:verdana">Projects</h2>											
-				<table style='border-width:1px;border-color:rgb(255,255,255);border-collapse:collapse' cellspacing='0' bordercolor='#888' border='1'>
-					<tbody>				
-												
-								
-
-
-<tr><td style='width:301px;height:157px'> <a imageanchor='1' href='447pic.png'><img width='200' src='447pic.png' height='157' border='0'/></a></td> <td style='width:1000px;height:89px'><b>2D Drone Linear Control Simulation</b><br/>Control System Analysis<br/>  <a target='_blank' href='EE447Project.pdf'>Report</a>	
-</td></tr>	
-
-
-<tr><td style='width:301px;height:157'> <a imageanchor='1' href='474pic.png'><img width='200' src='474pic.png' height='157' border='0'/></a></td> <td style='width:1000px;height:89px'><b>Embedded Drowsiness Detection System</b><br/>Embedded System and Design<br/>  <a target='_blank' href='EE474Project.pdf'>Report</a>, <a target='_blank' href='https://drive.google.com/open?id=1z3Bn2V7WmgyHsC9uP5rhBkZpuAx-xkRn'>Demo</a>	
-</td></tr>	
-
-<tr><td style='width:301px;height:157px'> <a imageanchor='1' href='idplan.gif'><img width='200' src='idplan.gif' height='157' border='0'/></a></td> <td style='width:1000px;height:89px'><b>Indoor Navigation</b><br/>Robotics<br/>  <a target='_blank' href='https://drive.google.com/open?id=1gECsuTqya14Escxvoi7BPSWDVReEAG7l'>Demo</a>, <a target='_blank' href='https://github.com/prl-mushr/mushr_pf'>Code</a>
-</td></tr>  
  
-<tr><td style='width:301px;height:89'> <a imageanchor='1' href='455pic.png'><img width='200' src='455pic.png' height='157' border='0'/></a></td> <td style='width:1000px;height:89px'><b>Unsupervised Flow and Depth Methods Study</b><br/>Computer Vision<br/>  <a target='_blank' href='455.pdf'>Poster</a>
-</td></tr>  
+  <!-- News. -->
+  <div class="hr">
+    <div class="container">
+      <hr>
+    </div>
+  </div>
 
- <tr><td style='width:301px;height:89px'> <a imageanchor='1' href='soundscape.png'><img width='200' src='soundscape.png' height='157' border='0' ;/></a></td> <td style='width:1000px;height:89px;'><b>Spatial Audio Processing in the SoundScape System</b><br/>UW ACME LAB<br/>  <audio controls>
-  <source src="whistle_low_long.ogg" type="audio/ogg">
-</audio>
- </td></tr>   
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3">News</h2>
+        <div class="content"><ul>
 
-<tr><td style='width:301px;height:89px'> <a imageanchor='1' href='stat535.PNG'><img width='200' src='stat535.PNG' height='157' border='0'/></a></td> <td style='width:1000px;height:89px'><b>Continuous Trajectory Optimization with Machine Learning Techniques</b><br/> Statistical Learning: Modeling, Prediction, And Computing<br/>  <a target='_blank' href='STAT535_Final.pdf'>Report</a>	
-</td></tr>	
+<li><b>February 2020</b>: Our paper on manipulation planning has been accepted to RSS 2020.  </li>
+</ul>
+</div>
+      </div>
+    </div>
 
-<tr><td style='width:301px;height:89px'> <a imageanchor='1' href='cse599.PNG'><img width='200' src='cse599.PNG' height='157' border='0'/></a></td> <td style='width:1000px;height:89px'><b>Survey and Empirical Evaluation of Attacks and Defense for Robust Classification</b><br/>Robustness in Machine Learning<br/>  <a target='_blank' href='CSE599_Final.pdf'>Report</a>	
-</td></tr>	
- 
-<tr><td style='width:301px;height:89px'> <a imageanchor='1' href='point_view.png'><img width='200' src='point_view.png' height='157' border='0'/></a></td> <td style='width:1000px;height:89px'><b>Decomposition of Policies for Cluttered Scene Grasping</b><br/>Optimization and Learning for Control<br/>  <a target='_blank' href='EE546_Final.pdf'>Report</a>, <a target='_blank' href='GPS.pdf'>GPS</a>	 
-</td></tr>
-</tbody></table>
-<hr>
-				<table style='border-width:1px;border-color:rgb(255,255,255);border-collapse:collapse' cellspacing='0' bordercolor='#888' border='1'>
-					<tbody>	
-<tr><td style='width:101px;height:19px'> <a imageanchor='1' href='dji_test.png'><img width='130' src='dji_test.png' height='57' border='30'  align="middle"/></a></td> <td style='width:130;height:89px'><b>Automated Drone and Vehicle Battle</b><br/>DJI<br/>  
-	<a target='_blank' href='https://drive.google.com/file/d/166VhHnMvPEz7Ume9HPMfbQjpE8VpP1RS/view'>Demo</a>	
-</td></tr>	
-
-
-<tr><td style='width:101px;height:30px'> <a imageanchor='1' href='server_test.jpg'><img width='150' src='server_test.jpg' height='30' border='0' align="middle"/></a></td> <td style='width:150px;height:30px'><b>Microsoft Server Mover Project</b><br/>EE Capstone<br/> <a target='_blank' href='https://drive.google.com/file/d/1ssOCT959cTF-MxL9wdMenO3xMnl4hAvh/view'>Demo</a> 	
-</td></tr>	
-
-
-</tbody></table>
-<hr>
-
-	  
-<div class="item border-bottom">
-    <h2 class="text-muted" style="font-family:verdana">Selected Courses</h2>
-    <ul class="courses">
-  
-              <li> 
-                
-                    CSE 455 (UW, Spring 2018):
-                
-
-                
-                    <a href="https://courses.cs.washington.edu/courses/cse455/18sp/">Computer Vision</a>
-                 
-            </li>
-
-
-            <li> 
-                
-                    CSE 490 G1 (UW, Autumn 2018):
-                
-
-                
-                    <a href="https://courses.cs.washington.edu/courses/cse599g1/18au/">Deep Learning</a>
-                 
-            </li>        
-            <li> 
-                
-                    EE 447 (UW, Autumn 2018):
-                
-
-                 
-                    <a href="https://canvas.uw.edu/courses/1219938">Control Theory</a>
-                 
-            </li>
-            <li> 
-                
-                    EE 474 (UW, Winter 2019):
-                
-
-                 
-                    Embedded Systems
-                 
-            </li>        
-            <li> 
-                
-                    EE 442 (UW, Winter 2019):
-                
-
-                 
-                    Digital Signal Processing
-                 
-            </li>
-        
-            <li> 
-                
-                    MATH 464, 465 (UW, Autumn 2018 -- Winter 2019):
-                
-
-                 
-                    <a href="https://sites.math.washington.edu/~morrow/464_18/464.html">Numerical Analysis</a>
-                 
-            </li>
-        
-
-            <li> 
-                
-                    CSE 490 Z1 (UW, Winter 2019):
-                
-
-                 
-                    Modern Algorithm Toolbox
-                 
-            </li>        
-            <li> 
-                
-                    CSE 490 R (UW, Spring 2019):
-                
-
-                 
-                    <a href="http://www.ee.washington.edu/class/578/fazel/index.html">Robotics</a>
-                 
-            </li>
-        
-
-            <li> 
-                
-                    CSE 457 (UW, Spring 2019):
-                
-
-                
-                    <a href="https://courses.cs.washington.edu/courses/cse457/19sp/">Computer Graphics</a>
-                 
-            </li>
-
-
-            <li> 
-                
-                    MATH 516 (UW, Spring 2019):
-                
-
-                 
-                    <a href="https://sites.math.washington.edu/~ddrusv/crs/Math_516/homepage.html">Convex Analysis and Optimization</a>
-
-                 
-            </li>
-            <li> 
-                
-                    CSE 599 M (UW, Autumn 2019):
-                
-
-                
-                    <a href="https://jerryzli.github.io/robust-ml-fall19.html">Robustness in Machine Learning</a>
-                 
-            </li>
-            <li> 
-                
-                    STAT 535  (UW, Autumn 2019):
-                
-
-                
-                    <a href="http://faculty.washington.edu/yenchic/19A_stat535.html">Statistical Learning: Modeling, Prediction, And Computing</a>
-                 
-            </li>
-            <li> 
-                
-                    MATH 581 E (UW, Autumn 2019):
-                
-
-                
-                    <a href="https://sites.math.washington.edu/~ddrusv/crs/Math_581_2019/MATH581">High Dimensional Probability and Statistical Learning</a>
-                 
-            </li>  
-            <li> 
-                
-                    EE 546 B (UW, Winter 2020):
-                
-
-                
-                    <a href="https://canvas.uw.edu/courses/1352564"> Optimization and Learning for Control </a>
-                 
-            </li>               
-            <li> 
-                
-                    CSE 599 I (UW, Winter 2020):
-                
-
-                
-                   <a href="https://courses.cs.washington.edu/courses/cse599i/20wi/"> Interactive Learning</a>
-                 
-            </li>   
-            <li> 
-                
-                    EE 448 (UW, Winter 2020):
-                
-
-                
-                    Systems, Controls, and Robotics Capstone 
-                 
-            </li>     
-            <li> 
-                
-                    EE 449 B (UW, Spring 2020):
-                
-
-                
-                    Systems, Controls, and Robotics Capstone 
-                 
-            </li>               
-            <li> 
-                
-                    CSE 599 W (UW, Spring 2020):
-                
-
-                
-                   <a href="https://homes.cs.washington.edu/~bboots/RL-Spring2020/">Reinforcement Learning</a>
-                 
-            </li>   
-            <li> 
-                
-                    CSE 571 (UW, Spring 2020):
-                
-
-                
-                    <a href="https://courses.cs.washington.edu/courses/cse571/20sp/">Probablistic Robotics</a>
-                 
-            </li>                                            
-    </ul>                
-</div>   
-<hr>
-
-<div class="item border-bottom">
-	<h2 style="font-family:verdana">Teaching</h2>
-            <li> 
-                    TA, CSE 455 Computer Vision (UW, Autumn 2019):     
-            </li>
-            <li> 
-                    TA, CSE 473 Introduction to Artificial Intelligence (UW, Winter 2020):     
-            </li>        
-    </ul>                
-</div>  
 <hr> 
 <div class="item border-bottom">
-	<h2 style="font-family:verdana">Publications</h2>
+	<h2 class="title is-3">Publications</h2>
 			
 <table style='border-width:1px;border-color:rgb(255,255,255);border-collapse:collapse' cellspacing='0' bordercolor='#888' border='1'>
 				<tbody>
-<tr><td style='width:300px;height:150px'> <a imageanchor='1' href='grasp_select.PNG'><img width='200' src='grasp_select.PNG' height='140' border='0'/></a></td> <td style='width:1200px;height:89px'><b>Manipulation Trajectory Optimization with Online Grasp Synthesis and Selection</b><br/><b>Lirui Wang</b>, Yu Xiang, and Dieter Fox<br/>In Robotics: Science and Systems (RSS), 2020 <br/> <a target='_blank' href='http://arxiv.org/abs/1911.10280'>arXiv</a>, <a href="javascript:toggle_visibility('wang2019manipulation')">Bibtex</a>, <a href='https://www.youtube.com/watch?v=LIcACf8YkGU'>Video</a>
+<tr><td style='width:300px;height:150px'> <a imageanchor='1' href='grasp_select.PNG'><img width='200' src='grasp_select.PNG' height='140' border='0'/></a></td> <td style='width:1200px;height:89px'><b>Manipulation Trajectory Optimization with Online Grasp Synthesis and Selection</b><br/><b>Lirui Wang</b>, Yu Xiang, and Dieter Fox<br/>In Robotics: Science and Systems (RSS), 2020 <br/> <a target='_blank' href='http://arxiv.org/abs/1911.10280'>arXiv</a>, <a href="javascript:toggle_visibility('wang2019manipulation')">Bibtex</a>, <a href='https://www.youtube.com/watch?v=LIcACf8YkGU'>Video</a>, <a href='https://liruiw.github.io/planning.html'>Website</a>
 <pre id="wang2019manipulation" xml:space="preserve" style="display: none; font-size: 12px">
 @inproceedings{wang2019manipulation,
 author    = {Lirui Wang and Yu Xiang and Dieter Fox},
@@ -408,7 +120,7 @@ year      = {2020}
 </tbody></table>
     </ul>                
 </div>  
-<hr> 
+<!-- <hr> 
 <div class="item border-bottom">
 	<h2 style="font-family:verdana">Honors and Awards</h2>
 
@@ -424,15 +136,15 @@ year      = {2020}
             </li>
         
     </ul>                
-</div> 
+</div>  -->
 
  
 
   </body>
-    <div class="footer">
+<!--     <div class="footer">
     <div class="row">
     <div class="col-sm-8">
     <p><small>&copy; Lirui Wang 2019</small></p>
     </div>
-
+ -->
 </html>

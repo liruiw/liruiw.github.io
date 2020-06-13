@@ -1,32 +1,37 @@
 
 <!DOCTYPE html>
+ 
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Lirui Wang</title>
+
+    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="assets/css/custom.css" rel="stylesheet"> -->
-    <!-- Custom styles for this template -->
-   <!--  <link href="css/justified-nav.css" rel="stylesheet"> -->
     <link href="css/custom.css" rel="stylesheet">
-    <title>Joint Motion and Grasp Planning</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/justified-nav.css" rel="stylesheet">
-
+ 
+  </head>
   <style>
     hr {
     margin-top:40px;
     margin-bottom:40px;
     }
-    </style>
+  </style>
+ 
+     <script type="text/javascript">
+    <!--
+        function toggle_visibility(id) {
+           var e = document.getElementById(id);
+           if(e.style.display == 'block')
+              e.style.display = 'none';
+           else
+              e.style.display = 'block';
+        }
+    //-->
+    </script>
   </head>
 
   <body>
@@ -35,38 +40,66 @@
 
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
-      <div class="masthead" style="border-top-width: 20px; margin-top: 20px;">
+<!--       <div class="masthead" style="border-top-width: 20px; margin-top: 20px;">
         <nav>
           <ul class="nav nav-pills pull-right">
             <li><a href="index.html">Home</a></li>
             <li class="active"><a href="#">Abstract</a></li>
-     <!--  <li><a href="grasp_gallery.html">Gallery</a></li> -->
       <li><a href="grasp_details.html">Details</a></li>
           </ul>
         </nav>
-      </div>
+      </div> -->
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1><b>Joint Motion and Grasp Planning</b></h1>
-
+        <h2><b>Manipulation Trajectory Optimization with Online Grasp Synthesis and Selection</b></h2>
+         <i>Lirui Wang, Yu Xiang, Dieter Fox</i> 
   <div class="col-lg-16">
     <p align="justify">
-We make three contributions in our paper. We introduce an integrate planner that models joint motion and grasp planning as an optimization problem. The computation of feasible and reachable grasps and the search for collision-free motions are connected within this framework. An online learning framework and a grasp synthesis approach are used to generate grasp and select grasp online. We showcase our algorithms in three domains in planning, simulation, and the real world. 
-    </p>
-  </div>
 
-  <div >
-  <iframe  src="https://drive.google.com/file/d/1SephjbvAW9bEaxQX3CSV7Hjwex-Mdqt5/preview" width="640" height="480" align="center" ></iframe>
+ 
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content"><ul>
+
+ In robot manipulation, planning the motion of a robot manipulator to grasp an object is a fundamental problem. A manipulation planner needs to generate a trajectory of the manipulator arm to avoid obstacles in the environment and plan an end-effector pose for grasping. While trajectory planning and grasp planning are often tackled separately, how to efficiently integrate the two planning problems remains a challenge. In this work, we present a novel method for joint motion and grasp planning. Our method integrates manipulation trajectory optimization with online grasp synthesis and selection, where we apply online learning techniques to select goal configurations for grasping, and introduce a new grasp synthesis algorithm to generate grasps online. We evaluate our planning approach and demonstrate that our method generates robust and efficient motion plans for grasping in cluttered scenes.   
+</ul>
 </div>
       </div>
-       <div class="footer">
-    <div class="row">
-    <div class="col-sm-8">
-    <p><small>&copy; Lirui Wang 2019</small></p>
-    </div>
-    </div>
 
+
+    </p>
+  </div>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3">Video</h2>
+        <div class="content"><ul>
+  <div >
+  <iframe  src="https://www.youtube.com/embed/LIcACf8YkGU?autoplay=1", width="640" height="480" align="center" ></iframe>
+</div>
+ </div>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3">Citation</h2>
+        <div class="content"><ul>
+  <div >
+    <pre id="wang2019manipulation" xml:space="preserve" style="font-size: 12px">
+@inproceedings{wang2019manipulation,
+author    = {Lirui Wang and Yu Xiang and Dieter Fox},
+title     = {Manipulation Trajectory Optimization with Online Grasp Synthesis and Selection},
+booktitle = {Robotics: Science and Systems (RSS)},
+year      = {2020}
+}
+</pre>
+</div>
+ </div>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   </body>
      
