@@ -64,7 +64,7 @@
 	  <div id="projects">
 	  	<h2 style="font-family:verdana;">Research</h2>
             <br> -->
-<!--             <h3 class="text-center" style="margin-bottom:40px">6D Cluttered-Scene Manipulation from Imitation and Reinforcement (Ongoing)</h3>
+            <h3 class="text-center" style="margin-bottom:40px">Goal-Auxiliary Actor-Critic for 6D Robotic Grasping with Point Clouds </h3>
 <iframe src="https://drive.google.com/file/d/1LQmHQJyMRo33COYfzzn8L6LC-qQWkGnL/preview" width="512" height="384" frameborder="0" scrolling="no" allowfullscreen  align="right"></iframe>
  
             <div class="row">
@@ -73,12 +73,10 @@
               <div class="col-lg-6">
 
                 <p  style="max-width:350px;">
-    The challenges of robust 6D grasping in cluttered 
-    scenes with visual input lie in multimodality, partial observation, and generalization. 
-    Model-free RL requires large amount of environment interactions, even with full state information and shaped rewards. For long-horizon tasks that are often solved by planning methods, abundant demonstrations from a model-based planner in simulators should help reduce the amount of interactions. Moreover, IL and IRL methods in an interactive learning setting often suffer less from the compounding error issues. While image-based inputs are often used for top-down grasping, it has certain generalization limits in sim-to-real transfer. This work attempts to explore some of these ideas by mapping from perception to control. In this preliminary video, a baseline policy learns to grasp a bleach cleanser on a tabletop environment. <a target='_blank' href='https://drive.google.com/file/d/1ynfNwamSlKOFNRXT398EDG1uE92nlXRc/view?usp=sharing'>Domain Randomization</a> 
+    6D robotic grasping beyond top-down bin-picking scenarios is a challenging task due to the variety of objects and the large continuous action space. In this work, we propose a novel method for learning closed-loop control policies for 6D robotic grasping using point clouds from an egocentric camera.  We introduce a goal-auxiliary actor-critic algorithm, which uses grasping goal prediction as an auxiliary task to facilitate the policy learning. The supervision on grasping goals can be obtained from the expert planner for known objects or from hindsight goals for unknown objects. Overall, our learned closed-loop policy achieves over  90 %  success rates on grasping various ShapeNet objects and YCB objects in simulation. More information can be found in <a href="control.html">project webpage</a>.  
                 </p>
               </div>
-            </div> -->
+            </div>
 
             <br>
             <h3 class="text-center" style="margin-bottom:40px">Manipulation Trajectory Optimization with Online Grasp Synthesis and Selection</h3>

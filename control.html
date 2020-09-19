@@ -42,8 +42,8 @@
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h2><b>6D Object Pose Tracking with the Deep Iterative Matching Network</b></h2>
-        <a type="button" class="btn btn-primary" href='https://drive.google.com/file/d/1ejkBMBam3jEI6aLnroMmJMEksSJGGLdf/preview'> report </a>  <a type="button" class="btn btn-primary" href='https://drive.google.com/file/d/18Ic6-GoFgV9vqbRU8Nn-zoqaC8ziuTPc'> poster </a>    <a type="button" class="btn btn-primary" href='https://arxiv.org/pdf/1804.00175.pdf'> paper </a> <a type="button" class="btn btn-primary" href='https://rse-lab.cs.washington.edu/projects/deepim/'> RSE Lab webpage </a>
+        <h2><b>Goal-Auxiliary Actor-Critic for 6D Robotic Grasping with Point Clouds</b></h2>
+         <a type="button" class="btn btn-primary" href='https://drive.google.com/file/d/1lZw1706cNaWfzc2bhnz4TrZjCfj4EXmI/view'> paper </a> 
   <div class="col-lg-16">
     <p align="justify">
 
@@ -54,7 +54,7 @@
         <h2 class="title is-3">Video</h2>
         <div class="content"><ul>
   <div >
-  <iframe  src="https://drive.google.com/file/d/1N0RrRC3s33M88XlSCVLsY8UWwlumERNg/preview", width="640" height="480" align="center" ></iframe> 
+  <iframe  src="https://drive.google.com/file/d/1o2e5vUJ3sm86YYFXxuIynvqsFX8ZCPRP/preview", width="640" height="480" align="center" ></iframe> 
 </div>
  </div>
 
@@ -63,7 +63,7 @@
       <div class="container">
         <h2 class="title is-3">Abstract</h2>
         <div class="content"><ul>
-          Pose estimation has been studied extensively by computer vision and robotics researchers. While direct pose regression from RGB image is limited by various factors, DeepIM (Deep Iterative Matching) aims to iteratively refine the pose by matching the rendered image against the observed image by predicting a relative untangled pose transformation.. This project mainly addresses the performance of DeepIM on YCB dataset and tracking tasks. We trained the network using only synthetic data and applied it to 6D pose tracking of YCB objects. By propagating the pose estimate from the previous frame to the current frame, DeepIM is able to track robot hand and object poses under heavy occlusion with no real world finetuning and any calibration process.
+       6D robotic grasping beyond top-down bin-picking scenarios is a challenging task due to the variety of objects and the large continuous action space. Previous solutions based on 6D grasp synthesis with robot motion planning usually operate in an open-loop setting without considering dynamics and contacts of objects, which makes them sensitive to grasp synthesis errors. In this work, we propose a novel method for learning closed-loop control policies for 6D robotic grasping using point clouds from an egocentric camera. We combine imitation learning and reinforcement learning in order to deal with unseen objects and the continuous 6D action space, where expert demonstrations are obtained from a joint motion and grasp planner. We introduce a goal-auxiliary actor-critic algorithm, which uses grasping goal prediction as an auxiliary task to facilitate the policy learning. The supervision on grasping goals can be obtained from the expert planner for known objects or from hindsight goals for unknown objects. Overall, our learned closed-loop policy achieves over  90 %  success rates on grasping various ShapeNet objects and YCB objects in simulation.
 </ul>
 </div>
       </div>
