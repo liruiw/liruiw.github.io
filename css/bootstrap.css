@@ -264,7 +264,6 @@ a:focus {
 }
 
 .row {
-  margin-left: -20px;
   *zoom: 1;
 }
 
@@ -289,7 +288,9 @@ a:focus {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  max-width: 940px;
+  padding-left: 1em
+  padding-right: 1em
 }
 
 .span12 {
@@ -4569,7 +4570,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  max-width: 940px;
 }
 
 .navbar-fixed-top {
