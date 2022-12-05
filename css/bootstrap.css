@@ -281,7 +281,6 @@ a:focus {
 [class*="span"] {
   float: left;
   min-height: 1px;
-  margin-left: 20px;
 }
 
 .container,
@@ -289,8 +288,6 @@ a:focus {
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
   max-width: 940px;
-  padding-left: 1em
-  padding-right: 1em
 }
 
 .span12 {
