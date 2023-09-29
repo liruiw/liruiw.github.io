@@ -4,25 +4,11 @@
   <meta charset="utf-8">
   <meta name="description"
         content="GenSim: Supersizing Simulation Task Generation in Robotics with LLM.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="keywords" content="Simulation, LLMs, Robotics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GenSim: Supersizing Simulation Task Generation in Robotics with LLM</title>
+  <title>GenSim: Generating Robotic Simulation Tasks via Large Language Models</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  <link href="http://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
@@ -39,28 +25,77 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+
+  <script>
+    function updateGPT() {
+      var task = document.getElementById("single-menu-tasks").value;
+      var inst = document.getElementById("single-menu-instances").value;
+
+      console.log("gpt", task, inst)
+
+      var video = document.getElementById("single-task-result-video");
+      video.src = "media/all_task_videos/" + 
+                  task + 
+                  "-videos/" +
+                  "0000" + 
+                  inst + 
+                  ".mp4";
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+    function updateRealWorldCliport() {
+      var task = document.getElementById("single-menu-tasks-cliport").value;
+      var inst = document.getElementById("single-menu-instances-cliport").value;
+
+      console.log("gpt", task, inst)
+
+      var video = document.getElementById("single-task-result-video-cliport");
+      video.src = "media/realworld_task_videos/" + 
+                  task + "/cliport10_" +  inst  + ".mp4";
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+
+    function updateRealWorldGenSim() {
+      var task = document.getElementById("single-menu-tasks-gpt").value;
+      var inst = document.getElementById("single-menu-instances-gpt").value;
+
+      console.log("gpt", task, inst)
+
+      var video = document.getElementById("single-task-result-video-gpt");
+      video.src = "media/realworld_task_videos/" + 
+                  task + 
+                  "/gpt70_" +  inst  + ".mp4";
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+    function updateLlama() {
+      var task = document.getElementById("single-menu-tasks-llama").value;
+      var inst = document.getElementById("single-menu-instances-llama").value;
+
+      console.log("llama", task, inst)
+
+      var video = document.getElementById("single-task-result-video-llama");
+      video.src = "media/all_task_videos/" + 
+                  task + 
+                  "-videos/" +
+                  "0000" + 
+                  inst + 
+                  ".mp4";
+      console.log(video.src)
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+  </script>
+
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-    </div>
-
-  </div>
-</nav>
 
 
 <section class="hero">
@@ -68,23 +103,39 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">GenSim: Supersizing Simulation Task Generation in Robotics with LLM</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com"></a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com"></a><sup>2</sup>,</span>
+          <h1 class="title is-1 publication-title">GenSim: Generating Robotic Simulation Tasks via Large Language Models</h1>
+  <!--         <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous ICLR Submission</span>
           </div>
-
+ -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup></span>
+            <span class="author-block">Lirui Wang<sup>1</sup>,</span>
+            <span class="author-block">Yiyang Ling*<sup>2,3</sup>,</span>
+            <span class="author-block">Zhecheng Yuan*<sup>4</sup>,</sup>    
           </div>
-
+          <div class="is-size-5 publication-authors">    
+            <span class="author-block">Mohit Shridhar<sup>5</sup>,</sup>
+            <span class="author-block">Chen Bao<sup>6</sup>,</sup>
+            <span class="author-block">Yuzhe Qin<sup>3</sup>,</sup>
+            <span class="author-block">Bailin Wang<sup>2</sup>,</sup>
+            <span class="author-block">Huazhe Xu<sup>4</sup>,</sup>
+            <span class="author-block">Xiaolong Wang<sup>3</sup></sup>              
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">MIT CSAIL<sup>1</sup>,</span>
+            <span class="author-block">Shanghai Jiao Tong University<sup>2</sup>,</span>
+            <span class="author-block">UCSD<sup>3</sup>,</span>
+            <span class="author-block">Tsinghua University<sup>4</sup>,</sup>
+            <span class="author-block">UW<sup>5</sup>,</sup>
+            <span class="author-block">CMU<sup>6</sup>,</sup>            
+            </span>
+          </div>          
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
+                <a href="https://openreview.net/forum?id=OI3RoHoWAN"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -92,46 +143,37 @@
                   <span>Paper</span>
                 </a>
               </span>
+
+              <!-- Gradio Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href="https://huggingface.co/spaces/Gen-Sim/Gen-Sim"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="ai ai-arxiv"></i>
+                      <i class="fas fa-smile"></i>
                   </span>
-                  <span>arXiv</span>
+                  <span>Gradio Demo</span>
                 </a>
               </span>
-              <!-- Video Link. -->
+
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                <a href="https://twitter.com/LiruiWang1/status/1677356178689646592"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fab fa-youtube"></i>
+                      <i class="fab fa-twitter"></i>
                   </span>
-                  <span>Video</span>
+                  <span>Twitter</span>
                 </a>
               </span>
-              <!-- Code Link. -->
+
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/liruiw/GenSim"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-            </div>
-
+                  <span>Github</span>
+                </a>
+              </span>              
           </div>
         </div>
       </div>
@@ -139,6 +181,92 @@
   </div>
 </section>
 
+<section class="hero teaser">
+  <div class="container is-fullhd">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop height="100%">
+        <source src="media/common/gensim_teaser_v1.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+      </br>
+        <span class="dcliport"><b>GenSim</b></span> uses LLMs to generate vast amounts of simulated robotic tasks.
+      </h2>
+    </div>
+  </div>
+</section>
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/build-wheel/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>        
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/pack-spheres/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/block-zone/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/block-tower-corner/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/stack-block/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/block-in-bowl-in-zone/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+       <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/align-cylinder-in-zone/gpt70.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/put-block-in-bowl/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/stack-block/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <h2 class="subtitle has-text-centered">
+    <br>
+We learn one multi-task policy for <b>100</b> simulation tasks generated by GPT that can generalize zero-shot to new tasks, as well as adapt to 10 real world tasks.
+ </h2>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -148,76 +276,357 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Collecting real-world interaction data to train general robotic policies is prohibitively expensive, thus motivating the use of simulation data. Despite abundant single-task simulation data in terms of object instances and poses among others, the task-level diversity in simulation have remained a challenge. On the other hand, the breakthrough in language domain, such as GPT-4, has shown impressive  coding skills and natural language understanding capability, but its usage in robotics has been mostly on policy execution, planning, and log summary. This repository explores the use of a LLM code generation pipeline to generate simulation environments and expert demonstrations for diverse simulation tasks. In particular, the task-level diversity is crucial for  general-purpose manipulation policy learning. This simulation task generation pipeline can be top-down: given a target task, it proposes a task curriculum to iteratively approach the complexity of the target task; the pipeline can also work in a bottom-up manner: it bootstraps from previous tasks and iteratively proposes more interesting tasks, and these task code can be used to generate demonstrations to train a policy.
+Collecting large amounts of real-world interaction data to train general robotic policies is often prohibitively expensive, thus motivating the use of simulation data. However, existing methods for data generation have generally focused on scene-level diversity (e.g., object instances and poses) rather than task-level diversity, due to the human effort required to come up with and verify novel tasks. This has made it challenging for policies trained on simulation data to demonstrate significant task-level generalization. 
+<br><br>
+In this paper, we propose to automatically generate rich simulation environments and expert demonstrations by exploiting a large language models' (LLM) grounding and coding ability. Our approach, dubbed GenSim, has two modes: goal-directed generation, wherein a target task is given to the LLM and the LLM proposes a task curriculum to solve the target task, and exploratory generation, wherein the LLM bootstraps from previous tasks and iteratively proposes novel tasks that would be helpful in solving more complex tasks. 
+<br><br>
+We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on which we conduct supervised finetuning and evaluate several LLMs including finetuned GPTs and Code Llama on code generation for robotic simulation tasks. Furthermore, we observe that LLMs-generated simulation programs can enhance task-level generalization significantly when used for multitask policy training. We further find that with minimal sim-to-real adaptation, the multitask policies pretrained on GPT4-generated simulation tasks exhibit stronger transfer to unseen long-horizon tasks in the real world and outperform baselines by 25%.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
+</section>
 
+<section>
+  <div class="row">
+    <div class="container">
     <!-- Paper video. -->
+        <h2 class="title is-3 has-text-centered">Generated Task Library</h2>      
+
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="column is-half">
+
+        <div class="columns">
+          <div class="column has-text-centered">
+            <h3 class="title is-5">GPT 4</h3>
+
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks" onchange="updateGPT()">
+	<option value="color-coordinated-block-insertion">color-coordinated-block-insertion</option>
+	<option value="container-block-sorting">container-block-sorting</option>
+	<option value="color-coordinated-ball-stacking">color-coordinated-ball-stacking</option>
+	<option value="cylinder-ring-stack">cylinder-ring-stack</option>
+	<option value="color-coordinated-box-in-pallet">color-coordinated-box-in-pallet</option>
+	<option value="stack-three-layer-red-wall">stack-three-layer-red-wall</option>
+	<option value="color-ordered-blocks-on-pallet">color-ordered-blocks-on-pallet</option>
+	<option value="build-cylinder-structure">build-cylinder-structure</option>
+	<option value="color-coordinated-container-fill">color-coordinated-container-fill</option>
+	<option value="build-bridge">build-bridge</option>
+	<option value="pyramid-blocks-assemble">pyramid-blocks-assemble</option>
+	<option value="sort-and-assemble-block-castle">sort-and-assemble-block-castle</option>
+	<option value="cylinder-corner-insert">cylinder-corner-insert</option>
+	<option value="align-blocks-on-line">align-blocks-on-line</option>
+	<option value="stack-blocks-in-container">stack-blocks-in-container</option>
+	<option value="block-on-cylinder-on-pallet">block-on-cylinder-on-pallet</option>
+	<option value="corner-sort-cylinders">corner-sort-cylinders</option>
+	<option value="align-pair-colored-blocks-along-line">align-pair-colored-blocks-along-line</option>
+	<option value="color-specific-container-fill">color-specific-container-fill</option>
+	<option value="color-corresponding-ball-block-stack">color-corresponding-ball-block-stack</option>
+	<option value="colored-cylinder-in-square">colored-cylinder-in-square</option>
+	<option value="construct-colorful-arch">construct-colorful-arch</option>
+	<option value="color-coordinated-ball-insertion">color-coordinated-ball-insertion</option>
+	<option value="block-insertion-in-corner-pyramid">block-insertion-in-corner-pyramid</option>
+	<option value="insert-sphere-into-container">insert-sphere-into-container</option>
+	<option value="build-wheel">build-wheel</option>
+	<option value="color-coordinated-sphere-and-cylinder-assembly">color-coordinated-sphere-and-cylinder-assembly</option>
+	<option value="push-piles-into-letter">push-piles-into-letter</option>
+	<option value="color-matching-blocks-to-corner-and-zone">color-matching-blocks-to-corner-and-zone</option>
+	<option value="color-coordinated-zone-stacking">color-coordinated-zone-stacking</option>
+	<option value="create-pyramid-with-color-coded-ells">create-pyramid-with-color-coded-ells</option>
+	<option value="color-coordinated-arch-construction">color-coordinated-arch-construction</option>
+	<option value="color-coordinated-sphere-insertion">color-coordinated-sphere-insertion</option>
+	<option value="color-sorted-blocks-on-pallet-with-barrier">color-sorted-blocks-on-pallet-with-barrier</option>
+	<option value="symmetric-block-stand-assembly">symmetric-block-stand-assembly</option>
+	<option value="put-kit-in-bowl">put-kit-in-bowl</option>
+	<option value="move-piles-along-line">move-piles-along-line</option>
+	<option value="align-cylinders-in-boxes">align-cylinders-in-boxes</option>
+	<option value="insert-ell-along-square-path">insert-ell-along-square-path</option>
+	<option value="multi-level-block-construction">multi-level-block-construction</option>
+	<option value="color-coordinated-line-blocks">color-coordinated-line-blocks</option>
+	<option value="build-car">build-car</option>
+	<option value="stack-cylinder-on-bowl">stack-cylinder-on-bowl</option>
+	<option value="color-coded-blocks-on-corner">color-coded-blocks-on-corner</option>
+	<option value="color-coordinated-block-insertion-in-pallets">color-coordinated-block-insertion-in-pallets</option>
+	<option value="move-kit-from-zone-to-cylinder">move-kit-from-zone-to-cylinder</option>
+	<option value="multi-level-insertion-and-zone-matching">multi-level-insertion-and-zone-matching</option>
+	<option value="color-coordinated-insertion">color-coordinated-insertion</option>
+	<option value="colored-cylinder-zone-sorting">colored-cylinder-zone-sorting</option>
+	<option value="ball-in-bowl-obstacle-course-new">ball-in-bowl-obstacle-course-new</option>
+	<option value="colorful-block-tower-on-cylinder-base">colorful-block-tower-on-cylinder-base</option>
+	<option value="manipulating-two-ropes">manipulating-two-ropes</option>
+	<option value="construct-corner-building">construct-corner-building</option>
+	<option value="color-coordinated-block-bowl-sorting">color-coordinated-block-bowl-sorting</option>
+	<option value="color-coordinated-block-bridge">color-coordinated-block-bridge</option>
+	<option value="ball-on-box-on-container">ball-on-box-on-container</option>
+	<option value="color-sequenced-sphere-placement">color-sequenced-sphere-placement</option>
+	<option value="construct-corner-blocks">construct-corner-blocks</option>
+	<option value="sort-insert-color-coordinated-blocks">sort-insert-color-coordinated-blocks</option>
+	<option value="color-coordinated-sphere-cylinder-matching">color-coordinated-sphere-cylinder-matching</option>
+	<option value="color-coordinated-block-corner-alignment">color-coordinated-block-corner-alignment</option>
+	<option value="color-sequenced-block-in-container">color-sequenced-block-in-container</option>
+	<option value="color-ordered-container-arrangement">color-ordered-container-arrangement</option>
+	<option value="symmetric-block-bridge-construction">symmetric-block-bridge-construction</option>
+	<option value="color-coordinated-corner-placement">color-coordinated-corner-placement</option>
+	<option value="connect-boxes-with-rope">connect-boxes-with-rope</option>
+	<option value="align-rope-cross-zone">align-rope-cross-zone</option>
+	<option value="vertical-insertion-blocks">vertical-insertion-blocks</option>
+	<option value="cylinder-stand-alignment">cylinder-stand-alignment</option>
+	<option value="color-coordinated-zone-arrangement">color-coordinated-zone-arrangement</option>
+	<option value="insert-blocks-lineup">insert-blocks-lineup</option>
+	<option value="rainbow-pyramid-in-zone">rainbow-pyramid-in-zone</option>
+	<option value="cylinder-and-box-arrangement">cylinder-and-box-arrangement</option>
+	<option value="rotate-and-insert-cylinder">rotate-and-insert-cylinder</option>
+	<option value="color-coordinated-block-and-sphere-arrangement">color-coordinated-block-and-sphere-arrangement</option>
+	<option value="create-pyramid-blocks-and-container">create-pyramid-blocks-and-container</option>
+	<option value="mix-piles">mix-piles</option>
+	<option value="nested-boxes">nested-boxes</option>
+	<option value="put-blues-around-red">put-blues-around-red</option>
+	<option value="color-sequenced-pyramid-packing">color-sequenced-pyramid-packing</option>
+	<option value="put-blocks-between-zones">put-blocks-between-zones</option>
+	<option value="color-coordinated-cylinder-pyramid">color-coordinated-cylinder-pyramid</option>
+	<option value="sweep-and-sort-blocks">sweep-and-sort-blocks</option>
+	<option value="multi-level-pyramid-construction">multi-level-pyramid-construction</option>
+	<option value="align-cylinders-box">align-cylinders-box</option>
+	<option value="guided-block-path">guided-block-path</option>
+	<option value="rainbow-stack">rainbow-stack</option>
+	<option value="color-coordinated-block-pyramid-construction">color-coordinated-block-pyramid-construction</option>
+	<option value="color-ordered-insertion-new">color-ordered-insertion-new</option>
+	<option value="mixed-color-block-barrier-insertion">mixed-color-block-barrier-insertion</option>
+	<option value="insert-color-blocks-into-cylinders">insert-color-blocks-into-cylinders</option>
+	<option value="color-coordinated-cylinder-in-box">color-coordinated-cylinder-in-box</option>
+	<option value="color-coordinated-block-shifting">color-coordinated-block-shifting</option>
+	<option value="align-balls-in-colored-zones">align-balls-in-colored-zones</option>
+	<option value="multicolor-block-bridge">multicolor-block-bridge</option>
+	<option value="sequential-insertion-and-stacking">sequential-insertion-and-stacking</option>
+	<option value="insert-blocks-into-pyramid">insert-blocks-into-pyramid</option>
+	<option value="move-bowl-from-pallet-to-corner">move-bowl-from-pallet-to-corner</option>
+	<option value="palette-color-match">palette-color-match</option>
+	<option value="color-coordinated-block-in-container-placement">color-coordinated-block-in-container-placement</option>
+	<option value="insertion-in-color-sequenced-zones">insertion-in-color-sequenced-zones</option>
+	<option value="align-spheres-in-colored-zones">align-spheres-in-colored-zones</option>
+	<option value="color-blocks-in-cylinder-maze">color-blocks-in-cylinder-maze</option>
+	<option value="color-coordinated-sphere-on-pallet-pyramid">color-coordinated-sphere-on-pallet-pyramid</option>
+	<option value="sort-and-stack-clr-blocks">sort-and-stack-clr-blocks</option>
+	<option value="color-coordinated-cylinder-stacking">color-coordinated-cylinder-stacking</option>
+	<option value="corner-block-challenge">corner-block-challenge</option>
+	<option value="sequential-block-insertion">sequential-block-insertion</option>
+	<option value="place-blue-on-line-ends">place-blue-on-line-ends</option>
+	<option value="kit-in-bowl-in-zone">kit-in-bowl-in-zone</option>
+	<option value="place-box-in-pallet">place-box-in-pallet</option>
+	<option value="align-rope-along-line">align-rope-along-line</option>
+	<option value="sphere-container-color-match">sphere-container-color-match</option>
+	<option value="container-block-pyramid-assembly">container-block-pyramid-assembly</option>
+	<option value="stack-color-coordinated-blocks">stack-color-coordinated-blocks</option>
+	<option value="assemble-single-car">assemble-single-car</option>
+	<option value="color-structured-block-tower">color-structured-block-tower</option>
+	<option value="color-sorted-block-race">color-sorted-block-race</option>
+	<option value="align-balls-in-colored-boxes">align-balls-in-colored-boxes</option>
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances" onchange="updateGPT()">
+              <option value="01"  selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              </select>
+            </div>
+            <br/>
+            <br/>
+
+            <video id="single-task-result-video"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/all_task_videos/cylinder-ring-stack-videos/000003.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
         </div>
+        </div>        
+        <div class="column is-half">
+
+            <h3 class="title is-5">Code Llama 13B Instruct (Finetuned)</h3>
+
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-llama" onchange="updateLlama()">
+	<option value="code-stack-wall">code-stack-wall</option>
+	<option value="code-blue-on-red-cylinder">code-blue-on-red-cylinder</option>
+	<option value="code-ball-on-line">code-ball-on-line</option>
+	<option value="code-rainbow-pyramid">code-rainbow-pyramid</option>
+	<option value="code-cylinder-in-zone">code-cylinder-in-zone</option>
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-llama" onchange="updateLlama()">
+              <option value="01"  selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              </select>
+            </div>
+            <br/>
+            <br/>
+
+            <video id="single-task-result-video-llama"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/all_task_videos/code-blue-on-red-cylinder-videos/000001.mp4"
+                      type="video/mp4">
+            </video>
+
+	    <!--/ Paper video. -->
+
+        </br>
+
       </div>
+
     </div>
-    <!--/ Paper video. -->
+  </div>
+      <div class="column has-text-centered">
+        Strongly recommend to checkout <a target="_blank" href="https://huggingface.co/spaces/Gen-Sim/Gen-Sim">Gradio</a> for live demos of generating your own task!
+      </div>  
+</section>
+
+
+<section class="section">
+  <div class="container is-max-widescreen">
+
+    <div class="rows">
+
+
+    <!-- Animation. -->
+    <div class="rows   ">
+      <div class="row is-full-width half-width">
+        <h2 class="title is-3"><span class="dcliport">GenSim</span></h2>
+
+        <h3 class="title is-4">Overview</h3>
+        <img src="media/common/teaser_figure.png" class="interpolation-image" 
+         alt="Interpolate start reference image." />
+        <br/>
+
+        <!-- Re-rendering. -->
+        <h3 class="title is-4">Pipeline</h3>
+        <img src="media/common/pipeline_figure.png" class="interpolation-image" 
+         alt="Interpolate start reference image." />
+        <br/>
+        <br/>
+
+       </div>
+
+    </div>
+
   </div>
 </section>
 
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container is-max-widescreen">
+    <div class="rows">
+    <!-- Animation. -->
+    <h2 class="title is-3  has-text-centered">Real-Robot Experiments (4x) </h2>
 
-    <div class="columns is-centered">
+    <div class="container  ">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-half">
+        <h3 class="title is-3">CLIPort</h3>
 
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            
-          </p>
-          <video id="matting-video" controls playsinline height="100%">
-            <source src="./static/videos/matting.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-cliport" onchange="updateRealWorldCliport()">
+				<option value="stack-block">stack-block</option>
+        <option value="build-wheel">build-wheel</option>                
+				<option value="put-block-in-bowl">put-block-in-bowl</option>
+				<option value="pair-blocks-on-line">pair-blocks-on-line</option>
+				<option value="pack-spheres">pack-spheres</option>
+				<option value="block-zone">block-zone</option>
+				<option value="block-tower-corner">block-tower-corner</option>
+				<option value="block-in-bowl-in-zone">block-in-bowl-in-zone</option>
+				<option value="align-cylinder-in-zone">align-cylinder-in-zone</option>
+				<option value="align-block-zone">align-block-zone</option>
 
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-cliport" onchange="updateRealWorldCliport()">
+              <option value="01" selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>              
+              </select>
+            </div>
+            <br/>
+            <br/>				
+            <video id="single-task-result-video-cliport"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/realworld_task_videos/pair-blocks-on-line/cliport10.mp4"
                       type="video/mp4">
             </video>
           </div>
-
         </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!--/ Animation. -->
-</section>
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>
-</code></pre>
+    </div>        
+      <div class="column is-half">
+        <h3 class="title is-3">GenSim</h3>
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-gpt" onchange="updateRealWorldGenSim()">
+				<option value="stack-block">stack-block</option>
+        <option value="build-wheel">build-wheel</option>        
+				<option value="put-block-in-bowl">put-block-in-bowl</option>
+				<option value="pair-blocks-on-line">pair-blocks-on-line</option>
+				<option value="pack-spheres">pack-spheres</option>
+				<option value="block-zone">block-zone</option>
+				<option value="block-tower-corner">block-tower-corner</option>
+				<option value="block-in-bowl-in-zone">block-in-bowl-in-zone</option>
+				<option value="align-cylinder-in-zone">align-cylinder-in-zone</option>
+				<option value="align-block-zone">align-block-zone</option>
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-gpt" onchange="updateRealWorldGenSim()">
+              <option value="01" selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>              
+              </select>
+            </div>
+            <br/>
+            <br/>				
+            <video id="single-task-result-video-gpt"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
   </div>
 </section>
 
@@ -225,19 +634,15 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/nerfies/nerfies.github.io" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
-    <div class="columns is-centered">
+    <div class="columns is-centered has-text-centered">
       <div class="column is-8">
         <div class="content">
           <p>
-            This website template is borrowed from the awesome  <a
+            This website template is borrowed from  <a
               href="https://github.com/nerfies/nerfies.github.io">nerfie</a> 
           </p>
         </div>
