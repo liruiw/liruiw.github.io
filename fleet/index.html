@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Fleet Policy Learning via Weight Merging and An Application to Robotic Tool-Use.">
+  <meta name="keywords" content="Policy Merging, Fleet Learning, Robotics">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fleet Policy Learning via Weight Merging and An Application to Robotic Tool-Use</title>
+
+  <link href="http://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+
+  <script>
+    function updateSim() {
+      var task = document.getElementById("single-menu-tasks").value;
+      var inst = document.getElementById("single-menu-instances").value;
+
+      console.log("sim", task, inst)
+
+      var video = document.getElementById("single-task-result-video");
+      video.src = "media/sim_videos/"+ 
+                  task + "-" +  inst  + ".mp4";
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+    function updateReal() {
+      var task = document.getElementById("single-menu-tasks-real").value;
+      var inst = document.getElementById("single-menu-instances-real").value;
+
+      console.log("real", task, inst)
+
+      var video = document.getElementById("single-task-result-video-real");
+      video.src = "media/real_videos/" + 
+                  task + "-" +  inst  + ".mp4";
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+  </script>
+
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Fleet Policy Learning via Weight Merging and An Application to Robotic Tool-Use</h1>
+  <!--         <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous ICLR Submission</span>
+          </div>
+ -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Lirui Wang<sup>1</sup>,</span>
+            <span class="author-block">Kaiqing Zhang<sup>2</sup>,</span>
+            <span class="author-block">Allan Zhou<sup>3</sup>,</sup>    
+          </div>
+          <div class="is-size-5 publication-authors">    
+            <span class="author-block">Max Simchowitz<sup>1</sup>,</sup>
+            <span class="author-block">Russ Tedrake<sup>1</sup>,</sup>
+                        
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">MIT CSAIL<sup>1</sup>,</span>
+            <span class="author-block">University of Maryland, College Park<sup>2</sup>,</span>
+            <span class="author-block">Stanford<sup>3</sup>,</span>         
+          </div>          
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2310.01362"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Gradio Link. -->
+<!--               <span class="link-block">
+                <a href="https://huggingface.co/spaces/Gen-Sim/Gen-Sim"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-smile"></i>
+                  </span>
+                  <span>Gradio Demo</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://twitter.com/LiruiWang1/status/1677356178689646592"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span>
+                </a>
+              </span> -->
+
+              <span class="link-block">
+                <a href="https://github.com/liruiw/Fleet-Tools"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Github</span>
+                </a>
+              </span>              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <h2 class="subtitle has-text-centered">
+    <br>
+Instead of acquiring astronomical size of data from the <b>top-down</b> (red arrow, requiring terabytes-per-day worth of data transfer), <br>
+we demonstrate that the <b>bottom-up</b> approach (green arrow, megabytes-per-day): merging from locally trained policies, <br>can also produce general policies that incorporate skills learned by the individual constituent policies.
+ </h2>
+        <img src="media/common/teaser.png" class="interpolation-image" 
+         alt="Interpolate start reference image." />
+        <br/>
+        <br/>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+Fleets of robots ingest massive amounts of streaming data generated by interacting with their environments, far more than those that can be stored or transmitted with ease. At the same time, we hope that teams of robots can co-acquire diverse skills through their experiences in varied settings. How can we enable such fleet-level learning without having to transmit or centralize fleet-scale data? In this paper, we investigate distributed learning of policies as a potential solution. To efficiently merge policies in the distributed setting, we propose fleet-merge, an instantiation of distributed learning that accounts for the symmetries that can arise in learning policies that are parameterized by recurrent neural networks. 
+
+<br><br>
+We show that fleet-merge consolidates the behavior of policies trained on 50 tasks in the Meta-World environment, with the merged policy achieving good performance on nearly all training tasks at test time. Moreover, we introduce a novel robotic tool-use benchmark, fleet-tools, for fleet policy learning in compositional and contact-rich robot manipulation tasks, which might be of broader interest, and validate the efficacy of fleet-merge on the benchmark.
+
+
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section>
+  <div class="row">
+    <div class="container">
+    <!-- Paper video. -->
+        <h2 class="title is-3 has-text-centered">Simulation Tasks</h2>      
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks" onchange="updateSim()">
+  <option value="wrench">wrench</option>
+  <option value="hammer">hammer</option>
+  <option value="spatula">spatula</option>
+  <option value="knife">knife</option>
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances" onchange="updateSim()">
+              <option value="01"  selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              </select>
+            </div>
+            <br/>
+            <br/>
+
+            <video id="single-task-result-video"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/real_videos/hammer-01.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        </div>        
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-widescreen">
+
+    <div class="rows">
+
+
+    <!-- Animation. -->
+    <div class="rows   ">
+      <div class="row is-full-width half-width">
+        <h3 class="title is-4">Joint Space Kpam</h3>
+        <img src="media/common/kpam_joint.png" class="interpolation-image" 
+         alt="Interpolate start reference image." />
+        <br/>
+
+    
+
+       </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section>
+  <div class="row">
+    <div class="container">
+    <!-- Paper video. -->
+        <h2 class="title is-3 has-text-centered">Real-World Tasks</h2>      
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-real" onchange="updateReal()">
+  <option value="hammer">hammer</option>
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-real" onchange="updateReal()">
+              <option value="01"  selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              </select>
+            </div>
+            <br/>
+            <br/>
+
+            <video id="single-task-result-video-real"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/sim_videos/hammer-01.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        </div>        
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/nerfies/nerfies.github.io" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website template is borrowed from  <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfie</a> 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
