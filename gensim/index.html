@@ -241,12 +241,6 @@
                     type="video/mp4">
           </video>
         </div>
-       <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/align-cylinder-in-zone/gpt70.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
         <div class="item item-blueshirt">
           <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
             <source src="media/realworld_task_videos/put-block-in-bowl/gpt70_01.mp4"
@@ -503,14 +497,22 @@ We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on 
         <h2 class="title is-3"><span class="dcliport">GenSim</span></h2>
 
         <h3 class="title is-4">Overview</h3>
-        <img src="media/common/teaser_figure.png" class="interpolation-image" 
-         alt="Interpolate start reference image." />
+       <!--  <img src="media/common/teaser_figure.png" class="interpolation-image" 
+         alt="Interpolate start reference image." /> -->
+          <video id="teaser" autoplay muted loop height="100%">
+            <source src="media/common/teaser_figure_animation.mp4"
+                    type="video/mp4">
+          </video>         
         <br/>
 
         <!-- Re-rendering. -->
         <h3 class="title is-4">Pipeline</h3>
-        <img src="media/common/pipeline_figure.png" class="interpolation-image" 
-         alt="Interpolate start reference image." />
+ <!--        <img src="media/common/pipeline_figure.png" class="interpolation-image" 
+         alt="Interpolate start reference image." /> -->
+          <video id="teaser" autoplay muted loop height="100%">
+            <source src="media/common/pipeline_figure_animation.mp4"
+                    type="video/mp4">
+          </video>   
         <br/>
         <br/>
 
@@ -547,7 +549,6 @@ We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on 
 				<option value="block-zone">block-zone</option>
 				<option value="block-tower-corner">block-tower-corner</option>
 				<option value="block-in-bowl-in-zone">block-in-bowl-in-zone</option>
-				<option value="align-cylinder-in-zone">align-cylinder-in-zone</option>
 				<option value="align-block-zone">align-block-zone</option>
 
               </select>
@@ -591,7 +592,6 @@ We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on 
 				<option value="block-zone">block-zone</option>
 				<option value="block-tower-corner">block-tower-corner</option>
 				<option value="block-in-bowl-in-zone">block-in-bowl-in-zone</option>
-				<option value="align-cylinder-in-zone">align-cylinder-in-zone</option>
 				<option value="align-block-zone">align-block-zone</option>
               </select>
             </div>
