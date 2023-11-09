@@ -26,8 +26,17 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 
-
+ 
+ 
   <script>
+  function toggleCode() {
+    var code = document.getElementById('code');
+    if (code.style.display === 'none') {
+      code.style.display = 'block';
+    } else {
+      code.style.display = 'none';
+    }
+  }    
     function updateGPT() {
       var task = document.getElementById("single-menu-tasks").value;
       var inst = document.getElementById("single-menu-instances").value;
@@ -90,7 +99,64 @@
       video.playbackRate = 2.0;
       video.play();
     }
+    timeoutIds = [];
 
+    function populateDemo(imgs, num) {
+        // Get the expanded image
+        var expandImg = document.getElementById("expandedImg-" + num);
+        // Get the image text
+        var imgText = document.getElementById("imgtext-" + num);
+        var answer = document.getElementById("answer-" + num);
+
+        // Use the same src in the expanded image as the image being clicked on from the grid
+        expandImg.src = imgs.src.replace(".png", ".mp4");
+        var video = document.getElementById('demo-video-' + num);
+        // or video = $('.video-selector')[0];
+        video.pause()
+        video.load();
+        video.play();
+        video.removeAttribute('controls');
+
+        console.log(expandImg.src);
+        // Use the value of the alt attribute of the clickable image as text inside the expanded image
+        var qa = imgs.alt.split("[sep]");
+        imgText.innerHTML = qa[0];
+        answer.innerHTML = "";
+        // Show the container element (hidden with CSS)
+        expandImg.parentElement.style.display = "block";
+        for (timeoutId of timeoutIds) {
+            clearTimeout(timeoutId);
+        }
+
+        // NOTE (wliang): Modified from original to read from file instead
+        fetch(qa[1])
+            .then(response => response.text())
+            .then(contents => {
+                // Call the processData function and pass the contents as an argument
+                typeWriter(contents, 0, qa[0], num);
+            })
+            .catch(error => console.error('Error reading file:', error));
+    }
+
+    function typeWriter(txt, i, q, num) {
+        var imgText = document.getElementById("imgtext-" + num);
+        var answer = document.getElementById("answer-" + num);
+        if (imgText.innerHTML == q) {
+            for (let k = 0; k < 5; k++) {
+                if (i < txt.length) {
+                    if (txt.charAt(i) == "\\") {
+                        answer.innerHTML += "\n";
+                        i += 1;
+                    } else {
+                        answer.innerHTML += txt.charAt(i);
+                    }
+                    i++;
+                }
+            }
+            hljs.highlightAll();
+            timeoutIds.push(setTimeout(typeWriter, 1, txt, i, q, num));
+        }
+    }
   </script>
 
 </head>
@@ -156,7 +222,7 @@
               </span>
 
               <span class="link-block">
-                <a href="https://twitter.com/LiruiWang1/status/1677356178689646592"
+                <a href="https://x.com/LiruiWang1/status/1711417032653324354?s=20"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-twitter"></i>
@@ -431,8 +497,11 @@ We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on 
               <source src="media/all_task_videos/cylinder-ring-stack-videos/000003.mp4"
                       type="video/mp4">
             </video>
+
           </div>
+
         </div>
+    <!--       <button style="background-color: #4CAF50; color: white;" onclick="populateDemo(document.getElementById('single-menu-tasks').value, 1)">Show Code</button> -->
         </div>        
         <div class="column is-half">
 
