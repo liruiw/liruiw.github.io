@@ -270,6 +270,24 @@
             <source src="media/realworld_task_videos/build-wheel/gpt70_01.mp4"
                     type="video/mp4">
           </video>
+        </div>  
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/sort-garbage/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>  
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/place-bread/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>                          
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/organize-kits/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
         </div>        
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop height="100%">
@@ -277,21 +295,9 @@
                     type="video/mp4">
           </video>
         </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/block-zone/gpt70_01.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
         <div class="item item-shiba">
           <video poster="" id="shiba" autoplay controls muted loop height="100%">
             <source src="media/realworld_task_videos/block-tower-corner/gpt70_01.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/stack-block/gpt70_01.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -304,12 +310,6 @@
         <div class="item item-shiba">
           <video poster="" id="shiba" autoplay controls muted loop height="100%">
             <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70_01.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/put-block-in-bowl/gpt70_01.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -569,17 +569,17 @@ We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on 
        <!--  <img src="media/common/teaser_figure.png" class="interpolation-image" 
          alt="Interpolate start reference image." /> -->
           <video id="teaser" autoplay muted loop height="100%">
-            <source src="media/common/teaser_figure_animation.mp4"
+            <source src="media/common/pipeline_video.mp4"
                     type="video/mp4">
           </video>         
         <br/>
 
         <!-- Re-rendering. -->
-        <h3 class="title is-4">Pipeline</h3>
+        <h3 class="title is-4">Tasks</h3>
  <!--        <img src="media/common/pipeline_figure.png" class="interpolation-image" 
          alt="Interpolate start reference image." /> -->
           <video id="teaser" autoplay muted loop height="100%">
-            <source src="media/common/pipeline_figure_animation.mp4"
+            <source src="media/common/generated_task_video.mp4"
                     type="video/mp4">
           </video>   
         <br/>
@@ -619,7 +619,9 @@ We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on 
 				<option value="block-tower-corner">block-tower-corner</option>
 				<option value="block-in-bowl-in-zone">block-in-bowl-in-zone</option>
 				<option value="align-block-zone">align-block-zone</option>
-
+        <option value="organize-kits">organize-kits</option>
+        <option value="sort-garbage">sort-garbage</option>        
+        <option value="place-bread">place-bread</option>
               </select>
             </div>
             instance
@@ -662,6 +664,9 @@ We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on 
 				<option value="block-tower-corner">block-tower-corner</option>
 				<option value="block-in-bowl-in-zone">block-in-bowl-in-zone</option>
 				<option value="align-block-zone">align-block-zone</option>
+        <option value="organize-kits">organize-kits</option>
+        <option value="sort-garbage">sort-garbage</option>        
+        <option value="place-bread">place-bread</option>        
               </select>
             </div>
             instance
