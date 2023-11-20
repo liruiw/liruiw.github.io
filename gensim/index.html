@@ -157,6 +157,29 @@
             timeoutIds.push(setTimeout(typeWriter, 1, txt, i, q, num));
         }
     }
+
+  function handleVideoEnd(videoElement) {
+    // Pause the video
+    videoElement.pause();
+    // Wait for 5 seconds
+    setTimeout(() => {
+      // Play the video
+      videoElement.play();
+    }, 5000); // 5000 milliseconds = 5 seconds
+  }
+
+  // Get the video elements
+  var overviewVideo = document.getElementById('teaser1');
+  var tasksVideo = document.getElementById('teaser2');
+  overviewVideo.removeAttribute('loop');
+  tasksVideo.removeAttribute('loop');
+
+  // Add event listeners for the 'ended' event
+  overviewVideo.addEventListener('ended', function() { handleVideoEnd(overviewVideo); });
+  tasksVideo.addEventListener('ended', function() { handleVideoEnd(tasksVideo);
+
+  });
+
   </script>
 
 </head>
@@ -196,7 +219,12 @@
             <span class="author-block">UW<sup>5</sup>,</sup>
             <span class="author-block">CMU<sup>6</sup>,</sup>            
             </span>
-          </div>          
+          </div>  
+          <br>
+          <div class="is-size-5 publication-authors">
+            Workshop on Language Grounding and Robot Learning (<a style="color: red;">Workshop Best Paper</a>), CoRL 2023
+          </div>  
+                  
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
@@ -557,37 +585,27 @@ We use GPT4 to expand the existing benchmark by ten times to over 100 tasks, on 
 <section class="section">
   <div class="container is-max-widescreen">
 
-    <div class="rows">
+<div class="rows">
+  <div class="row is-full-width half-width">
+    <h2 class="title is-3"><span class="dcliport">GenSim</span></h2>
 
+    <h3 class="title is-4">Overview</h3>
+    <video id="teaser1" muted loop autoplay height="100%">
+      <source src="media/common/pipeline_video.mp4" type="video/mp4">
+    </video>   
+    <br/>
 
-    <!-- Animation. -->
-    <div class="rows   ">
-      <div class="row is-full-width half-width">
-        <h2 class="title is-3"><span class="dcliport">GenSim</span></h2>
+    <!-- Re-rendering. -->
+    <h3 class="title is-4">Tasks</h3>
+    <video id="teaser2" muted loop autoplay height="100%">
+      <source src="media/common/generated_task_video.mp4" type="video/mp4">
+    </video>   
+    <br/>
+    <br/>
 
-        <h3 class="title is-4">Overview</h3>
-       <!--  <img src="media/common/teaser_figure.png" class="interpolation-image" 
-         alt="Interpolate start reference image." /> -->
-          <video id="teaser" autoplay muted loop height="100%">
-            <source src="media/common/pipeline_video.mp4"
-                    type="video/mp4">
-          </video>         
-        <br/>
+  </div>
+</div>
 
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Tasks</h3>
- <!--        <img src="media/common/pipeline_figure.png" class="interpolation-image" 
-         alt="Interpolate start reference image." /> -->
-          <video id="teaser" autoplay muted loop height="100%">
-            <source src="media/common/generated_task_video.mp4"
-                    type="video/mp4">
-          </video>   
-        <br/>
-        <br/>
-
-       </div>
-
-    </div>
 
   </div>
 </section>
