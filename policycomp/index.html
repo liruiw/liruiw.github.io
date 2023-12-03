@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="GenSim: Supersizing Simulation Task Generation in Robotics with LLM.">
+  <meta name="keywords" content="Simulation, LLMs, Robotics">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Policy Composition From and For Heterogeneous Robot Learning</title>
+
+  <link href="http://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+ 
+ 
+  <script>
+  function toggleCode() {
+    var code = document.getElementById('code');
+    if (code.style.display === 'none') {
+      code.style.display = 'block';
+    } else {
+      code.style.display = 'none';
+    }
+  }    
+    function updateGPT() {
+      var task = document.getElementById("single-menu-tasks").value;
+      var inst = document.getElementById("single-menu-instances").value;
+
+      console.log("gpt", task, inst)
+
+      var video = document.getElementById("single-task-result-video");
+      video.src = "media/all_task_videos/" + 
+                  task + 
+                  "-videos/" +
+                  "0000" + 
+                  inst + 
+                  ".mp4";
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+    function updateRealWorldCliport() {
+      var task = document.getElementById("single-menu-tasks-cliport").value;
+      var inst = document.getElementById("single-menu-instances-cliport").value;
+
+      console.log("gpt", task, inst)
+
+      var video = document.getElementById("single-task-result-video-cliport");
+      video.src = "media/realworld_task_videos/" + 
+                  task + "/cliport10_" +  inst  + ".mp4";
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+
+    function updateRealWorldGenSim() {
+      var task = document.getElementById("single-menu-tasks-gpt").value;
+      var inst = document.getElementById("single-menu-instances-gpt").value;
+
+      console.log("gpt", task, inst)
+
+      var video = document.getElementById("single-task-result-video-gpt");
+      video.src = "media/realworld_task_videos/" + 
+                  task + 
+                  "/gpt70_" +  inst  + ".mp4";
+      video.playbackRate = 2.0;
+      video.play();
+    }
+
+    function updateLlama() {
+      var task = document.getElementById("single-menu-tasks-llama").value;
+      var inst = document.getElementById("single-menu-instances-llama").value;
+
+      console.log("llama", task, inst)
+
+      var video = document.getElementById("single-task-result-video-llama");
+      video.src = "media/all_task_videos/" + 
+                  task + 
+                  "-videos/" +
+                  "0000" + 
+                  inst + 
+                  ".mp4";
+      console.log(video.src)
+      video.playbackRate = 2.0;
+      video.play();
+    }
+    timeoutIds = [];
+
+    function populateDemo(imgs, num) {
+        // Get the expanded image
+        var expandImg = document.getElementById("expandedImg-" + num);
+        // Get the image text
+        var imgText = document.getElementById("imgtext-" + num);
+        var answer = document.getElementById("answer-" + num);
+
+        // Use the same src in the expanded image as the image being clicked on from the grid
+        expandImg.src = imgs.src.replace(".png", ".mp4");
+        var video = document.getElementById('demo-video-' + num);
+        // or video = $('.video-selector')[0];
+        video.pause()
+        video.load();
+        video.play();
+        video.removeAttribute('controls');
+
+        console.log(expandImg.src);
+        // Use the value of the alt attribute of the clickable image as text inside the expanded image
+        var qa = imgs.alt.split("[sep]");
+        imgText.innerHTML = qa[0];
+        answer.innerHTML = "";
+        // Show the container element (hidden with CSS)
+        expandImg.parentElement.style.display = "block";
+        for (timeoutId of timeoutIds) {
+            clearTimeout(timeoutId);
+        }
+
+        // NOTE (wliang): Modified from original to read from file instead
+        fetch(qa[1])
+            .then(response => response.text())
+            .then(contents => {
+                // Call the processData function and pass the contents as an argument
+                typeWriter(contents, 0, qa[0], num);
+            })
+            .catch(error => console.error('Error reading file:', error));
+    }
+
+    function typeWriter(txt, i, q, num) {
+        var imgText = document.getElementById("imgtext-" + num);
+        var answer = document.getElementById("answer-" + num);
+        if (imgText.innerHTML == q) {
+            for (let k = 0; k < 5; k++) {
+                if (i < txt.length) {
+                    if (txt.charAt(i) == "\\") {
+                        answer.innerHTML += "\n";
+                        i += 1;
+                    } else {
+                        answer.innerHTML += txt.charAt(i);
+                    }
+                    i++;
+                }
+            }
+            hljs.highlightAll();
+            timeoutIds.push(setTimeout(typeWriter, 1, txt, i, q, num));
+        }
+    }
+
+  function handleVideoEnd(videoElement) {
+    // Pause the video
+    videoElement.pause();
+    // Wait for 5 seconds
+    setTimeout(() => {
+      // Play the video
+      videoElement.play();
+    }, 5000); // 5000 milliseconds = 5 seconds
+  }
+
+  // Get the video elements
+  var overviewVideo = document.getElementById('teaser1');
+  var tasksVideo = document.getElementById('teaser2');
+  overviewVideo.removeAttribute('loop');
+  tasksVideo.removeAttribute('loop');
+
+  // Add event listeners for the 'ended' event
+  overviewVideo.addEventListener('ended', function() { handleVideoEnd(overviewVideo); });
+  tasksVideo.addEventListener('ended', function() { handleVideoEnd(tasksVideo);
+
+  });
+
+  </script>
+
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Policy Composition From and For Heterogeneous Robot Learning</h1>
+  <!--         <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous ICLR Submission</span>
+          </div>
+ -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Lirui Wang,</span>
+            <span class="author-block">Alan Zhao,</span>
+            <span class="author-block">Yilun Du,</sup>    
+            <span class="author-block">Ted Adelson,</sup>     
+            <span class="author-block">Russ Tedrake</sup>                 
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">MIT CSAIL</span>          
+            </span>
+          </div>  
+          <br>
+        
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2310.01361"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://x.com/LiruiWang1/status/1711417032653324354?s=20"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span>
+                </a>
+              </span>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-fullhd">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop height="100%">
+        <source src="media/common/gensim_teaser_v1.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+      </br>
+        <span class="dcliport"><b>Policy Composition</b></span> can compose data across domains, modalities, and tasks using diffusion models. The composed policy demonstrates robust scene-level and task-level generalization in <b>generalizable tool-use tasks</b>.
+      </h2>
+    </div>
+  </div>
+</section>
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/build-wheel/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>  
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/sort-garbage/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>  
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/place-bread/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>                          
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/organize-kits/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>        
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/pack-spheres/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/block-tower-corner/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/block-in-bowl-in-zone/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
+            <source src="media/realworld_task_videos/stack-block/gpt70_01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <h2 class="subtitle has-text-centered">
+    <br>
+
+ </h2>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+Training general robotic policies from heterogeneous data for different tasks is challenging. Large volumes of robotic data are under different modalities such as color, depth, tactile, and proprioceptive information, and in different domains such as simulation, real robots, and human videos. Existing methods usually collect and pool all data from one domain to train a single policy to handle such heterogeneity in tasks and domains, which is prohibitively expensive and difficult. 
+
+<br><br>In this work, we present a flexible approach, Policy Composition, to combine information across such diverse modalities and domains for scene-level and task-level generalized manipulation skills, by composing different data distributions represented with diffusion models. Furthermore, our method can use classifier-free  composition for multi-task manipulation and be composed with analytic cost functions to adapt policy behaviors at inference time. We train our method on simulation, human, and real robot data and evaluate in generalizable tool-use tasks. The composed policy achieves robust and dexterous performance under varying scenes and tasks and outperforms baselines from a single data source in both simulation and real-world evaluations.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-widescreen">
+
+<div class="rows">
+  <div class="row is-full-width half-width">
+    <h3 class="title is-4">Overview</h3>
+    <video id="teaser1" muted loop autoplay height="100%">
+      <source src="media/common/pipeline_video.mp4" type="video/mp4">
+    </video>   
+    <br/>
+
+
+  </div>
+</div>
+
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="rows">
+    <!-- Animation. -->
+    <h2 class="title is-3  has-text-centered">Real-Robot Experiments</h2>
+
+    <div class="container  ">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-half">
+        <h3 class="title is-3">Real Only</h3>
+
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-cliport" onchange="updatesingletaskreal()">
+        <option value="change object">change_robot</option>
+        <option value="change robot/tool">change_tool</option>        
+        <option value="distractor">distractor</option>
+        <option value="new instance">new_instance</option> 
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-cliport" onchange="updatesingletaskreal()">
+              <option value="01" selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>              
+              </select>
+            </div>
+            <br/>
+            <br/>				
+            <video id="single-task-result-video-cliport"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/realworld_task_videos/pair-blocks-on-line/cliport10_01.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+    </div>        
+      <div class="column is-half">
+        <h3 class="title is-3">Real+Sim</h3>
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-cliport" onchange="updatesingletasksimreal()">
+        <option value="change object">change_robot</option>
+        <option value="change robot/tool">change_tool</option>        
+        <option value="distractor">distractor</option>
+        <option value="new instance">new_instance</option> 
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-gpt" onchange="updatesingletasksimreal()">
+              <option value="01" selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>              
+              </select>
+            </div>
+            <br/>
+            <br/>				
+            <video id="single-task-result-video-gpt"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70_01.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="rows">
+    <!-- Animation. -->
+
+    <div class="container  ">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-half">
+        <h3 class="title is-3">Multitask Unconditional</h3>
+
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-cliport" onchange="updateMultitaskUnCond()">
+        <option value="wrench">wrench</option>
+        <option value="hammer">hammer</option>        
+        <option value="knife">knife</option>
+        <option value="spatula">spatula</option> 
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-cliport" onchange="updateMultitaskUnCond()">
+              <option value="01" selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>              
+              </select>
+            </div>
+            <br/>
+            <br/>       
+            <video id="single-task-result-video-cliport"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/realworld_task_videos/pair-blocks-on-line/cliport10_01.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+    </div>        
+      <div class="column is-half">
+        <h3 class="title is-3">Multitask Compositional</h3>
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-gpt" onchange="updateMultitaskComp()">
+        <option value="wrench">wrench</option>
+        <option value="hammer">hammer</option>        
+        <option value="knife">knife</option>
+        <option value="spatula">spatula</option> 
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-gpt" onchange="updateMultitaskComp()">
+              <option value="01" selected="selected">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>              
+              </select>
+            </div>
+            <br/>
+            <br/>       
+            <video id="single-task-result-video-gpt"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70_01.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/nerfies/nerfies.github.io" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website template is borrowed from  <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfie</a> 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

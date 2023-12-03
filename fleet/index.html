@@ -36,7 +36,7 @@
 
       var video = document.getElementById("single-task-result-video");
       video.src = "media/sim_videos/"+ 
-                  task + "-" +  inst  + ".mp4";
+                  task + "_" +  inst + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
@@ -115,11 +115,13 @@
     <br>
 Instead of acquiring astronomical size of data from the <b>top-down</b> (red arrow, requiring terabytes-per-day worth of data transfer), <br>
 we demonstrate that the <b>bottom-up</b> approach (green arrow, megabytes-per-day): merging from locally trained policies, <br>can also produce general policies that incorporate skills learned by the individual constituent policies.
- </h2>
+<br>
         <img src="media/common/teaser.png" class="interpolation-image" 
          alt="Interpolate start reference image." />
         <br/>
         <br/>
+ </h2>
+
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -141,7 +143,7 @@ We show that fleet-merge consolidates the behavior of policies trained on 50 tas
     </div>
 </section>
 
-<!-- <section>
+<section>
   <div class="row">
     <div class="container">
         <h2 class="title is-3 has-text-centered">Simulation Tasks</h2>      
@@ -163,10 +165,7 @@ We show that fleet-merge consolidates the behavior of policies trained on 50 tas
             instance
             <div class="select is-small">
               <select id="single-menu-instances" onchange="updateSim()">
-              <option value="00"  selected="selected">00</option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
+              <option value="01"  selected="selected">01</option>
               </select>
             </div>
             <br/>
@@ -176,8 +175,8 @@ We show that fleet-merge consolidates the behavior of policies trained on 50 tas
                    muted
                    autoplay
                    loop
-                   width="80%">
-              <source src="media/sim_videos/hammer-01.mp4"
+                   width="50%">
+              <source src="media/sim_videos/spatula_01.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -185,7 +184,7 @@ We show that fleet-merge consolidates the behavior of policies trained on 50 tas
         </div>        
     </div>
   </div>
-</section> -->
+</section>
 
 
 <section class="section">
