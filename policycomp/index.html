@@ -39,14 +39,13 @@
   }    
 
     function updatesingletaskreal() {
-      var task = document.getElementById("single-menu-single-task-real").value;
-      var inst = document.getElementById("single-menu-single-task-real").value;
+      var task = document.getElementById("single-menu-tasks-single-task-real").value;
+      var inst = document.getElementById("single-menu-instances-single-task-real").value;
 
       console.log("gpt", task, inst)
 
-      var video = document.getElementById("single-task-result-single-task-real");
-      video.src = "media/real_hammer_overhead/" + 
-                  task + "/output_" +  inst  + ".mp4";
+      var video = document.getElementById("single-task-result-video-single-task-real");
+      video.src = "media/local_video/real_hammer_overhead/" + "episode_" + task + "_" +  inst + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
@@ -72,9 +71,8 @@
       console.log("gpt", task, inst)
 
       var video = document.getElementById("single-task-result-video-multi-task-uncond");
-      video.src = "media/cut_video/" + 
-                  task + 
-                  "/gpt70_" +  inst  + ".mp4";
+      video.src = "media/local_video/multitask_uncond_" + task + "_gelsight_overhead/episode_" + 
+                   inst  + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
@@ -86,9 +84,8 @@
       console.log("gpt", task, inst)
 
       var video = document.getElementById("single-task-result-video-multi-task-comp");
-      video.src = "media/cut_video/" + 
-                  task + 
-                  "/gpt70_" +  inst  + ".mp4";
+      video.src = "media/local_video/multitask_comp_" + task + "_gelsight_overhead/episode_" + 
+                   inst  + ".mp4";;
       video.playbackRate = 2.0;
       video.play();
     }
@@ -290,21 +287,21 @@ Training general robotic policies from heterogeneous data for different tasks is
           <div class="column has-text-centered">
             Task  
             <div class="select is-small">     
-              <select id="single-menu-single-task-real" onchange="updatesingletaskreal()">
-        <option value="change object">change_robot</option>
-        <option value="change robot/tool">change_tool</option>        
+              <select id="single-menu-tasks-single-task-real" onchange="updatesingletaskreal()">
+        <option value="object_pose">object_pose</option>
+        <option value="robot_pose">tool_pose</option>        
         <option value="distractor">distractor</option>
-        <option value="new instance">new_instance</option> 
+        <option value="new_instance" selected="selected">new_instance</option> 
               </select>
             </div>
             instance
             <div class="select is-small">
               <select id="single-menu-instances-single-task-real" onchange="updatesingletaskreal()">
-              <option value="01" selected="selected">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>              
+              <option value="0" >01</option>
+              <option value="1">02</option>
+              <option value="2">03</option>
+              <option value="3" selected="selected">04</option>
+              <option value="4">05</option>              
               </select>
             </div>
             <br/>
@@ -315,7 +312,7 @@ Training general robotic policies from heterogeneous data for different tasks is
                    autoplay
                    loop
                    width="80%">
-              <source src="media/realworld_task_videos/pair-blocks-on-line/cliport10_01.mp4"
+              <source src="media/local_video/real_hammer_overhead/episode_new_instance_3.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -328,20 +325,20 @@ Training general robotic policies from heterogeneous data for different tasks is
             Task  
             <div class="select is-small">     
               <select id="single-menu-tasks-single-task-realsim" onchange="updatesingletasksimreal()">
-        <option value="change object">object_pose</option>
-        <option value="change robot/tool">tool_pose</option>        
+        <option value="object_pose">object_pose</option>
+        <option value="robot_pose">tool_pose</option>        
         <option value="distractor">distractor</option>
-        <option value="new instance">new_instance</option> 
+        <option value="new_instance" selected="selected">new_instance</option> 
               </select>
             </div>
             instance
             <div class="select is-small">
               <select id="single-menu-instances-single-task-realsim" onchange="updatesingletasksimreal()">
-              <option value="00" selected="selected">01</option>
-              <option value="01">02</option>
-              <option value="02">03</option>
-              <option value="03">04</option>
-              <option value="04">05</option>              
+              <option value="0" >01</option>
+              <option value="1">02</option>
+              <option value="2">03</option>
+              <option value="3" selected="selected">04</option>
+              <option value="4">05</option>              
               </select>
             </div>
             <br/>
@@ -379,17 +376,17 @@ Training general robotic policies from heterogeneous data for different tasks is
         <option value="wrench">wrench</option>
         <option value="hammer">hammer</option>        
         <option value="knife">knife</option>
-        <option value="spatula">spatula</option> 
+        <option value="spatula" selected="selected">spatula</option> 
               </select>
             </div>
             instance
             <div class="select is-small">
               <select id="single-menu-instances-multi-task-uncond" onchange="updateMultitaskUnCond()">
-              <option value="00" selected="selected">01</option>
-              <option value="01">02</option>
-              <option value="02">03</option>
-              <option value="03">04</option>
-              <option value="04">05</option>              
+              <option value="0" selected="selected">01</option>
+              <option value="1">02</option>
+              <option value="2">03</option>
+              <option value="3">04</option>
+              <option value="4">05</option>              
               </select>
             </div>
             <br/>
@@ -400,7 +397,7 @@ Training general robotic policies from heterogeneous data for different tasks is
                    autoplay
                    loop
                    width="80%">
-              <source src="media/realworld_task_videos/pair-blocks-on-line/cliport10_01.mp4"
+              <source src="media/local_video/multitask_uncond_spatula_gelsight_overhead/episode_0.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -416,17 +413,17 @@ Training general robotic policies from heterogeneous data for different tasks is
         <option value="wrench">wrench</option>
         <option value="hammer">hammer</option>        
         <option value="knife">knife</option>
-        <option value="spatula">spatula</option> 
+        <option value="spatula" selected="selected">spatula</option> 
               </select>
             </div>
             instance
             <div class="select is-small">
               <select id="single-menu-instances-multi-task-comp" onchange="updateMultitaskComp()">
-              <option value="00" selected="selected">01</option>
-              <option value="01">02</option>
-              <option value="02">03</option>
-              <option value="03">04</option>
-              <option value="04">05</option>              
+              <option value="0" selected="selected">01</option>
+              <option value="1">02</option>
+              <option value="2">03</option>
+              <option value="3">04</option>
+              <option value="4">05</option>              
               </select>
             </div>
             <br/>
@@ -437,7 +434,7 @@ Training general robotic policies from heterogeneous data for different tasks is
                    autoplay
                    loop
                    width="80%">
-              <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70_01.mp4"
+              <source src="media/local_video/multitask_comp_spatula_gelsight_overhead/episode_0.mp4"
                       type="video/mp4">
             </video>
           </div>
