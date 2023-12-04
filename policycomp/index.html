@@ -37,148 +37,64 @@
       code.style.display = 'none';
     }
   }    
-    function updateGPT() {
-      var task = document.getElementById("single-menu-tasks").value;
-      var inst = document.getElementById("single-menu-instances").value;
+
+    function updatesingletaskreal() {
+      var task = document.getElementById("single-menu-single-task-real").value;
+      var inst = document.getElementById("single-menu-single-task-real").value;
 
       console.log("gpt", task, inst)
 
-      var video = document.getElementById("single-task-result-video");
-      video.src = "media/all_task_videos/" + 
-                  task + 
-                  "-videos/" +
-                  "0000" + 
-                  inst + 
-                  ".mp4";
+      var video = document.getElementById("single-task-result-single-task-real");
+      video.src = "media/real_hammer_overhead/" + 
+                  task + "/output_" +  inst  + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
 
-    function updateRealWorldCliport() {
-      var task = document.getElementById("single-menu-tasks-cliport").value;
-      var inst = document.getElementById("single-menu-instances-cliport").value;
+    function updatesingletasksimreal() {
+      var task = document.getElementById("single-menu-tasks-single-task-realsim").value;
+      var inst = document.getElementById("single-menu-instances-single-task-realsim").value;
 
       console.log("gpt", task, inst)
 
-      var video = document.getElementById("single-task-result-video-cliport");
-      video.src = "media/realworld_task_videos/" + 
-                  task + "/cliport10_" +  inst  + ".mp4";
+      var video = document.getElementById("single-task-result-video-single-task-realsim");
+      video.src = "media/local_video/compose_sim_real_hammer_overhead" + 
+                    "/episode_" + task + "_" +  inst  + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
 
 
-    function updateRealWorldGenSim() {
-      var task = document.getElementById("single-menu-tasks-gpt").value;
-      var inst = document.getElementById("single-menu-instances-gpt").value;
+    function updateMultitaskUnCond() {
+      var task = document.getElementById("single-menu-tasks-multi-task-uncond").value;
+      var inst = document.getElementById("single-menu-instances-multi-task-uncond").value;
 
       console.log("gpt", task, inst)
 
-      var video = document.getElementById("single-task-result-video-gpt");
-      video.src = "media/realworld_task_videos/" + 
+      var video = document.getElementById("single-task-result-video-multi-task-uncond");
+      video.src = "media/cut_video/" + 
                   task + 
                   "/gpt70_" +  inst  + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
 
-    function updateLlama() {
-      var task = document.getElementById("single-menu-tasks-llama").value;
-      var inst = document.getElementById("single-menu-instances-llama").value;
+    function updateMultitaskComp() {
+      var task = document.getElementById("single-menu-tasks-multi-task-comp").value;
+      var inst = document.getElementById("single-menu-instances-multi-task-comp").value;
 
-      console.log("llama", task, inst)
+      console.log("gpt", task, inst)
 
-      var video = document.getElementById("single-task-result-video-llama");
-      video.src = "media/all_task_videos/" + 
+      var video = document.getElementById("single-task-result-video-multi-task-comp");
+      video.src = "media/cut_video/" + 
                   task + 
-                  "-videos/" +
-                  "0000" + 
-                  inst + 
-                  ".mp4";
-      console.log(video.src)
+                  "/gpt70_" +  inst  + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
+
+     
     timeoutIds = [];
-
-    function populateDemo(imgs, num) {
-        // Get the expanded image
-        var expandImg = document.getElementById("expandedImg-" + num);
-        // Get the image text
-        var imgText = document.getElementById("imgtext-" + num);
-        var answer = document.getElementById("answer-" + num);
-
-        // Use the same src in the expanded image as the image being clicked on from the grid
-        expandImg.src = imgs.src.replace(".png", ".mp4");
-        var video = document.getElementById('demo-video-' + num);
-        // or video = $('.video-selector')[0];
-        video.pause()
-        video.load();
-        video.play();
-        video.removeAttribute('controls');
-
-        console.log(expandImg.src);
-        // Use the value of the alt attribute of the clickable image as text inside the expanded image
-        var qa = imgs.alt.split("[sep]");
-        imgText.innerHTML = qa[0];
-        answer.innerHTML = "";
-        // Show the container element (hidden with CSS)
-        expandImg.parentElement.style.display = "block";
-        for (timeoutId of timeoutIds) {
-            clearTimeout(timeoutId);
-        }
-
-        // NOTE (wliang): Modified from original to read from file instead
-        fetch(qa[1])
-            .then(response => response.text())
-            .then(contents => {
-                // Call the processData function and pass the contents as an argument
-                typeWriter(contents, 0, qa[0], num);
-            })
-            .catch(error => console.error('Error reading file:', error));
-    }
-
-    function typeWriter(txt, i, q, num) {
-        var imgText = document.getElementById("imgtext-" + num);
-        var answer = document.getElementById("answer-" + num);
-        if (imgText.innerHTML == q) {
-            for (let k = 0; k < 5; k++) {
-                if (i < txt.length) {
-                    if (txt.charAt(i) == "\\") {
-                        answer.innerHTML += "\n";
-                        i += 1;
-                    } else {
-                        answer.innerHTML += txt.charAt(i);
-                    }
-                    i++;
-                }
-            }
-            hljs.highlightAll();
-            timeoutIds.push(setTimeout(typeWriter, 1, txt, i, q, num));
-        }
-    }
-
-  function handleVideoEnd(videoElement) {
-    // Pause the video
-    videoElement.pause();
-    // Wait for 5 seconds
-    setTimeout(() => {
-      // Play the video
-      videoElement.play();
-    }, 5000); // 5000 milliseconds = 5 seconds
-  }
-
-  // Get the video elements
-  var overviewVideo = document.getElementById('teaser1');
-  var tasksVideo = document.getElementById('teaser2');
-  overviewVideo.removeAttribute('loop');
-  tasksVideo.removeAttribute('loop');
-
-  // Add event listeners for the 'ended' event
-  overviewVideo.addEventListener('ended', function() { handleVideoEnd(overviewVideo); });
-  tasksVideo.addEventListener('ended', function() { handleVideoEnd(tasksVideo);
-
-  });
 
   </script>
 
@@ -244,10 +160,8 @@
 <section class="hero teaser">
   <div class="container is-fullhd">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop height="100%">
-        <source src="media/common/gensim_teaser_v1.mp4"
-                type="video/mp4">
-      </video>
+        <img src="media/figures/framework.png" class="interpolation-image" 
+         alt="Interpolate start reference image." />  
       <h2 class="subtitle has-text-centered">
       </br>
         <span class="dcliport"><b>Policy Composition</b></span> can compose data across domains, modalities, and tasks using diffusion models. The composed policy demonstrates robust scene-level and task-level generalization in <b>generalizable tool-use tasks</b>.
@@ -261,55 +175,55 @@
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/build-wheel/gpt70_01.mp4"
+            <source src="media/cut_video/hammer_moving_object.mp4"
                     type="video/mp4">
           </video>
         </div>  
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/sort-garbage/gpt70_01.mp4"
+            <source src="media/cut_video/spatula_multi_trial.mp4"
                     type="video/mp4">
           </video>
         </div>  
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/place-bread/gpt70_01.mp4"
+            <source src="media/cut_video/diffusion_wrench_success.mp4"
                     type="video/mp4">
           </video>
-        </div>                          
+        </div>  
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/organize-kits/gpt70_01.mp4"
+            <source src="media/cut_video/diffusion_knife_success.mp4"
+                    type="video/mp4">
+          </video>
+        </div>                                
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop height="100%">
+            <source src="media/cut_video/spatula_robustness_moving.mp4"
                     type="video/mp4">
           </video>
         </div>        
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/pack-spheres/gpt70_01.mp4"
+            <source src="media/cut_video/human_hammer_merged.mp4"
                     type="video/mp4">
           </video>
         </div>
         <div class="item item-shiba">
           <video poster="" id="shiba" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/block-tower-corner/gpt70_01.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/block-in-bowl-in-zone/gpt70_01.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70_01.mp4"
+            <source src="media/cut_video/hammer_disturbance_object.mp4"
                     type="video/mp4">
           </video>
         </div>
         <div class="item item-blueshirt">
           <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
-            <source src="media/realworld_task_videos/stack-block/gpt70_01.mp4"
+            <source src="media/cut_video/sim_video.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
+            <source src="media/cut_video/hammer_moving_object.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -347,9 +261,8 @@ Training general robotic policies from heterogeneous data for different tasks is
 <div class="rows">
   <div class="row is-full-width half-width">
     <h3 class="title is-4">Overview</h3>
-    <video id="teaser1" muted loop autoplay height="100%">
-      <source src="media/common/pipeline_video.mp4" type="video/mp4">
-    </video>   
+        <img src="media/figures/framework.png" class="interpolation-image" 
+         alt="Interpolate start reference image." />  
     <br/>
 
 
@@ -377,7 +290,7 @@ Training general robotic policies from heterogeneous data for different tasks is
           <div class="column has-text-centered">
             Task  
             <div class="select is-small">     
-              <select id="single-menu-tasks-cliport" onchange="updatesingletaskreal()">
+              <select id="single-menu-single-task-real" onchange="updatesingletaskreal()">
         <option value="change object">change_robot</option>
         <option value="change robot/tool">change_tool</option>        
         <option value="distractor">distractor</option>
@@ -386,7 +299,7 @@ Training general robotic policies from heterogeneous data for different tasks is
             </div>
             instance
             <div class="select is-small">
-              <select id="single-menu-instances-cliport" onchange="updatesingletaskreal()">
+              <select id="single-menu-instances-single-task-real" onchange="updatesingletaskreal()">
               <option value="01" selected="selected">01</option>
               <option value="02">02</option>
               <option value="03">03</option>
@@ -396,7 +309,7 @@ Training general robotic policies from heterogeneous data for different tasks is
             </div>
             <br/>
             <br/>				
-            <video id="single-task-result-video-cliport"
+            <video id="single-task-result-video-single-task-real"
                    controls
                    muted
                    autoplay
@@ -414,32 +327,32 @@ Training general robotic policies from heterogeneous data for different tasks is
           <div class="column has-text-centered">
             Task  
             <div class="select is-small">     
-              <select id="single-menu-tasks-cliport" onchange="updatesingletasksimreal()">
-        <option value="change object">change_robot</option>
-        <option value="change robot/tool">change_tool</option>        
+              <select id="single-menu-tasks-single-task-realsim" onchange="updatesingletasksimreal()">
+        <option value="change object">object_pose</option>
+        <option value="change robot/tool">tool_pose</option>        
         <option value="distractor">distractor</option>
         <option value="new instance">new_instance</option> 
               </select>
             </div>
             instance
             <div class="select is-small">
-              <select id="single-menu-instances-gpt" onchange="updatesingletasksimreal()">
-              <option value="01" selected="selected">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>              
+              <select id="single-menu-instances-single-task-realsim" onchange="updatesingletasksimreal()">
+              <option value="00" selected="selected">01</option>
+              <option value="01">02</option>
+              <option value="02">03</option>
+              <option value="03">04</option>
+              <option value="04">05</option>              
               </select>
             </div>
             <br/>
             <br/>				
-            <video id="single-task-result-video-gpt"
+            <video id="single-task-result-video-single-task-realsim"
                    controls
                    muted
                    autoplay
                    loop
                    width="80%">
-              <source src="media/realworld_task_videos/pair-blocks-on-line/gpt70_01.mp4"
+              <source src="media/local_video/compose_sim_real_hammer_overhead/episode_new_instance_3.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -462,7 +375,7 @@ Training general robotic policies from heterogeneous data for different tasks is
           <div class="column has-text-centered">
             Task  
             <div class="select is-small">     
-              <select id="single-menu-tasks-cliport" onchange="updateMultitaskUnCond()">
+              <select id="single-menu-tasks-multi-task-uncond" onchange="updateMultitaskUnCond()">
         <option value="wrench">wrench</option>
         <option value="hammer">hammer</option>        
         <option value="knife">knife</option>
@@ -471,17 +384,17 @@ Training general robotic policies from heterogeneous data for different tasks is
             </div>
             instance
             <div class="select is-small">
-              <select id="single-menu-instances-cliport" onchange="updateMultitaskUnCond()">
-              <option value="01" selected="selected">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>              
+              <select id="single-menu-instances-multi-task-uncond" onchange="updateMultitaskUnCond()">
+              <option value="00" selected="selected">01</option>
+              <option value="01">02</option>
+              <option value="02">03</option>
+              <option value="03">04</option>
+              <option value="04">05</option>              
               </select>
             </div>
             <br/>
             <br/>       
-            <video id="single-task-result-video-cliport"
+            <video id="single-task-result-video-multi-task-uncond"
                    controls
                    muted
                    autoplay
@@ -499,7 +412,7 @@ Training general robotic policies from heterogeneous data for different tasks is
           <div class="column has-text-centered">
             Task  
             <div class="select is-small">     
-              <select id="single-menu-tasks-gpt" onchange="updateMultitaskComp()">
+              <select id="single-menu-tasks-multi-task-comp" onchange="updateMultitaskComp()">
         <option value="wrench">wrench</option>
         <option value="hammer">hammer</option>        
         <option value="knife">knife</option>
@@ -508,17 +421,17 @@ Training general robotic policies from heterogeneous data for different tasks is
             </div>
             instance
             <div class="select is-small">
-              <select id="single-menu-instances-gpt" onchange="updateMultitaskComp()">
-              <option value="01" selected="selected">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>              
+              <select id="single-menu-instances-multi-task-comp" onchange="updateMultitaskComp()">
+              <option value="00" selected="selected">01</option>
+              <option value="01">02</option>
+              <option value="02">03</option>
+              <option value="03">04</option>
+              <option value="04">05</option>              
               </select>
             </div>
             <br/>
             <br/>       
-            <video id="single-task-result-video-gpt"
+            <video id="single-task-result-video-multi-task-comp"
                    controls
                    muted
                    autoplay
