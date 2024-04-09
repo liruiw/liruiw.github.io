@@ -6,7 +6,7 @@
         content="Policy Composition From and For Heterogeneous Robot Learning">
   <meta name="keywords" content="Multitask, Multimodal, Robotics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Policy Composition From and For Heterogeneous Robot Learning</title>
+  <title>Heterogeneous Pre-trained Transformers as Scalable Policy Learners</title>
 
   <link href="http://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -38,54 +38,58 @@
     }
   }    
 
-    function updatesingletaskreal() {
-      var task = document.getElementById("single-menu-tasks-single-task-real").value;
-      var inst = document.getElementById("single-menu-instances-single-task-real").value;
+    function updateNoTrunk() {
+      var task = document.getElementById("single-menu-tasks-notrunk").value;
+      var inst = document.getElementById("single-menu-instances-notrunk").value;
+      var view = document.getElementById("single-menu-view-notrunk").value;
 
       console.log("gpt", task, inst)
 
-      var video = document.getElementById("single-task-result-video-single-task-real");
-      video.src = "media/local_video/real_hammer_overhead/" + "episode_" + task + "_" +  inst + ".mp4";
+      var video = document.getElementById("single-task-result-video-notrunk");
+      video.src = "media/local_video/" + task + "/notrunk/episode_00" +  inst + "_" + view + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
 
-    function updatesingletasksimreal() {
-      var task = document.getElementById("single-menu-tasks-single-task-realsim").value;
-      var inst = document.getElementById("single-menu-instances-single-task-realsim").value;
+    function updateFrozen() {
+      var task = document.getElementById("single-menu-tasks-frozen").value;
+      var inst = document.getElementById("single-menu-instances-frozen").value;
+      var view = document.getElementById("single-menu-view-frozen").value;
 
       console.log("gpt", task, inst)
 
-      var video = document.getElementById("single-task-result-video-single-task-realsim");
-      video.src = "media/local_video/compose_sim_real_hammer_overhead" + 
-                    "/episode_" + task + "_" +  inst  + ".mp4";
+      var video = document.getElementById("single-task-result-video-frozen");
+      video.src = "media/local_video/" + task + "/frozen/episode_00" + 
+                  inst  + "_" + view + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
 
 
-    function updateMultitaskUnCond() {
-      var task = document.getElementById("single-menu-tasks-multi-task-uncond").value;
-      var inst = document.getElementById("single-menu-instances-multi-task-uncond").value;
+    function updateEnd2end() {
+      var task = document.getElementById("single-menu-tasks-end2end").value;
+      var inst = document.getElementById("single-menu-instances-end2end").value;
+      var view = document.getElementById("single-menu-view-end2end").value;
 
-      console.log("gpt", task, inst)
+      console.log("gpt", task, inst, view)
 
-      var video = document.getElementById("single-task-result-video-multi-task-uncond");
-      video.src = "media/local_video/multitask_uncond_" + task + "_gelsight_overhead/episode_" + 
-                   inst  + ".mp4";
+      var video = document.getElementById("single-task-result-video-end2end");
+      video.src = "media/local_video/" + task + "/end2end/episode_00" + 
+                   inst  + "_" + view + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
 
-    function updateMultitaskComp() {
-      var task = document.getElementById("single-menu-tasks-multi-task-comp").value;
-      var inst = document.getElementById("single-menu-instances-multi-task-comp").value;
+    function updateFinetuned() {
+      var task = document.getElementById("single-menu-tasks-finetune").value;
+      var inst = document.getElementById("single-menu-instances-finetune").value;
+      var view = document.getElementById("single-menu-view-finetune").value;
 
       console.log("gpt", task, inst)
 
-      var video = document.getElementById("single-task-result-video-multi-task-comp");
-      video.src = "media/local_video/multitask_comp_" + task + "_gelsight_overhead/episode_" + 
-                   inst  + ".mp4";
+      var video = document.getElementById("single-task-result-video-finetune");
+      video.src = "media/local_video/" + task + "/finetune/episode_00" + 
+                   inst  + "_" + view + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
@@ -104,7 +108,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Policy Composition From and For Heterogeneous Robot Learning</h1>
+          <h1 class="title is-1 publication-title">Heterogeneous Pre-trained Transformers as Scalable Policy Learners</h1>
   <!--         <div class="is-size-5 publication-authors">
             <span class="author-block">Anonymous ICLR Submission</span>
           </div>
@@ -114,11 +118,11 @@
             </span>
           </div>  -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Lirui Wang,</span>
+  <!--           <span class="author-block">Lirui Wang,</span>
             <span class="author-block">Alan Zhao,</span>
-            <span class="author-block">Yilun Du,</sup>    
-            <span class="author-block">Ted Adelson,</sup>     
-            <span class="author-block">Russ Tedrake</sup>                 
+            <span class="author-block">Russ Tedrake</sup>  -->                
+            <!-- span class="author-block">Russ Tedrake</sup>  -->                            
+         <!--    <span class="author-block">Russ Tedrake</sup>   -->           
             </span>
           </div>
           <div class="is-size-5 publication-authors">
@@ -126,7 +130,7 @@
             </span>
           </div>  
           <div class="column has-text-centered">
-              <span class="link-block">
+            <!--   <span class="link-block">
                 <a href="https://x.com/LiruiWang1/status/1754880508008271970?s=20"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -134,9 +138,9 @@
                   </span>
                   <span>Twitter</span>
                 </a>
-              </span>
+              </span> -->
               <!-- PDF Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org/abs/2402.02511"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -144,7 +148,7 @@
                   </span>
                   <span>Paper</span>
                 </a>
-              </span>           
+              </span>    -->        
           </div>
         </div>
       </div>
@@ -159,9 +163,7 @@
             <source src="media/figures/poco_2min_720p.mp4"
                     type="video/mp4">
           </video>
-      <h2 class="subtitle has-text-centered”>
-      </br>
-        <span class="dcliport”><b>Policy Composition</b></span> can compose data across domains, modalities, and tasks using diffusion models. The composed policy demonstrates robust scene-level and task-level generalization in <b>generalizable tool-use tasks</b>.
+      <h2 class="subtitle has-text-centered">
       </h2>
     </div>
   </div>
@@ -177,11 +179,12 @@
   <div class="row is-full-width half-width is-centered">
   <div class="container is-fullhd">
     <div class="hero-body">
-        <img src="media/figures/fuse_framework.png" class="interpolation-image" 
+        <img src="media/figures/framework.png" class="interpolation-image" 
          alt="Interpolate start reference image." />  
     <br/>
     </div>
   </div>
+</div>
 </div>
 <section class="section">
   <div class="container is-max-desktop">
@@ -191,15 +194,22 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-Training general robotic policies from heterogeneous data for different tasks is a significant challenge. Existing robotic datasets vary in different modalities such as color, depth, tactile, and proprioceptive information, and collected in different domains such as simulation, real robots, and human videos. Current methods usually collect and pool all data from one domain to train a single policy to handle such heterogeneity in tasks and domains, which is prohibitively expensive and difficult. 
-<br><br>In this work, we present a flexible approach, dubbed Policy Composition, to combine information across such diverse modalities and domains for learning scene-level and task-level generalized manipulation skills, by composing different data distributions represented with diffusion models. Our method can use task-level composition for multi-task manipulation and be composed with analytic cost functions to adapt policy behaviors at inference time. We train our method on simulation, human, and real robot data and evaluate in tool-use tasks. The composed policy achieves robust and dexterous performance under varying scenes and tasks and outperforms baselines from a single data source in both simulation and real-world experiments.
+    This paper shows that mid-level policy representations can be pre-trained from heterogeneous robot data, which varies across different modalities, domains, and tasks. Current methods rarely benefit from reusing these heterogeneous datasets and instead collect data from one specific domain to train a single policy or unify data inputs, which is prohibitively expensive and difficult.<br><br>
+
+
+    Our work builds on top of the success of transfer learning, by pre-training the middle section of a neural net policy to learn a shared representation across different domains and tasks. This choice maintains the individual distributions of the input domain modalities and the output control actions and allows for effective transfer learning to new robots acting in new environments and for new tasks.<br><br>
+
+
+      Leveraging the recent large-scale real-robot datasets as well as simulation datasets and human video datasets, our experiments show that pre-train across heterogeneity and then transfer can improve the policy performance on many downstream tasks across simulator benchmarks and real-world robotic tasks despite large domain gaps. The pre-training also scales as we increase the amounts of trajectories,  model size, and compute. 
+
           </p>
         </div>
       </div>
     </div>
+</div>
 </section>
 
-<section class="hero is-light is-small">
+<!-- <section class="hero is-light is-small">
   <h2 class="title is-3">Videos</h2>
   <div class="hero-body">
     <div class="container">
@@ -215,88 +225,15 @@ Training general robotic policies from heterogeneous data for different tasks is
             <source src="media/cut_video/spatula_multi_trial_output.mp4"
                     type="video/mp4">
           </video>
-        </div>  
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/diffusion_wrench_success_output.mp4"
-                    type="video/mp4">
-          </video>
-        </div>  
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/diffusion_knife_success_output.mp4"
-                    type="video/mp4">
-          </video>
-        </div>                                
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/spatula_robustness_moving_output.mp4"
-                    type="video/mp4">
-          </video>
-        </div>        
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/human_hammer_merged.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/hammer_disturbance_object_output.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/sim_video.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/teleop_video.mp4"
-                    type="video/mp4">
-          </video>
         </div>
       </div>
     </div>
   </div>
 </section>
-
+ -->
 <section class="section">
   <div class="container is-max-widescreen">
 
-<!-- <div class="rows">
-  <div class="row is-full-width half-width is-centered">
-    <h1 class="title is-3">Data</h1>
-          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
-            <source src="media/figures/all_tasks_animation.mp4"
-                    type="video/mp4">
-          </video>
-    <br/>
-  </div>
-</div>
-
-  </div>
-</div> -->
-<!-- 
-<section class="section">
-  <div class="container is-max-widescreen">
-
-<div class="rows">
-  <div class="row is-full-width half-width is-centered">
-    <h1 class="title is-3">Method</h1>
-          <video poster="" id="blueshirt" autoplay controls muted loop height="100%">
-            <source src="media/figures/network_diagram_animation.mp4"
-                    type="video/mp4">
-          </video>
-    <br/>
-  </div>
-</div>
-
-
-  </div>
-</section> -->
 
 
 
@@ -306,27 +243,61 @@ Training general robotic policies from heterogeneous data for different tasks is
     <!-- Animation. -->
     <div class="container  ">
     <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered has-text-centered">     
+      <div class="column is-full">
+        <h3 class="title is-3">Dataset Mixture</h3>
+        <div class="hero-body">
+            <img src="media/figures/dataset_pie.png" class="interpolation-image" 
+             alt="Interpolate start reference image." />  
+          <br/>
+        </div>
+  </div>  
+  </div>  
+</div>
+<!--   <div class="container is-max-widescreen">
+    <div class="rows">
+    <div class="container  ">
+    <div class="columns is-centered has-text-centered">     
       <div class="column is-half">
-        <h3 class="title is-3">Data</h3>
-        <div class="columns">    
-          <video poster="" id="blueshirt" autoplay controls muted loop height="100%" width="90%">
-            <source src="media/figures/all_tasks_animation.mp4"
-                    type="video/mp4">
-          </video>
-          </div>
-        </div>     
-
+        <h3 class="title is-3">HPT Framework</h3>
+        <div class="hero-body">
+            <img src="media/figures/framework.png" class="interpolation-image" 
+             alt="Interpolate start reference image." />  
+          <br/>
+        </div>
+        </div>
+  </div> -->
+  <div class="container is-max-widescreen">
+    <div class="rows">
+    <!-- Animation. -->
+    <div class="container  ">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">     
       <div class="column is-half">
-        <h3 class="title is-3">Method</h3>
-        <div class="columns">    
-          <video poster="" id="blueshirt2" autoplay controls muted loop width="80%">
-            <source src="media/figures/network_diagram_animation.mp4"
-                    type="video/mp4">
-          </video>
-          </div>
+        <h3 class="title is-3">Network Architecture</h3>
+        <div class="hero-body">
+            <img src="media/figures/network.png" class="interpolation-image" 
+             alt="Interpolate start reference image." />  
+          <br/>
+        </div>
         </div>
   </div>
+
+  <div class="container is-max-widescreen">
+    <div class="rows">
+    <!-- Animation. -->
+    <div class="container  ">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">     
+      <div class="column is-half">
+        <h3 class="title is-3">Scaling Law</h3>
+        <div class="hero-body">
+            <img src="media/figures/network.png" class="interpolation-image" 
+             alt="Interpolate start reference image." />  
+          <br/>
+        </div>
+        </div>
+  </div>  
 </section>
 
 
@@ -341,22 +312,21 @@ Training general robotic policies from heterogeneous data for different tasks is
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-half">
-        <h3 class="title is-3">Real Only</h3>
+        <h3 class="title is-3">No Trunk</h3>
 
         <div class="columns">
           <div class="column has-text-centered">
-            Generalization Axis    
+            Task 
             <div class="select is-small">     
-              <select id="single-menu-tasks-single-task-real" onchange="updatesingletaskreal()">
-        <option value="object_pose">object_pose</option>
-        <option value="robot_pose">tool_pose</option>        
-        <option value="distractor">distractor</option>
-        <option value="new_instance" selected="selected">new_instance</option> 
+              <select id="single-menu-tasks-notrunk" onchange="updateNoTrunk()">
+        <option value="sweep">sweep</option>
+        <option value="scoop">scoop</option>        
+        <option value="pour" selected="selected">pour</option>
               </select>
             </div>
             instance
             <div class="select is-small">
-              <select id="single-menu-instances-single-task-real" onchange="updatesingletaskreal()">
+              <select id="single-menu-instances-notrunk" onchange="updateNoTrunk()">
               <option value="0" >01</option>
               <option value="1">02</option>
               <option value="2">03</option>
@@ -364,36 +334,42 @@ Training general robotic policies from heterogeneous data for different tasks is
               <option value="4">05</option>              
               </select>
             </div>
+            view
+            <div class="select is-small">
+              <select id="single-menu-view-notrunk" onchange="updateNoTrunk()">
+              <option value="wrist" >wrist</option>
+              <option value="overhead" selected="overhead">overhead</option>
+              </select>
+            </div>            
             <br/>
             <br/>				
-            <video id="single-task-result-video-single-task-real"
+            <video id="single-task-result-video-notrunk"
                    controls
                    muted
                    autoplay
                    loop
                    width="80%">
-              <source src="media/local_video/real_hammer_overhead/episode_new_instance_3.mp4"
+              <source src="media/local_video/scoop/notrunk/episode_000_overhead.mp4"
                       type="video/mp4">
             </video>
           </div>
         </div>
     </div>        
       <div class="column is-half">
-        <h3 class="title is-3">Real+Sim</h3>
+        <h3 class="title is-3">Pretrained Frozen</h3>
         <div class="columns">
           <div class="column has-text-centered">
-            Generalization Axis  
+            Task  
             <div class="select is-small">     
-              <select id="single-menu-tasks-single-task-realsim" onchange="updatesingletasksimreal()">
-        <option value="object_pose">object_pose</option>
-        <option value="robot_pose">tool_pose</option>        
-        <option value="distractor">distractor</option>
-        <option value="new_instance" selected="selected">new_instance</option> 
+              <select id="single-menu-tasks-frozen" onchange="updateFrozen()">
+        <option value="sweep">sweep</option>
+        <option value="scoop">scoop</option>        
+        <option value="pour" selected="selected">pour</option>
               </select>
             </div>
             instance
             <div class="select is-small">
-              <select id="single-menu-instances-single-task-realsim" onchange="updatesingletasksimreal()">
+              <select id="single-menu-instances-frozen" onchange="updateFrozen()">
               <option value="0" >01</option>
               <option value="1">02</option>
               <option value="2">03</option>
@@ -401,15 +377,22 @@ Training general robotic policies from heterogeneous data for different tasks is
               <option value="4">05</option>              
               </select>
             </div>
+            view
+            <div class="select is-small">
+              <select id="single-menu-view-frozen" onchange="updateFrozen()">
+              <option value="wrist" >wrist</option>
+              <option value="overhead" selected="overhead">overhead</option>
+              </select>
+            </div>             
             <br/>
             <br/>				
-            <video id="single-task-result-video-single-task-realsim"
+            <video id="single-task-result-video-frozen"
                    controls
                    muted
                    autoplay
                    loop
                    width="80%">
-              <source src="media/local_video/compose_sim_real_hammer_overhead/episode_new_instance_3.mp4"
+              <source src="media/local_video/scoop/frozen/episode_000_overhead.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -426,22 +409,21 @@ Training general robotic policies from heterogeneous data for different tasks is
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-half">
-        <h3 class="title is-3">Multitask Unconditional</h3>
+        <h3 class="title is-3">From Scratch</h3>
 
         <div class="columns">
           <div class="column has-text-centered">
             Task  
             <div class="select is-small">     
-              <select id="single-menu-tasks-multi-task-uncond" onchange="updateMultitaskUnCond()">
-        <option value="wrench">wrench</option>
-        <option value="hammer">hammer</option>        
-        <option value="knife">knife</option>
-        <option value="spatula" selected="selected">spatula</option> 
+              <select id="single-menu-tasks-end2end" onchange="updateEnd2end()">
+        <option value="sweep">sweep</option>
+        <option value="scoop">scoop</option>        
+        <option value="pour" selected="selected">pour</option> 
               </select>
             </div>
             instance
             <div class="select is-small">
-              <select id="single-menu-instances-multi-task-uncond" onchange="updateMultitaskUnCond()">
+              <select id="single-menu-instances-end2end" onchange="updateEnd2end()">
               <option value="0" selected="selected">01</option>
               <option value="1">02</option>
               <option value="2">03</option>
@@ -449,36 +431,42 @@ Training general robotic policies from heterogeneous data for different tasks is
               <option value="4">05</option>              
               </select>
             </div>
+            view
+            <div class="select is-small">
+              <select id="single-menu-view-end2end" onchange="updateEnd2end()">
+              <option value="wrist" >wrist</option>
+              <option value="overhead" selected="overhead">overhead</option>
+              </select>
+            </div>             
             <br/>
             <br/>       
-            <video id="single-task-result-video-multi-task-uncond"
+            <video id="single-task-result-video-end2end"
                    controls
                    muted
                    autoplay
                    loop
                    width="80%">
-              <source src="media/local_video/multitask_uncond_spatula_gelsight_overhead/episode_0.mp4"
+              <source src="media/local_video/scoop/end2end/episode_000_overhead.mp4"
                       type="video/mp4">
             </video>
           </div>
         </div>
     </div>        
       <div class="column is-half">
-        <h3 class="title is-3">Multitask Compositional</h3>
+        <h3 class="title is-3">Pretrained Finetuned</h3>
         <div class="columns">
           <div class="column has-text-centered">
             Task  
             <div class="select is-small">     
-              <select id="single-menu-tasks-multi-task-comp" onchange="updateMultitaskComp()">
-        <option value="wrench">wrench</option>
-        <option value="hammer">hammer</option>        
-        <option value="knife">knife</option>
-        <option value="spatula" selected="selected">spatula</option> 
+              <select id="single-menu-tasks-finetune" onchange="updateFinetuned()">
+        <option value="sweep">sweep</option>
+        <option value="scoop">scoop</option>        
+        <option value="pour" selected="selected">pour</option> 
               </select>
             </div>
             instance
             <div class="select is-small">
-              <select id="single-menu-instances-multi-task-comp" onchange="updateMultitaskComp()">
+              <select id="single-menu-instances-finetune" onchange="updateFinetuned()">
               <option value="0" selected="selected">01</option>
               <option value="1">02</option>
               <option value="2">03</option>
@@ -486,15 +474,22 @@ Training general robotic policies from heterogeneous data for different tasks is
               <option value="4">05</option>              
               </select>
             </div>
+            view
+            <div class="select is-small">
+              <select id="single-menu-view-finetune" onchange="updateFinetuned()">
+              <option value="wrist" >wrist</option>
+              <option value="overhead" selected="overhead">overhead</option>
+              </select>
+            </div>             
             <br/>
             <br/>       
-            <video id="single-task-result-video-multi-task-comp"
+            <video id="single-task-result-video-finetune"
                    controls
                    muted
                    autoplay
                    loop
                    width="80%">
-              <source src="media/local_video/multitask_comp_spatula_gelsight_overhead/episode_0.mp4"
+              <source src="media/local_video/scoop/finetune/episode_000_overhead.mp4"
                       type="video/mp4">
             </video>
           </div>
