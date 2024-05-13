@@ -120,27 +120,35 @@
           <div class="is-size-5 publication-authors">
   <!--           <span class="author-block">Lirui Wang,</span>
             <span class="author-block">Alan Zhao,</span>
-            <span class="author-block">Russ Tedrake</sup>  -->                
+            <span class="author-block">Xinlei Chen</sup>  -->                
             <!-- span class="author-block">Russ Tedrake</sup>  -->                            
-         <!--    <span class="author-block">Russ Tedrake</sup>   -->           
+         <!--    <span class="author-block">Kaiming He</sup>   -->           
             </span>
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block">MIT CSAIL</span>          
+            <span class="author-block">MIT CSAIL, FAIR</span>          
             </span>
           </div>  
           <div class="column has-text-centered">
-            <!--   <span class="link-block">
-                <a href="https://x.com/LiruiWang1/status/1754880508008271970?s=20"
+          <span class="link-block">
+                <a href="https://github.com/liruiw/HPT-Pretrain-release"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fab fa-twitter"></i>
+                      <i class="fab fa-github"></i>
                   </span>
-                  <span>Twitter</span>
+                  <span>Pretrain Repo</span>
                 </a>
-              </span> -->
-              <!-- PDF Link. -->
-              <!-- <span class="link-block">
+              </span>         
+          <span class="link-block">
+                <a href="https://github.com/liruiw/HPT-Transfer-release"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Transfer Repo</span>
+                </a>
+              </span>     
+           <span class="link-block">
                 <a href="https://arxiv.org/abs/2402.02511"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -148,7 +156,27 @@
                   </span>
                   <span>Paper</span>
                 </a>
-              </span>    -->        
+              </span>  
+           <span class="link-block">
+                <a href="https://huggingface.co/liruiw/hpt-base"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-smile"></i>
+                  </span>
+                  <span>Huggingface</span>
+                </a>
+              </span>                                               
+          <span class="link-block">
+                <a href="https://x.com/LiruiWang1/status/1754880508008271970?s=20"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span>
+                </a>
+              </span>
+              <!-- PDF Link. -->
+ 
           </div>
         </div>
       </div>
@@ -200,7 +228,7 @@
     Our work builds on top of the success of transfer learning, by pre-training the middle section of a neural net policy to learn a shared representation across different domains and tasks. This choice maintains the individual distributions of the input domain modalities and the output control actions and allows for effective transfer learning to new robots acting in new environments and for new tasks.<br><br>
 
 
-      Leveraging the recent large-scale real-robot datasets as well as simulation datasets and human video datasets, our experiments show that pre-train across heterogeneity and then transfer can improve the policy performance on many downstream tasks across simulator benchmarks and real-world robotic tasks despite large domain gaps. The pre-training also scales as we increase the amounts of trajectories,  model size, and compute. 
+    Leveraging the recent large-scale real-robot datasets as well as simulation datasets and human video datasets, our experiments show that pre-train across heterogeneity and then transfer can improve the policy performance on many downstream tasks across simulator benchmarks and real-world robotic tasks despite large domain gaps. The pre-training also scales as we increase the amounts of trajectories,  model size, and compute. 
 
           </p>
         </div>
@@ -319,9 +347,9 @@
             Task 
             <div class="select is-small">     
               <select id="single-menu-tasks-notrunk" onchange="updateNoTrunk()">
-        <option value="sweep">sweep</option>
+        <option value="sweep" selected="selected">sweep</option>
         <option value="scoop">scoop</option>        
-        <option value="pour" selected="selected">pour</option>
+        <option value="pour">pour</option>
               </select>
             </div>
             instance
@@ -362,9 +390,9 @@
             Task  
             <div class="select is-small">     
               <select id="single-menu-tasks-frozen" onchange="updateFrozen()">
-        <option value="sweep">sweep</option>
+        <option value="sweep" selected="selected">sweep</option>
         <option value="scoop">scoop</option>        
-        <option value="pour" selected="selected">pour</option>
+        <option value="pour">pour</option>
               </select>
             </div>
             instance
@@ -417,8 +445,8 @@
             <div class="select is-small">     
               <select id="single-menu-tasks-end2end" onchange="updateEnd2end()">
         <option value="sweep">sweep</option>
-        <option value="scoop">scoop</option>        
-        <option value="pour" selected="selected">pour</option> 
+        <option value="scoop"  selected="selected">scoop</option>        
+        <option value="pour">pour</option> 
               </select>
             </div>
             instance
@@ -459,9 +487,9 @@
             Task  
             <div class="select is-small">     
               <select id="single-menu-tasks-finetune" onchange="updateFinetuned()">
-        <option value="sweep">sweep</option>
+        <option value="sweep" selected="selected">sweep</option>
         <option value="scoop">scoop</option>        
-        <option value="pour" selected="selected">pour</option> 
+        <option value="pour">pour</option> 
               </select>
             </div>
             instance
