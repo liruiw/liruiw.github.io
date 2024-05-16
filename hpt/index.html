@@ -103,12 +103,21 @@
 
 
 
+</section>
+<style>
+  .no-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Heterogeneous Pre-trained Transformers as Scalable Policy Learners</h1>
+          <h1 class="title is-1 publication-title no-wrap">Scaling Robot Learning with Heterogeneous Pre-training</h1>
   <!--         <div class="is-size-5 publication-authors">
             <span class="author-block">Anonymous ICLR Submission</span>
           </div>
@@ -118,11 +127,11 @@
             </span>
           </div>  -->
           <div class="is-size-5 publication-authors">
-  <!--           <span class="author-block">Lirui Wang,</span>
-            <span class="author-block">Alan Zhao,</span>
-            <span class="author-block">Xinlei Chen</sup>  -->                
-            <!-- span class="author-block">Russ Tedrake</sup>  -->                            
-         <!--    <span class="author-block">Kaiming He</sup>   -->           
+       <span class="author-block">Lirui Wang,</span>
+            <span class="author-block">Jialiang Zhao,</span>
+            <span class="author-block">Xinlei Chen,</sup>                 
+            <span class="author-block">Russ Tedrake,</sup>                             
+         <span class="author-block">Kaiming He</sup>             
             </span>
           </div>
           <div class="is-size-5 publication-authors">
@@ -136,7 +145,7 @@
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Pretrain Repo</span>
+                  <span>Pretrain Code</span>
                 </a>
               </span>         
           <span class="link-block">
@@ -145,7 +154,7 @@
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Transfer Repo</span>
+                  <span>Transfer Code</span>
                 </a>
               </span>     
            <span class="link-block">
@@ -184,36 +193,9 @@
   </div>
 </section>
 
-<section class="hero teaser">
-<div class="container is-fullhd">
-    <div class="hero-body">
-          <video poster=""id="steve" autoplay controls loop height="100%">
-            <source src="media/figures/poco_2min_720p.mp4"
-                    type="video/mp4">
-          </video>
-      <h2 class="subtitle has-text-centered">
-      </h2>
-    </div>
-  </div>
-</section>
 
 
 
-  <h2 class="subtitle has-text-centered">
-    <br>
-
- </h2>
-<div class="rows">
-  <div class="row is-full-width half-width is-centered">
-  <div class="container is-fullhd">
-    <div class="hero-body">
-        <img src="media/figures/framework.png" class="interpolation-image" 
-         alt="Interpolate start reference image." />  
-    <br/>
-    </div>
-  </div>
-</div>
-</div>
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -222,14 +204,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-    This paper shows that mid-level policy representations can be pre-trained from heterogeneous robot data, which varies across different modalities, domains, and tasks. Current methods rarely benefit from reusing these heterogeneous datasets and instead collect data from one specific domain to train a single policy or unify data inputs, which is prohibitively expensive and difficult.<br><br>
-
-
-    Our work builds on top of the success of transfer learning, by pre-training the middle section of a neural net policy to learn a shared representation across different domains and tasks. This choice maintains the individual distributions of the input domain modalities and the output control actions and allows for effective transfer learning to new robots acting in new environments and for new tasks.<br><br>
-
-
-    Leveraging the recent large-scale real-robot datasets as well as simulation datasets and human video datasets, our experiments show that pre-train across heterogeneity and then transfer can improve the policy performance on many downstream tasks across simulator benchmarks and real-world robotic tasks despite large domain gaps. The pre-training also scales as we increase the amounts of trajectories,  model size, and compute. 
-
+One of the key roadblocks for training generalist robotic models today is heterogeneity. Previous robot learning methods often collect data to train with one specific embodiment for one task, which is expensive and prone to overfitting. This work studies the problem of learning policy representations through heterogeneous pre-training on robot data across different embodiments and tasks at scale. We propose Heterogeneous Pre-trained Transformers (HPT), which pre-train a large, shareable trunk of a policy neural network to learn a task and embodiment agnostic shared representation. This general architecture aligns the specific proprioception and vision inputs from distinct embodiments to a short sequence of tokens and then processes such tokens to map to control robots for different tasks.  Leveraging the recent large-scale multi-embodiment real-world robotic datasets as well as simulation datasets and human video datasets, our experiments show that pre-training robotic policies across heterogeneity can exhibit compelling scaling behaviors, to the extent of 50 distinct datasets and 1 billion parameter models. Pre-trained HPTs outperform previous baselines and enhance the finetuned policy performance on many unseen downstream tasks and environments in simulator benchmarks and real-world settings. 
           </p>
         </div>
       </div>
@@ -266,21 +241,25 @@
 
 
 <section class="section">
-  <div class="container is-max-widescreen">
-    <div class="rows">
-    <!-- Animation. -->
-    <div class="container  ">
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">     
-      <div class="column is-full">
-        <h3 class="title is-3">Dataset Mixture</h3>
-        <div class="hero-body">
-            <img src="media/figures/dataset_pie.png" class="interpolation-image" 
-             alt="Interpolate start reference image." />  
-          <br/>
-        </div>
-  </div>  
-  </div>  
+<div class="container is-max-widescreen">
+  <div class="columns is-centered has-text-centered">
+    <!-- HPT Architecture -->
+    <div class="column is-half">
+      <h3 class="title is-3">HPT Concept</h3>
+      <div class="hero-body">
+        <img src="media/figures/concept.png" class="interpolation-image" alt="Interpolate start reference image." />  
+        <br/>
+      </div>
+    </div>
+    <!-- Scaling Law -->
+    <div class="column is-half">
+      <h3 class="title is-3">HPT Architecture</h3>
+      <div class="hero-body">
+        <img src="media/figures/framework.png" class="interpolation-image" alt="Interpolate start reference image." />  
+        <br/>
+      </div>
+    </div>
+  </div>
 </div>
 <!--   <div class="container is-max-widescreen">
     <div class="rows">
@@ -295,37 +274,26 @@
         </div>
         </div>
   </div> -->
-  <div class="container is-max-widescreen">
-    <div class="rows">
-    <!-- Animation. -->
-    <div class="container  ">
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">     
-      <div class="column is-half">
-        <h3 class="title is-3">Network Architecture</h3>
-        <div class="hero-body">
-            <img src="media/figures/network.png" class="interpolation-image" 
-             alt="Interpolate start reference image." />  
-          <br/>
-        </div>
-        </div>
+<div class="container is-max-widescreen">
+  <div class="columns is-centered has-text-centered">
+    <!-- HPT Architecture -->
+    <div class="column is-half">
+      <h3 class="title is-3">Dataset Mixture</h3>
+      <div class="hero-body">
+        <img src="media/figures/dataset.png" class="interpolation-image" alt="Interpolate start reference image." />  
+        <br/>
+      </div>
+    </div>
+    <!-- Scaling Law -->
+    <div class="column is-half">
+      <h3 class="title is-3">Scaling Law</h3>
+      <div class="hero-body">
+        <img src="media/figures/scaling.png" class="interpolation-image" alt="Interpolate start reference image." />  
+        <br/>
+      </div>
+    </div>
   </div>
-
-  <div class="container is-max-widescreen">
-    <div class="rows">
-    <!-- Animation. -->
-    <div class="container  ">
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">     
-      <div class="column is-half">
-        <h3 class="title is-3">Scaling Law</h3>
-        <div class="hero-body">
-            <img src="media/figures/network.png" class="interpolation-image" 
-             alt="Interpolate start reference image." />  
-          <br/>
-        </div>
-        </div>
-  </div>  
+</div>
 </section>
 
 
