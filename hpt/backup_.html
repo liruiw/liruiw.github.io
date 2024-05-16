@@ -181,9 +181,11 @@
                   <span class="icon">
                       <i class="fab fa-twitter"></i>
                   </span>
-                  <span>Thread</span>
+                  <span>Twitter</span>
                 </a>
-              </span> 
+              </span>
+              <!-- PDF Link. -->
+ 
           </div>
         </div>
       </div>
@@ -259,7 +261,19 @@ One of the key roadblocks for training generalist robotic models today is hetero
     </div>
   </div>
 </div>
-
+<!--   <div class="container is-max-widescreen">
+    <div class="rows">
+    <div class="container  ">
+    <div class="columns is-centered has-text-centered">     
+      <div class="column is-half">
+        <h3 class="title is-3">HPT Framework</h3>
+        <div class="hero-body">
+            <img src="media/figures/framework.png" class="interpolation-image" 
+             alt="Interpolate start reference image." />  
+          <br/>
+        </div>
+        </div>
+  </div> -->
 <div class="container is-max-widescreen">
   <div class="columns is-centered has-text-centered">
     <!-- HPT Architecture -->
@@ -282,18 +296,203 @@ One of the key roadblocks for training generalist robotic models today is hetero
 </div>
 </section>
 
-<section class="hero teaser">
-<div class="container is-fullhd">
-    <h3 class="title is-3 has-text-centered">Demo Video</h3>
-    <div class="hero-body" style="display: flex; justify-content: center;">
-          <video poster=""id="steve" autoplay controls loop height="100%">
-            <source src="media/figures/hpt_new.mp4"
-                    type="video/mp4">
-          </video>
-    </div>
+
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="rows">
+    <!-- Animation. -->
+    <h2 class="title is-3  has-text-centered">Real-Robot Experiments</h2>
+
+    <div class="container  ">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-half">
+        <h3 class="title is-3">No Trunk</h3>
+
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task 
+            <div class="select is-small">     
+              <select id="single-menu-tasks-notrunk" onchange="updateNoTrunk()">
+        <option value="sweep" selected="selected">sweep</option>
+        <option value="scoop">scoop</option>        
+        <option value="pour">pour</option>
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-notrunk" onchange="updateNoTrunk()">
+              <option value="0" >01</option>
+              <option value="1">02</option>
+              <option value="2">03</option>
+              <option value="3" selected="selected">04</option>
+              <option value="4">05</option>              
+              </select>
+            </div>
+            view
+            <div class="select is-small">
+              <select id="single-menu-view-notrunk" onchange="updateNoTrunk()">
+              <option value="wrist" >wrist</option>
+              <option value="overhead" selected="overhead">overhead</option>
+              </select>
+            </div>            
+            <br/>
+            <br/>				
+            <video id="single-task-result-video-notrunk"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/local_video/scoop/notrunk/episode_000_overhead.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+    </div>        
+      <div class="column is-half">
+        <h3 class="title is-3">Pretrained Frozen</h3>
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-frozen" onchange="updateFrozen()">
+        <option value="sweep" selected="selected">sweep</option>
+        <option value="scoop">scoop</option>        
+        <option value="pour">pour</option>
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-frozen" onchange="updateFrozen()">
+              <option value="0" >01</option>
+              <option value="1">02</option>
+              <option value="2">03</option>
+              <option value="3" selected="selected">04</option>
+              <option value="4">05</option>              
+              </select>
+            </div>
+            view
+            <div class="select is-small">
+              <select id="single-menu-view-frozen" onchange="updateFrozen()">
+              <option value="wrist" >wrist</option>
+              <option value="overhead" selected="overhead">overhead</option>
+              </select>
+            </div>             
+            <br/>
+            <br/>				
+            <video id="single-task-result-video-frozen"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/local_video/scoop/frozen/episode_000_overhead.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
   </div>
 </section>
- 
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="rows">
+    <!-- Animation. -->
+
+    <div class="container  ">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-half">
+        <h3 class="title is-3">From Scratch</h3>
+
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-end2end" onchange="updateEnd2end()">
+        <option value="sweep">sweep</option>
+        <option value="scoop"  selected="selected">scoop</option>        
+        <option value="pour">pour</option> 
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-end2end" onchange="updateEnd2end()">
+              <option value="0" selected="selected">01</option>
+              <option value="1">02</option>
+              <option value="2">03</option>
+              <option value="3">04</option>
+              <option value="4">05</option>              
+              </select>
+            </div>
+            view
+            <div class="select is-small">
+              <select id="single-menu-view-end2end" onchange="updateEnd2end()">
+              <option value="wrist" >wrist</option>
+              <option value="overhead" selected="overhead">overhead</option>
+              </select>
+            </div>             
+            <br/>
+            <br/>       
+            <video id="single-task-result-video-end2end"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/local_video/scoop/end2end/episode_000_overhead.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+    </div>        
+      <div class="column is-half">
+        <h3 class="title is-3">Pretrained Finetuned</h3>
+        <div class="columns">
+          <div class="column has-text-centered">
+            Task  
+            <div class="select is-small">     
+              <select id="single-menu-tasks-finetune" onchange="updateFinetuned()">
+        <option value="sweep" selected="selected">sweep</option>
+        <option value="scoop">scoop</option>        
+        <option value="pour">pour</option> 
+              </select>
+            </div>
+            instance
+            <div class="select is-small">
+              <select id="single-menu-instances-finetune" onchange="updateFinetuned()">
+              <option value="0" selected="selected">01</option>
+              <option value="1">02</option>
+              <option value="2">03</option>
+              <option value="3">04</option>
+              <option value="4">05</option>              
+              </select>
+            </div>
+            view
+            <div class="select is-small">
+              <select id="single-menu-view-finetune" onchange="updateFinetuned()">
+              <option value="wrist" >wrist</option>
+              <option value="overhead" selected="overhead">overhead</option>
+              </select>
+            </div>             
+            <br/>
+            <br/>       
+            <video id="single-task-result-video-finetune"
+                   controls
+                   muted
+                   autoplay
+                   loop
+                   width="80%">
+              <source src="media/local_video/scoop/finetune/episode_000_overhead.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
