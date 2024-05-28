@@ -6,7 +6,7 @@
         content="Policy Composition From and For Heterogeneous Robot Learning">
   <meta name="keywords" content="Multitask, Multimodal, Robotics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Heterogeneous Pre-trained Transformers as Scalable Policy Learners</title>
+  <title>Scaling Robot Learning with Heterogeneous Pre-trained Transformer</title>
 
   <link href="http://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -117,7 +117,9 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title no-wrap">Scaling Robot Learning with Heterogeneous Pre-training</h1>
+          <h1 class="title is-1 publication-title no-wrap">Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformers</h1>
+        <link rel="icon" href="head.jpg">    
+
   <!--         <div class="is-size-5 publication-authors">
             <span class="author-block">Anonymous ICLR Submission</span>
           </div>
@@ -130,7 +132,6 @@
        <span class="author-block">Lirui Wang,</span>
             <span class="author-block">Xinlei Chen,</sup>                 
             <span class="author-block">Jialiang Zhao,</span>
-            <span class="author-block">Russ Tedrake,</sup>                             
          <span class="author-block">Kaiming He</sup>             
             </span>
           </div>
@@ -140,7 +141,7 @@
           </div>  
           <div class="column has-text-centered">
           <span class="link-block">
-                <a href="https://github.com/liruiw/HPT-Pretrain-release"
+                <a href="https://github.com/liruiw/HPT-Pretrain"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -149,7 +150,7 @@
                 </a>
               </span>         
           <span class="link-block">
-                <a href="https://github.com/liruiw/HPT-Transfer-release"
+                <a href="https://github.com/liruiw/HPT-Transfer"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -202,7 +203,11 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-One of the key roadblocks for training generalist robotic models today is heterogeneity. Previous robot learning methods often collect data to train with one specific embodiment for one task, which is expensive and prone to overfitting. This work studies the problem of learning policy representations through heterogeneous pre-training on robot data across different embodiments and tasks at scale. We propose Heterogeneous Pre-trained Transformers (HPT), which pre-train a large, shareable trunk of a policy neural network to learn a task and embodiment agnostic shared representation. This general architecture aligns the specific proprioception and vision inputs from distinct embodiments to a short sequence of tokens and then processes such tokens to map to control robots for different tasks.  Leveraging the recent large-scale multi-embodiment real-world robotic datasets as well as simulation datasets and human video datasets, our experiments show that pre-training robotic policies across heterogeneity can exhibit compelling scaling behaviors, to the extent of 50 distinct datasets and 1 billion parameter models. Pre-trained HPTs outperform previous baselines and enhance the finetuned policy performance on many unseen downstream tasks and environments in simulator benchmarks and real-world settings. 
+One of the key roadblocks for training generalist robotic models today is heterogeneity. Previous robot learning methods often collect data to train with one specific embodiment for one task, which is expensive and prone to overfitting. This work studies the problem of learning policy representations through heterogeneous pre-training on robot data across different embodiments and tasks at scale. We propose Heterogeneous Pre-trained Transformers (HPT), which pre-train a large, shareable trunk of a policy neural network to learn a task and embodiment agnostic shared representation. <br>
+
+
+
+This general architecture aligns the specific proprioception and vision inputs from distinct embodiments to a short sequence of tokens and then processes such tokens to map to control robots for different tasks.  Leveraging the recent large-scale multi-embodiment real-world robotic datasets as well as simulation datasets and human video datasets, our experiments show that pre-training robotic policies across heterogeneity can exhibit  scaling behaviors, to the extent of 50 distinct datasets and 1 billion parameter models. Pre-trained HPTs outperform previous baselines and enhance the finetuned policy performance on many unseen downstream tasks and environments in simulator benchmarks and real-world settings. 
           </p>
         </div>
       </div>
@@ -210,28 +215,6 @@ One of the key roadblocks for training generalist robotic models today is hetero
 </div>
 </section>
 
-<!-- <section class="hero is-light is-small">
-  <h2 class="title is-3">Videos</h2>
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/hammer_moving_object_output.mp4"
-                    type="video/mp4">
-          </video>
-        </div>  
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop height="100%">
-            <source src="media/cut_video/spatula_multi_trial_output.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
- -->
 <section class="section">
   <div class="container is-max-widescreen">
 

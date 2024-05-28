@@ -50,6 +50,14 @@
      // Set timeout for 1 second to switch the image
      setTimeout(switchToGifPoCo, 3000);
    </script>
+   <script>
+     function switchToGifHPT() {
+       document.getElementById('thumbnail_hpt').src = 'hpt.gif';
+     }
+
+     // Set timeout for 1 second to switch the image
+     setTimeout(switchToGifHPT, 3000);
+   </script>   
    <body>
       <div class="container">
       <div class="row">
@@ -67,7 +75,7 @@
             <br>
             <h3>Lirui (Leroy) Wang</h3> 
             <p> 
-               I am a Ph.D. student advised by Prof. <a rel='nofollow' target='_blank' href='http://groups.csail.mit.edu/locomotion/index.html'>Russ Tedrake</a> at the MIT Computer Science and Artificial Intelligence Laboratory (<a rel='nofollow' target='_blank' href='https://www.csail.mit.edu/'>MIT CSAIL</a>). I also work closely with <a rel='nofollow' target='_blank' href='https://kaiminghe.github.io/'>Prof. Kaiming He</a>. Before coming to MIT, I received my B.S. and M.S. degrees at the <a rel='nofollow' target='_blank' href='https://www.washington.edu/'>University of Washington</a> where I was very fortunate to work with Prof. <a rel='nofollow' target='_blank' href='http://homes.cs.washington.edu/~fox/'>Dieter Fox</a> and collaborate with <a rel='nofollow' target='_blank' href='https://www.nvidia.com/en-us/'>NVIDIA</a>. <br>
+               I am a Ph.D. student advised by Prof. <a rel='nofollow' target='_blank' href='http://groups.csail.mit.edu/locomotion/index.html'>Russ Tedrake</a> at MIT Computer Science and Artificial Intelligence Laboratory (<a rel='nofollow' target='_blank' href='https://www.csail.mit.edu/'>MIT CSAIL</a>). I also work closely with Prof. <a rel='nofollow' target='_blank' href='https://kaiminghe.github.io/'>Kaiming He</a>. Before coming to MIT, I received my B.S. and M.S. degrees at <a rel='nofollow' target='_blank' href='https://www.washington.edu/'>University of Washington</a> where I was very fortunate to work with Prof. <a rel='nofollow' target='_blank' href='http://homes.cs.washington.edu/~fox/'>Dieter Fox</a> and collaborate with <a rel='nofollow' target='_blank' href='https://www.nvidia.com/en-us/'>NVIDIA</a>. <br>
             <p>
                My research interest lies in Robotics and Machine Learning. In particular, I am interested in developing algorithms and systems for robots that can generalize in the complex and unstructured real-world environments. To achieve this, I currently work on fleet learning that can scale with  heterogeneous robot data and scalable robot simulation systems.
             <p>
@@ -89,8 +97,8 @@
                <ul>
                <h3 class="title is-3">Recent News</h3>
                <div class="content">
-                 <!--  Our paper on <a rel='nofollow' target='_blank' href='https://liruiw.github.io/hpt'> Heterogeneous Pre-trained Transformer (HPT)</a> is now on arxiv. Check out the <a target='_blank' href='https://github.com/liruiw/GenSim'>code</a>, <a target='_blank' href='https://github.com/liruiw/GenSim'>paper</a> and <a target='_blank' href='https://huggingface.co/liruiw/hpt-base'>models</a>! -->
-           <!--        <li> Our paper on <a rel='nofollow' target='_blank' href='https://liruiw.github.io/policycomp'>policy composition (PoCo)</a> has been accepted to RSS 2024. -->
+               <!--    <li> Our paper on <a rel='nofollow' target='_blank' href='https://liruiw.github.io/hpt'> Heterogeneous Pre-trained Transformer (HPT)</a> is now on arxiv. Check out the <a target='_blank' href='https://github.com/liruiw/HPT-Pretrain'>code</a>, <a target='_blank' href=''>paper</a> and <a target='_blank' href='https://huggingface.co/liruiw/hpt-base'>models</a>!</li>   -->
+                  <li> Our paper on <a rel='nofollow' target='_blank' href='https://liruiw.github.io/policycomp'>policy composition (PoCo)</a> from and for heterogeneous robot learning has been accepted to RSS 2024.
                   <li> Our paper on <a rel='nofollow' target='_blank' href='https://arxiv.org/abs/2310.01361'>code generation for robotic simulation</a> won the outstanding paper award at the Language Robotics (LangRob) workshop CoRL 2023 and is accepted by ICLR 2024 as Spotlight. Checkout the <a rel='nofollow' target='_blank' href='https://liruiw.github.io/gensim'>website</a>, <a rel='nofollow' target='_blank' href='https://huggingface.co/spaces/Gen-Sim/Gen-Sim'>demo</a>, <a rel='nofollow' target='_blank' href='https://chat.openai.com/g/g-rqxeNpjxd-gensim'>GPTs</a>, and <a target='_blank' href='https://github.com/liruiw/GenSim'>code</a>.  </li>
                 <li> Our paper on <a rel='nofollow' target='_blank' href='https://arxiv.org/abs/2310.01362'>fleet learning via policy merging</a> is accepted by ICLR 2024. Checkout the <a target='_blank' href='https://github.com/liruiw/Fleet-Tools'>code</a>.</li>                   
                </div>
@@ -102,16 +110,16 @@
          <ul>
             <h3>Publications</h3>
             <div class="container">
-<!--             <table style='border-width:1px;border-color:rgb(255,255,255);border-collapse:collapse' cellspacing='0' bordercolor='#888' border='1'>
+  <!--           <table style='border-width:1px;border-color:rgb(255,255,255);border-collapse:collapse' cellspacing='0' bordercolor='#888' border='1'>
                   <tbody>
                      <tr>
-                        <td style='width:300px;height:150px'> <a imageanchor='1' href='hpt.png'><img width='200' src='hpt.png' height='140' border='0'  style='border-radius: 5px'/></a></td>
+                        <td style='width:300px;height:150px'> <a imageanchor='1' href='hpt.gif'><img width='200' id=thumbnail_hpt src='hpt.png' height='140' border='0'  style='border-radius: 5px'/></a></td>
                         <td style='width:1200px;height:89px;padding-left: 10px;'>
-                           <b>Scaling Robot Learning with Heterogeneous Pre-training</b><br/><b>Lirui Wang</b>, Xinlei Chen, Jialiang Zhao, Russ Tedrake, Kaiming He<br/>on Arxiv, 2024 <br/><a href='https://arxiv.org/abs/2402.02511'>arxiv</a>, <a href='https://arxiv.org/abs/2402.02511'>Code</a>, <a href='https://arxiv.org/abs/2402.02511'>Website</a>, <a href="javascript:toggle_visibility('wang2024hpt')">Bibtex</a> 
+                           <b>Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformer</b><br/><b>Lirui Wang</b>, Xinlei Chen, Jialiang Zhao, Kaiming He<br/>on Arxiv, 2024 <br/><a href='https://arxiv.org/abs/2402.02511'>arxiv</a>, <a href='https://github.com/liruiw/HPT-Pretrain'>Code</a>, <a href='liruiw.github.io/hpt'>Website</a>, <a href="javascript:toggle_visibility('wang2024hpt')">Bibtex</a> 
                             <pre id="wang2024hpt" xml:space="preserve" style="display: none; font-size: 12px">
                             @inproceedings{wang2024hpt,
-                              author    = {Lirui Wang, Xinlei Chen, Jialiang Zhao, Russ Tedrake, Kaiming He},
-                              title     = {Scaling Robot Learning with Heterogeneous Pre-training},
+                              author    = {Lirui Wang, Xinlei Chen, Jialiang Zhao, Kaiming He},
+                              title     = {Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformer},
                               booktitle = {arXiv:2410.01362},
                               year      = {2024}
                            }
@@ -119,14 +127,14 @@
                         </td>
                      </tr>
                   </tbody>
-               </table>    -->             
-<!-- Robotics: Science and Systems (R:SS), 2024 -->
+               </table>      -->           
+<!-- -->
             <table style='border-width:1px;border-color:rgb(255,255,255);border-collapse:collapse' cellspacing='0' bordercolor='#888' border='1'>
                   <tbody>
                      <tr>
                         <td style='width:300px;height:150px'> <a imageanchor='1' href='policycomp.gif'><img width='200' id=thumbnail_poco  src='poco_thumbnail.png' height='140' border='0'  style='border-radius: 5px'/></a></td>
                         <td style='width:1200px;height:89px;padding-left: 10px;'>
-                           <b>PoCo: Policy Composition From and For Heterogeneous Robot Learning</b><br/><b>Lirui Wang</b>, Jialiang Zhao, Yilun Du, Edward Adelson, Russ Tedrake<br/> on Arxiv, 2024 <br/><a href='https://arxiv.org/abs/2402.02511'>arxiv</a>, <a href="javascript:toggle_visibility('wang2024poco')">Bibtex</a>, <a href='https://liruiw.github.io/policycomp'>Website</a>, <a href='https://www.youtube.com/watch?v=IEulXFl_Th8'>Video</a>
+                           <b>PoCo: Policy Composition From and For Heterogeneous Robot Learning</b><br/><b>Lirui Wang</b>, Jialiang Zhao, Yilun Du, Edward Adelson, Russ Tedrake<br/> Robotics: Science and Systems (R:SS), 2024 <br/><a href='https://arxiv.org/abs/2402.02511'>arxiv</a>, <a href="javascript:toggle_visibility('wang2024poco')">Bibtex</a>, <a href='https://liruiw.github.io/policycomp'>Website</a>, <a href='https://www.youtube.com/watch?v=IEulXFl_Th8'>Video</a>
                             <pre id="wang2024poco" xml:space="preserve" style="display: none; font-size: 12px">
                             @inproceedings{wang2024poco,
                               author    = {Lirui Wang, Jialiang Zhao, Yilun Du, Edward H. Adelson, Russ Tedrake},
@@ -399,7 +407,7 @@
       <hr>
       <div id="education">
          <ul>
-         <h3>Misc Projects (Pre-PhD)</h3>
+         <h3>Misc Projects</h3>
          <table style="float: left; width:30%">
 
             <tr>
