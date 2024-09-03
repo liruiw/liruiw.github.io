@@ -118,7 +118,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title no-wrap">Scaling Proprioceptive-Visual Learning <br> with Heterogeneous Pre-trained Transformers</h1>
-        <link rel="icon" href="head.jpg">    
+        <link rel="icon" href="head.png">    
 
   <!--         <div class="is-size-5 publication-authors">
             <span class="author-block">Anonymous ICLR Submission</span>
@@ -365,6 +365,88 @@ HPTs outperform several baselines and enhance the fine-tuned policy performance 
 </div>
 
 </div>
+</section>
+
+<!-- side by side comparisons -->
+<section>
+  <br>
+<div class="container is-max-widescreen">
+<div onclick="toggleVideo(1)">&#9654; Comparison with Single-Task Policy</div>
+
+
+<div id="myDIV1" style="display: none; margin-top: 20px;">
+     <div style="display: flex; gap: 20px;">
+        <div style="text-align: center;">
+            <p>ACT</p>
+            <video poster="" autoplay controls loop style="height: 290px; width: 500px;">
+                <source src="media/figures/act.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div style="text-align: center;">
+            <p>HPT</p>
+            <video poster="" autoplay controls loop style="height: 290px; width: 500px;">
+                <source src="media/figures/aloha.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+ 
+
+<div onclick="toggleVideo(2)">&#9654; Comparison with Train-From-Scratch</div>
+
+
+<div id="myDIV2" style="display: none; margin-top: 20px;">
+    <div style="display: flex; gap: 20px;">
+        <div style="text-align: center;">
+            <p>From Scratch</p>
+            <video poster="" autoplay controls loop style="height: 290px; width: 500px;">
+                <source src="media/figures/e2e.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div style="text-align: center;">
+            <p>HPT</p>
+            <video poster="" autoplay controls loop style="height: 290px; width: 500px;">
+                <source src="media/figures/finetuned.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+
+ 
+<div onclick="toggleVideo(3)">&#9654; Comparison with Generalist Policy</div>
+
+
+<div id="myDIV3" style="display: none; margin-top: 20px;">
+    <div style="display: flex; gap: 20px;">
+        <div style="text-align: center;">
+            <p>Octo</p>
+            <video poster="" autoplay controls loop style="height: 290px; width: 500px;">
+                <source src="media/figures/octo_drawer.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div style="text-align: center;">
+            <p>HPT</p>
+            <video poster="" autoplay controls loop style="height: 290px; width: 500px;">
+                <source src="media/figures/hpt_drawer.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function toggleVideo(index) {
+        var x = document.getElementById("myDIV"+index);
+        var arrow = document.querySelector('div');
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            // arrow.innerHTML = "&#9660; Comparison with Single-Task Policy";
+        } else {
+            x.style.display = "none";
+            // arrow.innerHTML = "&#9654; Comparison with Single-Task Policy";
+        }
+    }
+</script>
 </section>
 
 <style>
