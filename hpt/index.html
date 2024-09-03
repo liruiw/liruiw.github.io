@@ -132,13 +132,26 @@
        <span class="author-block">Lirui Wang,</span>
             <span class="author-block">Xinlei Chen,</sup>                 
             <span class="author-block">Jialiang Zhao,</span>
-         <span class="author-block">Kaiming He</sup>             
+         <span class="author-block">Kaiming He</sup>,   
+         <span class="author-block">Russ Tedrake</sup>                       
             </span>
           </div> -->
+
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">MIT CSAIL, FAIR</span>          
             </span>
           </div>  
+      <img src="./static/images/mit.png"
+                      alt="MIT Logo"
+                      class="logo"
+                      style="margin: 0px 20px 0px 0px;"
+                     width="110" height="110"  />
+      <img src="./static/images/meta_ai.webp"
+                      alt="Meta Logo"
+                      class="logo"
+                     width="150" height="150"  />
+                       
           <div class="column has-text-centered">
           <span class="link-block">
                 <a href="https://github.com/liruiw/HPT-Pretrain"
@@ -150,12 +163,12 @@
                 </a>
               </span>         
           <span class="link-block">
-                <a href="https://github.com/liruiw/HPT-Transfer"
+                <a href="https://github.com/liruiw/HPT-Transfer/blob/main/quickstart.ipynb"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
-                  <span>Transfer Code</span>
+                  <span>Notebook</span>
                 </a>
               </span>     
            <span class="link-block">
@@ -173,9 +186,18 @@
                   <span class="icon">
                       <i class="fas fa-smile"></i>
                   </span>
-                  <span>Huggingface</span>
+                  <span>Weights</span>
                 </a>
-              </span>                                               
+              </span> 
+           <span class="link-block">
+                <a href="https://github.com/huggingface/lerobot/tree/main/lerobot/common/policies/hpt"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-smile"></i>
+                  </span>
+                  <span>HF Implementation</span>
+                </a>
+              </span>                                                    
           <span class="link-block">
                 <a href="https://x.com/LiruiWang1/status/1754880508008271970?s=20"
                    class="external-link button is-normal is-rounded is-dark">
@@ -187,12 +209,61 @@
               </span> 
           </div>
         </div>
+
+      </div>
+<div class="is-size-5 mt-3">
+  <span class="has-text-weight-bold">TL;DR:</span> HPT aligns different embodiment to the same latent space and investigates in the scaling behaviors measured by the pre-training objectives.
+</div>
+
+    </div>
+  </div>
+
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop style="width: 600px; height: 250px;">
+            <source src="media/figures/sweep_disturb.mp4"
+                    type="video/mp4">
+          </video>
+        </div>  
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop style="width: 600px; height: 250px;">
+            <source src="media/figures/scoop.mp4"
+                    type="video/mp4">
+          </video>
+        </div>     
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop style="width: 600px; height: 250px;">
+            <source src="media//figures/insert.mp4"
+                    type="video/mp4">
+          </video>
+        </div>  
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop style="width: 600px; height: 250px;">
+            <source src="media/figures/sweep.mp4"
+                    type="video/mp4">
+          </video>
+        </div>     
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop style="width: 600px; height: 250px;">
+            <source src="media/figures/simpler.mp4"
+                    type="video/mp4">
+          </video>
+        </div>                          
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop style="width: 600px; height: 250px;">
+            <source src="media/figures/aloha.mp4"
+                    type="video/mp4">
+          </video>
+        </div>        
       </div>
     </div>
   </div>
 </section>
-
-
 
 
 <section class="section">
@@ -203,7 +274,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-One of the key roadblocks for training generalist robotic models today is heterogeneity. Previous robot learning methods often collect data to train with one specific embodiment for one task, which is expensive and prone to overfitting. This work studies the problem of learning policy representations through heterogeneous pre-training on robot data across different embodiments and tasks at scale. We propose Heterogeneous Pre-trained Transformers (HPT), which pre-train a large, shareable trunk of a policy neural network to learn a task and embodiment agnostic shared representation. <br>
+One of the key roadblocks for training generalist robotic models today is heterogeneity. Previous robot learning methods often collect data to train with one specific embodiment for one task, which is expensive and prone to overfitting. This work studies the problem of learning policy representations through heterogeneous pre-training on robot data across different embodiments and tasks at scale. We propose Heterogeneous Pre-trained Transformers (HPT), which pre-train a large, shareable trunk of a policy neural network to learn a task and embodiment agnostic shared representation. <br><br>
 
 
 
@@ -217,10 +288,6 @@ This general architecture aligns the specific proprioception and vision inputs f
 
 <section class="section">
   <div class="container is-max-widescreen">
-
-
-
-
 <section class="section">
 <div class="container is-max-widescreen">
   <div class="columns is-centered has-text-centered">
@@ -229,15 +296,17 @@ This general architecture aligns the specific proprioception and vision inputs f
       <h3 class="title is-3">HPT Concept</h3>
       <div class="hero-body">
         <img src="media/figures/concept.png" class="interpolation-image" alt="Interpolate start reference image." />  
-        <br/>
+        Heterogeneous Pre-training maps different embodiments, each with its own proprioception  and vision sensors, onto a shared latent space by embodiment-specific tokenizers.
       </div>
     </div>
     <!-- Scaling Law -->
     <div class="column is-half">
       <h3 class="title is-3">HPT Architecture</h3>
       <div class="hero-body">
-        <img src="media/figures/framework.png" class="interpolation-image" alt="Interpolate start reference image." />  
+        <img src="media/figures/framework.png" class="interpolation-image" alt="Interpolate start reference image." style="width:80%"/>  
         <br/>
+      HPT is modularized into stems, trunk, and heads, where the goal is to pre-train a large, shareable transformer.
+
       </div>
     </div>
   </div>
@@ -249,9 +318,10 @@ This general architecture aligns the specific proprioception and vision inputs f
     <div class="column is-half">
       <h3 class="title is-3">Dataset Mixture</h3>
       <div class="hero-body">
-        <img src="media/figures/dataset.png" class="interpolation-image" alt="Interpolate start reference image." />  
+        <img src="media/figures/dataset.png" class="interpolation-image" alt="Interpolate start reference image."  style="width:86%;" />  
         <br/>
       </div>
+      The training mixtures contains over 50 datasets and 200k trajectories from real robot teleops, human videos, simulation, and deployed robots.
     </div>
     <!-- Scaling Law -->
     <div class="column is-half">
@@ -260,23 +330,94 @@ This general architecture aligns the specific proprioception and vision inputs f
         <img src="media/figures/scaling.png" class="interpolation-image" alt="Interpolate start reference image." />  
         <br/>
       </div>
+      HPT shows objective scaling behaviors across multiple axes during training.
     </div>
   </div>
 </div>
 </section>
 
 <section class="hero teaser">
-<div class="container is-fullhd">
-    <h3 class="title is-3 has-text-centered">Demo Video</h3>
+<div class="container is-max-widescreen">
+  <div class="columns is-centered has-text-centered">
+    <!-- HPT Architecture -->
+    <div class="column is-half">
+    <h3 class="title is-3 has-text-centered">Real Robot Videos</h3>
     <div class="hero-body" style="display: flex; justify-content: center;">
           <video poster=""id="steve" autoplay controls loop height="100%">
             <source src="media/figures/hpt_new.mp4"
                     type="video/mp4">
           </video>
     </div>
+      Pre-trained  HPT policies can perform dynamic and long-horizon contact-rich precision tasks in pet care and assembly. 
+
+  </div>
+    <!-- HPT Architecture -->
+    <div class="column is-half">
+    <h3 class="title is-3 has-text-centered">Simulation Videos</h3>
+    <div class="hero-body" style="display: flex; justify-content: center;">
+          <video poster=""id="steve" autoplay controls loop style="height: 290px; width: 500px;">
+            <source src="media/figures/sim_video.mp4"
+                    type="video/mp4">
+          </video>
+    </div>
+HPTs outperform several baselines and enhance the fine-tuned policy performance by over 20% on unseen tasks in multiple simulator benchmarks and real-world settings. 
+</div>
+</div>
+
+</div>
+</section>
+
+<style>
+  .page {
+    width: 130px; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    margin: 4px;
+  }
+  .hero {
+    text-align: center;
+    margin: 5px auto;
+  }
+  .hr {
+    width: 100%;
+    margin: auto;
+    border-top: 2px solid #000;
+  }
+</style>
+<br>
+<section class="hero teaser">
+  <div class="hr"></div>
+  <div style="margin: auto; margin-bottom: 64px; text-align: center;">
+    <h2>Paper</h2>
+    <div class="page" style="background-image: url(media/figures/thumbnails/thumbnail_1.png);"></div>
+    <div class="page" style="background-image: url(media/figures/thumbnails/thumbnail_2.png);"></div>
+    <div class="page" style="background-image: url(media/figures/thumbnails/thumbnail_3.png);"></div>
+    <div class="page" style="background-image: url(media/figures/thumbnails/thumbnail_4.png);"></div>
+    <div class="page" style="background-image: url(media/figures/thumbnails/thumbnail_5.png);"></div>
+    <div class="page" style="background-image: url(media/figures/thumbnails/thumbnail_6.png);"></div>
+    <div class="page" style="background-image: url(media/figures/thumbnails/thumbnail_7.png);"></div>
+    <div class="page" style="background-image: url(media/figures/thumbnails/thumbnail_8.png);"></div>
+    <div style="margin: auto; margin-top: 32px;">
+      <a href="https://arxiv.org/abs/2203.04955">View on arXiv</a>
+    </div>
   </div>
 </section>
- 
+
+<br>
+<section class="hero teaser">
+ <div class="mt-8 md:ml-4 ml-1 text-left"></div>    <h3 class="title is-3 has-text-centered">BibTeX</h3> <pre class="mt-4 overflow-x-scroll bg-slate-100 p-8">
+@inproceedings{wang2024hpt,
+author={Lirui Wang, Xinlei Chen, Jialiang Zhao, Kaiming He, Russ Tedrake},
+title={Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformers},
+year={2024},
+eprint={2407.16677},
+archivePrefix={arXiv},
+primaryClass={cs.RO},
+url={https://arxiv.org/abs/2407.16677}}</pre> </div> 
+</section>
+
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
@@ -294,6 +435,7 @@ This general architecture aligns the specific proprioception and vision inputs f
         </div>
       </div>
     </div>
+
   </div>
 </footer>
 
