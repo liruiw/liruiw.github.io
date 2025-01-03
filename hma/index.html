@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Learning Robotic Video Dynamics with Heterogeneous Masked Autoregression">
+  <meta name="description" content="Learning Robotic Video Dynamics with Heterogeneous Masked Autoregression">
   <meta name="keywords" content="Multitask, Multimodal, Robotics">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Learning Robotic Video Dynamics with Heterogeneous Masked Autoregression</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .title {
-            font-size: 10.5rem;
-            font-weight: 400;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        .subtitle {
-            font-size: 5rem;
-            font-weight: 600;
-            color: #8C1515;
-            margin-top: 0;
-        }
-    </style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
 
-  <link href="http://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+    .title {
+      font-size: 10.5rem;
+      font-weight: 400;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 5rem;
+      font-weight: 600;
+      color: #8C1515;
+      margin-top: 0;
+    }
+  </style>
+
+  <link href="http://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/irasim.css">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
@@ -49,14 +49,14 @@
 
 
   <script>
-  function toggleCode() {
-    var code = document.getElementById('code');
-    if (code.style.display === 'none') {
-      code.style.display = 'block';
-    } else {
-      code.style.display = 'none';
+    function toggleCode() {
+      var code = document.getElementById('code');
+      if (code.style.display === 'none') {
+        code.style.display = 'block';
+      } else {
+        code.style.display = 'none';
+      }
     }
-  }
 
     function updateNoTrunk() {
       var task = document.getElementById("single-menu-tasks-notrunk").value;
@@ -66,7 +66,7 @@
       console.log("gpt", task, inst)
 
       var video = document.getElementById("single-task-result-video-notrunk");
-      video.src = "media/local_video/" + task + "/notrunk/episode_00" +  inst + "_" + view + ".mp4";
+      video.src = "media/local_video/" + task + "/notrunk/episode_00" + inst + "_" + view + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
@@ -80,7 +80,7 @@
 
       var video = document.getElementById("single-task-result-video-frozen");
       video.src = "media/local_video/" + task + "/frozen/episode_00" +
-                  inst  + "_" + view + ".mp4";
+        inst + "_" + view + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
@@ -95,7 +95,7 @@
 
       var video = document.getElementById("single-task-result-video-end2end");
       video.src = "media/local_video/" + task + "/end2end/episode_00" +
-                   inst  + "_" + view + ".mp4";
+        inst + "_" + view + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
@@ -109,7 +109,7 @@
 
       var video = document.getElementById("single-task-result-video-finetune");
       video.src = "media/local_video/" + task + "/finetune/episode_00" +
-                   inst  + "_" + view + ".mp4";
+        inst + "_" + view + ".mp4";
       video.playbackRate = 2.0;
       video.play();
     }
@@ -119,382 +119,397 @@
 
   </script>
 </head>
+
 <body>
 
 
 
-</section>
-<style>
-  .no-wrap {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-</style>
+  </section>
+  <style>
+    .no-wrap {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
 
 
 
 
 
 
-<div id="video_grid">
-  <div class="video_wrapper">
+  <div id="video_grid">
+    <div class="video_wrapper">
       <div class="video_container">
-          <video autoplay muted playsinline loop>
-              <source src="static/videos/bcz_adjusted.mp4" type="video/mp4">
-          </video>
-          <div class="overlay">BC-Z</div>
-      </div>
-  </div>
-  <div class="video_wrapper">
-      <div class="video_container">
-          <video autoplay muted playsinline loop>
-              <source src="static/videos/ucsd_pick_and_place_adjusted.mp4" type="video/mp4">
-          </video>
-          <div class="overlay">UCSD Pick and Place
-          </div>
-      </div>
-  </div>
-  <div class="video_wrapper">
-      <div class="video_container">
-          <video autoplay muted playsinline loop>
-              <source src="static/videos/ucsd_adjusted.mp4" type="video/mp4">
-          </video>
-          <div class="overlay">UCSD Kitchen</div>
-      </div>
-  </div>
-  <div class="video_wrapper">
-      <div class="video_container">
-          <video autoplay muted playsinline loop>
-              <source src="static/videos/tokyo_adjusted.mp4" type="video/mp4">
-          </video>
-          <div class="overlay">Tokyo</div>
-      </div>
-  </div>
-  <div class="video_wrapper">
-      <div class="video_container">
-          <video autoplay muted playsinline loop>
-              <source src="static/videos/dobbe_adjusted.mp4" type="video/mp4">
-          </video>
-          <div class="overlay">Dobb-E</div>
-      </div>
-  </div>
-  <div class="video_wrapper">
-      <div class="video_container">
-          <video autoplay muted playsinline loop>
-              <source src="static/videos/bridge_adjusted.mp4" type="video/mp4">
-          </video>
-          <div class="overlay">Bridge</div>
-      </div>
-  </div>
-  <div class="video_wrapper">
-    <div class="video_container">
         <video autoplay muted playsinline loop>
-            <source src="static/videos/austin_sirius_adjusted.mp4" type="video/mp4">
+          <source src="static/videos/bcz_adjusted.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">BC-Z</div>
+      </div>
+    </div>
+    <div class="video_wrapper">
+      <div class="video_container">
+        <video autoplay muted playsinline loop>
+          <source src="static/videos/ucsd_pick_and_place_adjusted.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">UCSD Pick and Place
+        </div>
+      </div>
+    </div>
+    <div class="video_wrapper">
+      <div class="video_container">
+        <video autoplay muted playsinline loop>
+          <source src="static/videos/ucsd_adjusted.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">UCSD Kitchen</div>
+      </div>
+    </div>
+    <div class="video_wrapper">
+      <div class="video_container">
+        <video autoplay muted playsinline loop>
+          <source src="static/videos/tokyo_adjusted.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">Tokyo</div>
+      </div>
+    </div>
+    <div class="video_wrapper">
+      <div class="video_container">
+        <video autoplay muted playsinline loop>
+          <source src="static/videos/dobbe_adjusted.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">Dobb-E</div>
+      </div>
+    </div>
+    <div class="video_wrapper">
+      <div class="video_container">
+        <video autoplay muted playsinline loop>
+          <source src="static/videos/bridge_adjusted.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">Bridge</div>
+      </div>
+    </div>
+    <div class="video_wrapper">
+      <div class="video_container">
+        <video autoplay muted playsinline loop>
+          <source src="static/videos/austin_sirius_adjusted.mp4" type="video/mp4">
         </video>
         <div class="overlay">Austin Sirius</div>
+      </div>
     </div>
-</div>  <div class="video_wrapper">
-  <div class="video_container">
-      <video autoplay muted playsinline loop>
+    <div class="video_wrapper">
+      <div class="video_container">
+        <video autoplay muted playsinline loop>
           <source src="static/videos/pusht_adjusted.mp4" type="video/mp4">
-      </video>
-      <div class="overlay">Push-T</div>
+        </video>
+        <div class="overlay">Push-T</div>
+      </div>
+    </div>
+
   </div>
-</div>
-
-</div>
-<p class="has-text-centered" style="margin-top: 10px; font-size: 0.9rem; color: #555;">
-</p>
-<br><br>
+  <p class="has-text-centered" style="margin-top: 10px; font-size: 0.9rem; color: #555;">
+  </p>
+  <br><br>
 
 
 
 
 
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-    <h2 class="subtitle">Learning Robotic Video Dynamics with</h2>
-    <h1 class="title">Heterogeneous Masked Autoregression</h1>
-        <link rel="icon" href="head.png">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h2 class="subtitle">Learning Robotic Video Dynamics with</h2>
+            <h1 class="title">Heterogeneous Masked Autoregression</h1>
+            <link rel="icon" href="head.png">
 
-  <!--         <div class="is-size-5 publication-authors">
+            <!--         <div class="is-size-5 publication-authors">
             <span class="author-block">Anonymous ICLR Submission</span>
           </div>
  -->
-    <!--      <div class="is-size-5 publication-authors">
+            <!--      <div class="is-size-5 publication-authors">
             <span class="author-block">Anonymous</span>
             </span>
           </div>  -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://liruiw.github.io/">Lirui Wang</a>,</span>
-            <span class="author-block"><a href="https://chaoqi-liu.com/">Chaoqi Liu*,</span>
-                 <span class="author-block">Kevin Zhao*,</span>
-                 <span class="author-block"><a href="https://xinleic.xyz/">Xinlei Chen</a>,</sup>
-                 </span>
-               </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://liruiw.github.io/">Lirui Wang</a>,</span>
+              <span class="author-block">Kevin Zhao*,</span>
+              <span class="author-block"><a href="https://chaoqi-liu.com/">Chaoqi Liu*,</span>
+              <span class="author-block"><a href="https://xinleic.xyz/">Xinlei Chen</a>,</sup>
+              </span>
+            </div>
 
 
-               <div class="is-size-5 publication-authors">
-                 <span class="author-block">MIT, UIUC, FAIR Meta</span>
-                 </span>
-               </div>
-    </div>
-  </div>
-  <h2 class="subtitle">CVPR, 2025</h2>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">MIT, UIUC, FAIR Meta</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- <h2 class="subtitle">CVPR, 2025</h2> -->
 
-  <img src="./static/images/mit.png"
-                  alt="MIT Logo"
-                  class="logo"
-                  style="margin: 0px 20px 0px 0px;"
-                 width="110" height="110"  />
-  <img src="./static/images/meta_ai.webp"
-                  alt="Meta Logo"
-                  class="logo"
-                 width="150" height="150"  />
-  <img src="./static/images/uiuc.png"
-                 alt="UIUC Logo"
-                 class="logo"
-                width="70" height="70"  />
-      <div class="column has-text-centered">
-      <span class="link-block">
-            <a href="https://github.com/liruiw/HMA"
-               class="external-link button is-normal is-rounded is-dark">
+        <img src="./static/images/mit.png" alt="MIT Logo" class="logo" style="margin: 0px 20px 0px 0px;" width="110"
+          height="110" />
+        <img src="./static/images/meta_ai.webp" alt="Meta Logo" class="logo" width="150" height="150" />
+        <img src="./static/images/uiuc.png" alt="UIUC Logo" class="logo" width="70" height="70" />
+        <div class="column has-text-centered">
+          <span class="link-block">
+            <a href="https://github.com/liruiw/HMA" class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
-                  <i class="fab fa-github"></i>
+                <i class="fab fa-github"></i>
               </span>
               <span>Code</span>
             </a>
           </span>
-       <span class="link-block">
-            <a href=""
-               class="external-link button is-normal is-rounded is-dark">
+          <span class="link-block">
+            <a href="" class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
-                  <i class="fas fa-file-pdf"></i>
+                <i class="fas fa-file-pdf"></i>
               </span>
               <span>Paper</span>
             </a>
           </span>
-       <span class="link-block">
-            <a href="https://huggingface.co/liruiw/hma-base"
-               class="external-link button is-normal is-rounded is-dark">
+          <span class="link-block">
+            <a href="https://huggingface.co/liruiw/hma-base" class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
-                  <i class="fas fa-smile"></i>
+                <i class="fas fa-smile"></i>
               </span>
               <span>Weights</span>
             </a>
           </span>
           <!-- https://liruiw.github.io/hma/hma_demo -->
-        <span class="link-block">
-            <a href="hma_demo.html"
-               class="external-link button is-normal is-rounded is-dark">
+          <span class="link-block">
+            <a href="hma_demo.html" class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
-                  <i class="fas fa-smile"></i>
+                <i class="fas fa-smile"></i>
               </span>
               <span>Demo</span>
             </a>
           </span>
-       <span class="link-block">
+          <span class="link-block">
             <a href="https://huggingface.co/spaces/liruiw/hma"
-               class="external-link button is-normal is-rounded is-dark">
+              class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
-                  <i class="fas fa-smile"></i>
+                <i class="fas fa-smile"></i>
               </span>
               <span>HF Demo</span>
             </a>
           </span>
-      <span class="link-block">
+          <span class="link-block">
             <a href="https://x.com/LiruiWang1/status/1841098699436351742"
-               class="external-link button is-normal is-rounded is-dark">
+              class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
-                  <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter"></i>
               </span>
               <span>Twitter Intro</span>
             </a>
           </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-fullhd">
+      <div class="hero-body">
+
+        <h2 class="subtitle has-text-centered">
+          <span class="has-text-weight-bold">TL;DR:</span> <span style="color: #8C1515">HMA</span> is a real-time
+          robotic video simulation for high-fidelity and controllable interactions, leveraging the general masked
+          autoregressive dynamic models and heterogeneous training.
+        </h2>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
 
-<section class="hero teaser">
-<div class="container is-fullhd">
-    <div class="hero-body">
-
-      <h2 class="subtitle has-text-centered">
-      <span class="has-text-weight-bold">TL;DR:</span>  <span style="color: #8C1515">HMA</span> is a real-time robotic video simulation for high-fidelity and controllable interactions, leveraging the general masked autoregressive dynamic models and heterogeneous training.
-      </h2>
+  <h4 class="title is-4">HMA can simulate real-world interactive behaviors in real time with user actions.</h4>
+  <p class="has-text-centered" style="margin-top: 10px; font-size: 0.9rem; color: #555;">
+    <strong>Demo:</strong> Recommend to download the code and play with the demos.
+  </p>
+  <div class="columns">
+    <div class="column has-text-centered">
+      <video id="dist1" controls muted autoplay loop width="80%">
+        <source src="static/videos/language_table/interactive/s06-wwwddddddsssssssaaaa.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="column has-text-centered">
+      <video id="dist1" controls muted autoplay loop width="80%">
+        <source src="static/videos/language_table/interactive/s06-wwwwdddddssssssaaaaa.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="column has-text-centered">
+      <video id="dist2" controls muted autoplay loop width="80%">
+        <source src="static/videos/language_table/interactive/s28-aawwwwwaassssssaawww.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="column has-text-centered">
+      <video id="dist2" controls muted autoplay loop width="80%">
+        <source src="static/videos/language_table/interactive/s16-aaaddsssssaaawwaawwa.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
-</section>
+
+  <br><br>
 
 
-<h4 class="title is-4">HMA can simulate real-world interactive behaviors in real time with user actions.</h4>
-<p class="has-text-centered" style="margin-top: 10px; font-size: 0.9rem; color: #555;">
-  <strong>Demo:</strong>  Recommend to download the code and play with the demos.
-</p>
-<div class="columns">
-  <div class="column has-text-centered">
-    <video id="dist1" controls muted autoplay loop width="80%">
-      <source src="static/videos/language_table/interactive/s06-wwwddddddsssssssaaaa.mp4" type="video/mp4">
-    </video>
+
+  <h5 class="title is-5">HMA can simulate high-fidelity physical interactions such as pushing the blocks as well as the
+    shadows.</h5>
+
+
+  <div class="columns">
+    <div class="column has-text-centered">
+      <video id="dist1" controls muted autoplay loop width="90%">
+        <source src="static/videos/language_table/good/processed_16.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="column has-text-centered">
+      <video id="dist1" controls muted autoplay loop width="90%">
+        <source src="static/videos/language_table/good/processed_17.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="column has-text-centered">
+      <video id="dist2" controls muted autoplay loop width="90%">
+        <source src="static/videos/language_table/good/processed_19.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div style="width: 5px; background-color: #ccc;"></div>
+    <div class="column has-text-centered">
+      <video id="dist2" controls muted autoplay loop width="90%">
+        <source src="static/videos/language_table/bad/processed_0.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
-  <div class="column has-text-centered">
-    <video id="dist1" controls muted autoplay loop width="80%">
-      <source src="static/videos/language_table/interactive/s06-wwwwdddddssssssaaaaa.mp4" type="video/mp4">
-    </video>
+
+
+  <h5 class="title is-5">Trained on only 200 trajectories, HMA can roll out over 100 frames synthetic data generation
+    and policy evaluation.</h5>
+
+  <div class="columns">
+    <div class="column has-text-centered">
+      <video id="dist1" controls muted autoplay loop width="90%">
+        <source src="static/videos/robomimic/good/processed_failure1.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="column has-text-centered">
+      <video id="dist1" controls muted autoplay loop width="90%">
+        <source src="static/videos/robomimic/good/processed_success1.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="column has-text-centered">
+      <video id="dist2" controls muted autoplay loop width="90%">
+        <source src="static/videos/robomimic/good/processed_success2.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div style="width: 5px; background-color: #ccc;"></div>
+    <div class="column has-text-centered">
+      <video id="dist2" controls muted autoplay loop width="90%">
+        <source src="static/videos/robomimic/bad/processed_failure2.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
-  <div class="column has-text-centered">
-    <video id="dist2" controls muted autoplay loop width="80%">
-      <source src="static/videos/language_table/interactive/s28-aawwwwwaassssssaawww.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="column has-text-centered">
-    <video id="dist2" controls muted autoplay loop width="80%">
-      <source src="static/videos/language_table/interactive/s16-aaaddsssssaaawwaawwa.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
 
-<br><br>
-
-
-
-<h5 class="title is-5">HMA can simulate high-fidelity physical interactions such as pushing the blocks as well as the shadows.</h5>
-
-
-<div class="columns">
-  <div class="column has-text-centered">
-    <video id="dist1" controls muted autoplay loop width="90%">
-      <source src="static/videos/language_table/good/processed_16.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="column has-text-centered">
-    <video id="dist1" controls muted autoplay loop width="90%">
-      <source src="static/videos/language_table/good/processed_17.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="column has-text-centered">
-    <video id="dist2" controls muted autoplay loop width="90%">
-      <source src="static/videos/language_table/good/processed_19.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div style="width: 5px; background-color: #ccc;"></div>
-  <div class="column has-text-centered">
-    <video id="dist2" controls muted autoplay loop width="90%">
-      <source src="static/videos/language_table/bad/processed_0.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-
-<h5 class="title is-5">Trained on only 200 trajectories, HMA can roll out over 100 frames synthetic data generation and policy evaluation.</h5>
-
-<div class="columns">
-  <div class="column has-text-centered">
-    <video id="dist1" controls muted autoplay loop width="90%">
-      <source src="static/videos/robomimic/good/processed_failure1.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="column has-text-centered">
-    <video id="dist1" controls muted autoplay loop width="90%">
-      <source src="static/videos/robomimic/good/processed_success1.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="column has-text-centered">
-    <video id="dist2" controls muted autoplay loop width="90%">
-      <source src="static/videos/robomimic/good/processed_success2.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div style="width: 5px; background-color: #ccc;"></div>
-  <div class="column has-text-centered">
-    <video id="dist2" controls muted autoplay loop width="90%">
-      <source src="static/videos/robomimic/bad/processed_failure2.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-<p class="has-text-centered" style="margin-top: 10px; font-size: 0.9rem; color: #555;">
-  <strong>Figure:</strong> Success cases are displayed on the left, while failure cases are shown on the right. Videos demonstrate outcomes for comparison.
-</p>
-<br><br>
+  <p class="has-text-centered" style="margin-top: 10px; font-size: 0.9rem; color: #555;">
+    <strong>Figure:</strong> Success cases are displayed on the left, while failure cases are shown on the right. Videos
+    demonstrate outcomes for comparison.
+  </p>
+  <br><br>
 
 
 
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Building interactive robotic video world models and policies is extremely challenging due to the requirements in data and physical fidelity. We propose Heterogeneous Masked Autoregression (HMA) for
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We propose Heterogeneous Masked Autoregression (HMA)
+              for modeling action-video dynamics to generate high-quality
+              data and evaluation in scaling robot learning. Building inter-
+              active video world models and policies for robotics is difficult
+              due to the the challenge in handling diverse settings while re-
+              maining computationally efficient enough to run in real time.
+              HMA uses heterogeneous pre-training from observations and
+              action sequences across different robotic embodiments, do-
+              mains, and tasks. Masked autoregression is used to generate
 
+              quantized or soft tokens for video predictions.
+            </p>
+            <p>HMA achieves better visual fidelity and controllability than the previous
+              state-of-the-art robotic video generation models with 15x
+              faster speed in the real world. After post-training, this model
+              can be used as a video simulator from low-level action inputs
+              for evaluating policies and generating synthetic data </p>
 
-            video dynamics modeling, to unify these two problems by pre-training from observations and action sequences in large-scale heterogeneous data across different robotic embodiments, domains, and tasks. We leverage masked autoregression and diffusion models for fast, high-quality, and controllable video predictions.  Our interactive video generation achieves better visual fidelity and controllability than the previous state-of-the-art with 15x faster speed in the real world. After post-training, this model can be used as a video simulator from low-level action inputs for evaluating policies and generating synthetic data.  We also explore (HMA) as autoregressive robotic policies.
-          </p>
-
+          </div>
         </div>
       </div>
     </div>
-</div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container is-max-widescreen">
-<section class="section">
-<div class="container is-max-widescreen">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-half">
-      <h3 class="title is-3">HMA Framework</h3>
-      <div class="hero-body">
-        <img src="static/images/hma_framework.png" class="interpolation-image" alt="Interpolate start reference image." />
-        HMA pretrains video dynamic models from hetereogeneous data over 40 datasets and 3 million trajectories from real robot teleops, human videos, simulation, and can be post-trained for applications such as video simulation, policy evaluation, and synthetic data generation.
-      </div>
-    </div>
-    <div class="column is-half">
-      <h3 class="title is-3">HMA Architecture</h3>
-      <div class="hero-body">
-        <img src="static/images/hma_arch.png" class="interpolation-image" alt="Interpolate start reference image." style="width:80%"/>
-        <br/>
-        HMA network architecture incorporates token concatenation and modulaton for action conditioned masked autoregressive video and action generation.
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <section class="section">
+        <div class="container is-max-widescreen">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-half">
+              <h3 class="title is-3">HMA Framework</h3>
+              <div class="hero-body">
+                <img src="static/images/hma_framework.png" class="interpolation-image"
+                  alt="Interpolate start reference image." />
+                HMA pretrains video dynamic models from hetereogeneous data over 40 datasets and 3 million trajectories
+                from real robot teleops, human videos, simulation, and can be post-trained for applications such as
+                video simulation, policy evaluation, and synthetic data generation.
+              </div>
+            </div>
+            <div class="column is-half">
+              <h3 class="title is-3">HMA Architecture</h3>
+              <div class="hero-body">
+                <img src="static/images/hma_arch.png" class="interpolation-image"
+                  alt="Interpolate start reference image." style="width:80%" />
+                <br />
+                HMA network architecture incorporates token concatenation and modulaton for action conditioned masked
+                autoregressive video and action generation.
 
-      </div>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div class="container is-max-widescreen">
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-half">
-      <h3 class="title is-3">HMA Dynamics</h3>
-      <div class="hero-body">
-        <img src="static/images/hma_dynamics.png" class="interpolation-image" alt="Interpolate start reference image."  style="width:86%;" />
-        <br/>
-      </div>
-      The HMA formulation uses masked autoregression to efficiently model action-conditioned video prediction and policy action predictions.
-    </div>
-    <!-- Scaling Law -->
-    <div class="column is-half">
-      <h3 class="title is-3">Scaling Experiments</h3>
-      <div class="hero-body">
-        <img src="static/images/hma_scaling.png" class="interpolation-image" alt="Interpolate start reference image." />
-        <br/>
-      </div>
-      HMA shows objective scaling behaviors across multiple axes during training including datasets, model sizes, and number of trajectories.
-    </div>
-  </div>
-</div>
-</section>
-<!--
+        <div class="container is-max-widescreen">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-half">
+              <h3 class="title is-3">HMA Dynamics</h3>
+              <div class="hero-body">
+                <img src="static/images/hma_dynamics.png" class="interpolation-image"
+                  alt="Interpolate start reference image." style="width:86%;" />
+                <br />
+              </div>
+              The HMA formulation uses masked autoregression to efficiently model action-conditioned video prediction
+              and policy action predictions.
+            </div>
+            <!-- Scaling Law -->
+            <div class="column is-half">
+              <h3 class="title is-3">Scaling Experiments</h3>
+              <div class="hero-body">
+                <img src="static/images/hma_scaling.png" class="interpolation-image"
+                  alt="Interpolate start reference image." />
+                <br />
+              </div>
+              HMA shows objective scaling behaviors across multiple axes during training including datasets, model
+              sizes, and number of trajectories.
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--
 <section class="hero teaser">
 <div class="container is-max-widescreen">
   <div class="columns is-centered has-text-centered">
@@ -524,69 +539,73 @@ HMA can rollout over 100 frames with only 200 trajectories, which is useful for 
 </div>
 </section> -->
 
-<!-- side by side comparisons -->
+      <!-- side by side comparisons -->
 
 
 
-<script>
-    function toggleVideo(index) {
-        var x = document.getElementById("myDIV"+index);
-        var arrow = document.querySelector('div');
-        if (x.style.display === "none") {
+      <script>
+        function toggleVideo(index) {
+          var x = document.getElementById("myDIV" + index);
+          var arrow = document.querySelector('div');
+          if (x.style.display === "none") {
             x.style.display = "block";
             // arrow.innerHTML = "&#9660; Comparison with Single-Task Policy";
-        } else {
+          } else {
             x.style.display = "none";
             // arrow.innerHTML = "&#9654; Comparison with Single-Task Policy";
+          }
         }
+      </script>
+  </section>
+
+  <style>
+    .page {
+      width: 130px;
+      /* Adjust as needed */
+      height: 200px;
+      /* Adjust as needed */
+      background-size: cover;
+      background-position: center;
+      display: inline-block;
+      margin: 4px;
     }
-</script>
-</section>
 
-<style>
-  .page {
-    width: 130px; /* Adjust as needed */
-    height: 200px; /* Adjust as needed */
-    background-size: cover;
-    background-position: center;
-    display: inline-block;
-    margin: 4px;
-  }
-  .hero {
-    text-align: center;
-    margin: 5px auto;
-  }
-  .hr {
-    width: 100%;
-    margin: auto;
-    border-top: 2px solid #000;
-  }
-</style>
-<br>
+    .hero {
+      text-align: center;
+      margin: 5px auto;
+    }
 
-<br>
+    .hr {
+      width: 100%;
+      margin: auto;
+      border-top: 2px solid #000;
+    }
+  </style>
+  <br>
+
+  <br>
 
 
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link" href="https://github.com/nerfies/nerfies.github.io" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website template is borrowed from  <a
-              href="https://github.com/nerfies/nerfies.github.io">nerfie</a>
-          </p>
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://github.com/nerfies/nerfies.github.io" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">nerfie</a>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-  </div>
-</footer>
+    </div>
+  </footer>
 
 </body>
+
 </html>
