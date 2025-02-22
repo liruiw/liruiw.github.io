@@ -16,27 +16,34 @@
    <link href="css/font-awesome.min.css" rel="stylesheet">
 
    <link rel="icon" href="head5.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+   <style>
+      .profile-section {
+         display: flex;
+         align-items: center;
+         margin-top: 40px;
+      }
 
-<style>
-  .profile-section {
-    display: flex;
-    align-items: center;
-    margin-top: 40px;
-  }
-  .profile-photo {
-    margin-right: 20px;
-  }
-  .name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
-    margin-bottom: 0.5em;
-  }
-  .details {
-    font-size: 1em;
-    color: #555;
-  }
-</style>
+      .profile-photo {
+         margin-right: 20px;
+      }
+
+      .name {
+         font-family: 'Montserrat', sans-serif;
+         font-size: 2em;
+         margin-bottom: 0.5em;
+      }
+
+      .details {
+         font-size: 1em;
+         color: #555;
+      }
+
+      .publications-heading {
+         margin-top: 30px;
+         font-family: 'Arial', sans-serif;
+      }
+   </style>
 </head>
 
 <style>
@@ -90,19 +97,19 @@
 <body>
    <div class="container">
       <div class="row">
-         <div style="padding-left: 10px; padding-right: 20px">
+         <div style="padding-left: 15px; padding-right: 20px">
             <div class="span3 bs-docs-sidebar">
                <!-- <hr class="hidden-phone"/> -->
                <div class="col-md-3" , style="padding-right: 55px;padding-top: 95px">
-                  <img class="logo-image" src="head5.jpg" alt="" style="max-width: 210px; border-radius: 30px"><br>
+                  <img class="logo-image" src="head5.jpg" alt="" style="max-width: 190px; border-radius: 30px"><br>
                </div>
             </div>
             <div class="row">
                <div class="col-md-10">
                   <br> <br> <br> <br>
-                  <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                    Lirui (Leroy) Wang
-                  </h3> <br>
+                  <h3 style="font-family: 'Arial', sans-serif; font-weight: bold;">
+                     Lirui (Leroy) Wang
+                  </h3>
                   <p>
                      I am a researcher at <a href="https://openai.com/">OpenAI</a>. I am interested in foundation models
                      and embodied AI (robotics). </p>
@@ -116,7 +123,7 @@
                         href='https://www.nvidia.com/en-us/'>NVIDIA</a> with Prof. <a rel='nofollow' target='_blank'
                         href='http://homes.cs.washington.edu/~fox/'>Dieter Fox</a>. <br>
                   </p>
-                   <a href="https://scholar.google.com/citations?user=EM9YhH0AAAAJ&hl=en">[Full Publications]</a> / <a
+                  <a href="https://scholar.google.com/citations?user=EM9YhH0AAAAJ&hl=en">[Full Publications]</a> / <a
                      href="https://github.com/liruiw">[Github]</a> / <a
                      href="https://twitter.com/LiruiWang1">[Twitter]</a> / <a
                      href="https://www.linkedin.com/in/lirui-wang/">[LinkedIn]</a>
@@ -128,15 +135,13 @@
             </div>
          </div>
 
+         <hr>
          <div class="row">
-            <div class="col-lg-2">
-            </div>
-
             <div id="education">
-               <hr>
                <div class="item border-bottom">
                   <ul>
-                     <h3>Publications</h3>
+                     <h3 class="publications-heading" style="margin-top: -30px; font-size: 1.5em;">Publications</h3>
+
                      <div class="container">
                         <table style='border-width:1px;border-color:rgb(255,255,255);border-collapse:collapse'
                            cellspacing='0' bordercolor='#888' border='1'>
@@ -359,4 +364,18 @@
                </div>
             </div>
 </body>
-</html>
+
+<hr>
+<div class="row">
+   <div id="service">
+      <div class="item border-bottom">
+         <ul>
+            <h3 class="publications-heading" style="margin-top: -30px; font-size: 1.5em;">Academic Services</h3>
+
+            Conference reviewers: RSS, ICRA, CoRL, Neurips, ICLR, RA-L, CVPR, etc.
+            <br>
+            <br>
+            <br>
+            <footer class="citation col-wrapper">
+               <p>Copyright &copy; <span id="year"></span> Lirui Wang</p>
+            </footer>
