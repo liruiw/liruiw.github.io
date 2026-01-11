@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>LLM Applications</title>
+   <!-- Bootstrap -->
+   <link href="../css/bootstrap.css" rel="stylesheet">
+   <link href="../css/custom.css" rel="stylesheet">
+   <link href="../css/font-awesome.min.css" rel="stylesheet">
+
+   <link rel="icon" href="../head5.jpg">
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+   <style>
+      hr {
+         margin-top: 40px;
+         margin-bottom: 40px;
+      }
+
+      .blog-content {
+         line-height: 1.6;
+         color: #333;
+      }
+
+      .blog-content p {
+         margin-bottom: 20px;
+      }
+
+      .blog-date {
+         color: #888;
+         font-size: 0.9em;
+         margin-bottom: 20px;
+      }
+
+      .back-link {
+         margin-bottom: 20px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <div class="row">
+         <div style="padding-left: 15px; padding-right: 20px">
+            <div class="row">
+               <div class="col-md-10">
+                  <br> <br> <br> <br>
+                  <div class="back-link">
+                     <a href="index.html">← Back to Blog</a> | <a href="../index.html">Home</a>
+                  </div>
+                  <h3 style="font-family: 'Arial', sans-serif; font-weight: bold;">
+                     Chatbots and Coding Agents
+                  </h3>
+                  <div class="blog-date">December 2025</div>
+               </div>
+            </div>
+            <hr>
+            <div class="row">
+               <div class="col-md-10">
+                  <div class="blog-content">
+                     <p>
+                        When I think about LLM applications (since their booms in 2022 until this point), two clear impactful applications are chat bots and coding agents.
+                        These applications build on top of the capability improvements on Language modeling and Agents. Although some have argued that we are hitting a plateau in model improvements,
+                        I  think that the improvements in scaling and good engineerings for these products / models do not plateau. I increasingly found more and more use cases and better
+                        reliabilities when using ChatGPT and codex. In some sense, the CE gains still falls under scalings given we have more compute and data, but only the perception (surprise) in model improvements are stronger
+                        when we starts from 0 to 0.1 than from 0.8 to 0.9. While I think there are some natural marginal improvements, I believe it's more of a perception issue. I'd like to compare these with Tesla FSD, where I think copilot-type applications
+                        will result in huge economic values for two reasons (1) humans always have the decision powers and models are tools (2) humans are not perfect, and copilot has huge helps without needing to reach the bars of full reliabilities.
+                     </p>
+                     <p>
+                        Here I will give two recent realizations in LLM applications. Let's start with Chatbots. I recently started to ask Chatbot more and more technical questions on its views in certain products or some technical problems.
+                        I found it to be a very strong companion on brainstorming. I will give some examples. By definition, these bots are alwasy able to answer our questions. For instance, I was asking a question on how much a certain worker will
+                        make money in a traditional industry and why would automating that worker justifies a certain prices. The model is able to immediately come to the point in the difference of automating a worker v.s. automating a full job positions and it would
+                        always ask for next steps if I wanted (creating some real examples etc.) This proactive behavior and the ability to always answer make it a perfect co-worker to brainstorm ideas.
+                        In addition to the increasing reliabilities in answering questions in taxes, health, housing, I found myself to trust Chatgpt way more than I did back in 2023 or 2024.
+
+                     </p>
+                     <p>For coding agents, I might be in the slow side of adapting them for use in research. I have a recent need to start a new infrastutre (in ML, this often means data pipeline, training pipeline, modeling pipeline) on a new codebase that I have not touched before.
+                        I used to think that this is a very hard task for coding agents, and it would require me infinite prompting and error correction. However, this time it just nails it within minutes. After a few continuous prompting, I almost got the full pipeline working,
+                        and also have a deeper understanding of the code base while reading the models' chain of thoughts. This is a big realization for me because I believe the same result will take me at least a few days back in PhD. Moreover, I was trying a similar thing back on September for an
+                        older version of Codex, where I also got thousands of lines done over a weekend but none of those code turn out to be useful, and that is a simpler task just for a data processing pipeline.
+
+                        I think that the remaining questions for coding agents will be its relationships with humans. Would each one of us become a 10x engineer or a researcher with 10 engineering interns? If we use too much coding agents, there will be
+                        inevitable tech debts (as people said, the bottlenecks now is in my reviewing capability and my effort to understand code).
+                     </p>
+                     <p>
+                        Chatbots and Coding are the biggest applications for LLMs at this point, and I think their impacts on this knowledge/information intense worlds will be tremendous in terms of the ways we work and live. The remaining questions seem to be on human side of how to best leverage these copilot tools.
+                        Moreover, this wave of model-driven AI applications is more like manufacturing than traditional software in the sense they require high capex for computes and have costs for inference than the high marginals in software. Pouring these productivity boosts back into the "manufacturing" pipeline of AI
+                        will also be an interesting question for the next level of efficiency breakthrough that makes intelligence "0 costs".
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <hr>
+   <div class="row">
+      <div style="padding-left: 450px; padding-right: 20px">
+         <footer class="citation col-wrapper">
+            <p>Copyright &copy; <span id="year"></span> Lirui Wang</p>
+         </footer>
+      </div>
+   </div>
+   <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+   </script>
+</body>
+
+</html>

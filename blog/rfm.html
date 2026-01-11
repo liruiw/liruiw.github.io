@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Welcome to my blog - Lirui (Leroy) Wang</title>
+   <!-- Bootstrap -->
+   <link href="../css/bootstrap.css" rel="stylesheet">
+   <link href="../css/custom.css" rel="stylesheet">
+   <link href="../css/font-awesome.min.css" rel="stylesheet">
+
+   <link rel="icon" href="../head5.jpg">
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+   <style>
+      hr {
+         margin-top: 40px;
+         margin-bottom: 40px;
+      }
+
+      .blog-content {
+         line-height: 1.6;
+         color: #333;
+      }
+
+      .blog-content p {
+         margin-bottom: 20px;
+      }
+
+      .blog-date {
+         color: #888;
+         font-size: 0.9em;
+         margin-bottom: 20px;
+      }
+
+      .back-link {
+         margin-bottom: 20px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <div class="row">
+         <div style="padding-left: 15px; padding-right: 20px">
+            <div class="row">
+               <div class="col-md-10">
+                  <br> <br> <br> <br>
+                  <div class="back-link">
+                     <a href="index.html">← Back to Blog</a> | <a href="../index.html">Home</a>
+                  </div>
+                  <h3 style="font-family: 'Arial', sans-serif; font-weight: bold;">
+                     Robotic Foundation Models
+                  </h3>
+                  <div class="blog-date">September 2025</div>
+               </div>
+            </div>
+            <hr>
+            <div class="row">
+               <div class="col-md-10">
+                  <div class="blog-content">
+                     <p>
+                        Since the word foundation models became popular in 2022, we have seen a lot of progress in the field of robotics, which is coined
+                        as Robotics Foundation Models (RFMs), or Large Behavior Models (LBMs), or Vision-Language Action Models (VLAs). Without
+                        getting into the details of the models and the naming conventions, these models takes in a variety of modalities (e.g. vision, language, action, etc.)
+                        and output a behavior (e.g. a sequence of actions, a trajectory, etc.). The difference of these "general" models from specific policies is
+                        that their representations have been pre-trained on large amounts of action data.
+                     </p>
+                     <p>
+                        So what is the current state of the art in robotics foundation models and what is next for these models? Many companies and research labs have released their own foundation models for robotics (RT-2, Pi0, etc).
+                        These models now have been shown to visibly outperform specialized policies in a variety of tasks in manipulation. They are getting better at following instructions and achieving near 100% success rates in some very
+                        challenging tasks. Despite working on the fields for a while and often complaining about the challenges in robotics, none of these generalizatio and performance will be considered possible a few years ago.
+                     </p>
+                     <p>
+                        To achieve fully general and performant models (think about doing 10 house chores at home for 1 hour without any failures), there are many future directions to explore. One of them is reasoning models, which addresses another level of complex long-tailed situations and long-horizon tasks in robotics. Reasoning agents have been shown to dramatically improve LM's coding and math abilities to tackle long-horizon tasks and generalize to complex tasks.
+                        Aother directions will be the use of world models, which can be used as a separate model for simulation, planning, and synthetic data generation, or act as a action model backbone alternatives to VLMs for their low-level understanding of physics. This will likely improve sampling efficiency and reduce costs in data collection.
+                     </p>
+                     <p> Excited to see what the future holds for these models!</p>
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <hr>
+   <div class="row">
+      <div style="padding-left: 450px; padding-right: 20px">
+         <footer class="citation col-wrapper">
+            <p>Copyright &copy; <span id="year"></span> Lirui Wang</p>
+         </footer>
+      </div>
+   </div>
+   <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+   </script>
+</body>
+
+</html>
