@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Speak Chinese. Hear English.</title>
+    <title>说中文，听英文</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,114 +16,111 @@
     <main class="shell">
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Live Family Translator</p>
-          <h1>Speak Chinese. Hear English.</h1>
+          <p class="eyebrow">家庭实时翻译</p>
+          <h1>说中文，听英文</h1>
           <p class="summary">
-            Open this page, allow the microphone, and start talking. The app
-            listens to live speech and plays back English translation in real
-            time.
+            打开这个页面，允许麦克风访问，然后直接说话。网页会实时听取语音，
+            并用英文播报翻译结果。
           </p>
-          <div class="language-strip" aria-label="Translation direction">
-            <span class="language-pill">Input: Chinese or mixed speech</span>
-            <span class="language-pill accent">Output: English</span>
+          <div class="language-strip" aria-label="翻译方向">
+            <span class="language-pill">输入：中文或中英混说</span>
+            <span class="language-pill accent">输出：英文</span>
           </div>
         </div>
 
         <div class="status-card" aria-live="polite">
-          <p class="panel-label">Session status</p>
+          <p class="panel-label">当前状态</p>
           <div class="status-panel">
             <span class="status-dot" id="statusDot"></span>
-            <span id="statusText">Ready</span>
+            <span id="statusText">准备就绪</span>
           </div>
           <p class="status-note">
-            Headphones help if the translated voice is feeding back into the
-            microphone.
+            如果英文播报声音会重新被麦克风收进去，戴耳机效果会更好。
           </p>
         </div>
       </section>
 
-      <section class="control-panel" aria-label="Translation controls">
+      <section class="control-panel" aria-label="翻译控制">
         <div class="button-row">
-          <button id="startButton" type="button">Start microphone translation</button>
+          <button id="startButton" type="button">开始麦克风翻译</button>
           <button id="stopButton" type="button" class="secondary" disabled>
-            Stop
+            停止
           </button>
         </div>
         <p class="support-copy">
-          This page keeps the OpenAI API key on the server. Only a short-lived
-          session secret reaches the browser.
+          OpenAI API key 只保存在服务器端，浏览器里只会拿到短期有效的会话密钥。
         </p>
       </section>
 
-      <section class="meters" aria-label="Audio and connection status">
+      <section class="meters" aria-label="音频和连接状态">
         <div class="meter-card">
-          <span>Microphone level</span>
+          <span>麦克风音量</span>
           <meter id="inputMeter" min="0" max="1" value="0"></meter>
         </div>
         <div class="meter-card">
-          <span>WebRTC connection</span>
+          <span>WebRTC 连接</span>
           <progress id="queueProgress" max="1" value="0"></progress>
         </div>
       </section>
 
       <section class="transcript-grid">
         <article class="transcript-card">
-          <h2>What was heard</h2>
+          <h2>识别到的原话</h2>
           <div id="sourceTranscript" class="transcript source" aria-live="polite"></div>
         </article>
 
         <article class="transcript-card translated-card">
-          <h2>English translation</h2>
+          <h2>英文翻译</h2>
           <div id="translatedTranscript" class="transcript translated" aria-live="polite"></div>
         </article>
       </section>
 
       <section class="workspace">
         <article class="guide-card">
-          <h2>How to use it</h2>
+          <h2>使用方法</h2>
           <ol>
-            <li>Tap <strong>Start microphone translation</strong>.</li>
-            <li>Allow microphone access when the browser asks.</li>
-            <li>Speak naturally. The page will speak English back.</li>
+            <li>点击 <strong>开始麦克风翻译</strong>。</li>
+            <li>浏览器弹出请求时，允许麦克风访问。</li>
+            <li>像平常一样说话，网页会用英文播报出来。</li>
           </ol>
           <dl class="diagnostics">
             <div>
-              <dt>Capture</dt>
-              <dd id="captureState">Not started</dd>
+              <dt>采集</dt>
+              <dd id="captureState">未开始</dd>
             </div>
             <div>
-              <dt>WebRTC state</dt>
-              <dd id="chunksSent">new</dd>
+              <dt>WebRTC 状态</dt>
+              <dd id="chunksSent">未开始</dd>
             </div>
             <div>
-              <dt>Data channel</dt>
-              <dd id="activeInputFrames">connecting</dd>
+              <dt>数据通道</dt>
+              <dd id="activeInputFrames">连接中</dd>
             </div>
             <div>
-              <dt>Peak level</dt>
+              <dt>峰值音量</dt>
               <dd id="peakInputLevel">0.000</dd>
             </div>
             <div>
-              <dt>Remote audio</dt>
-              <dd><span id="outputAudioDeltas">0</span> tracks</dd>
+              <dt>远端音频</dt>
+              <dd><span id="outputAudioDeltas">0</span> 条轨道</dd>
             </div>
             <div>
-              <dt>Source transcript</dt>
-              <dd><span id="sourceTranscriptDeltas">0</span> deltas</dd>
+              <dt>原话字幕</dt>
+              <dd><span id="sourceTranscriptDeltas">0</span> 段</dd>
             </div>
             <div>
-              <dt>English transcript</dt>
-              <dd><span id="transcriptDeltas">0</span> deltas</dd>
+              <dt>英文字幕</dt>
+              <dd><span id="transcriptDeltas">0</span> 段</dd>
             </div>
             <div>
-              <dt>Last event</dt>
-              <dd id="lastEventType">none</dd>
+              <dt>最后事件</dt>
+              <dd id="lastEventType">无</dd>
             </div>
           </dl>
         </article>
 
         <details class="log-shell">
-          <summary>Technical event log</summary>
+          <summary>技术日志</summary>
           <div id="eventLog" class="log" aria-live="polite"></div>
         </details>
       </section>

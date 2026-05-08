@@ -38,27 +38,27 @@ startButton.addEventListener("click", async () => {
   clearTranscript();
   resetDiagnostics();
   setControls({ running: true });
-  setStatus("Allow microphone access", "idle");
+  setStatus("请允许麦克风访问", "idle");
 
   try {
     captureStream = await captureMicrophone();
     startInputMeter(captureStream);
 
-    setStatus("Creating Realtime Translation session", "idle");
+    setStatus("正在创建翻译会话", "idle");
     const session = await createSession();
 
-    setStatus("Connecting WebRTC", "idle");
+    setStatus("正在连接 WebRTC", "idle");
     await connectRealtimeTranslation(session, captureStream);
 
-    setStatus("Listening and translating", "live");
+    setStatus("正在听并翻译", "live");
   } catch (error) {
     logEvent("error", error instanceof Error ? error.message : String(error));
-    await stop("Stopped after startup error", "error");
+    await stop("启动失败，已停止", "error");
   }
 });
 
 stopButton.addEventListener("click", async () => {
-  await stop("Stopped", "idle");
+  await stop("已停止", "idle");
 });
 
 async function createSession() {
@@ -70,7 +70,7 @@ async function createSession() {
 
   const body = await response.json();
   if (!response.ok) {
-    throw new Error(body.error ?? "Failed to create session.");
+    throw new Error(body.error ?? "创建会话失败。");
   }
 
   return body;
@@ -107,7 +107,7 @@ async function connectRealtimeTranslation(session, stream) {
     void translatedAudio.play().catch((error) => {
       logEvent("audio.play", error.message);
     });
-    logEvent("remote.audio", "track received");
+    logEvent("remote.audio", "已收到音频轨道");
     updateDiagnostics();
   };
 
@@ -152,12 +152,12 @@ async function connectRealtimeTranslation(session, stream) {
     sdp: answerSdp,
   });
 
-  logEvent("webrtc.offer", `connected for ${session.targetLanguage}`);
+  logEvent("webrtc.offer", `已连接，输出语言=${session.targetLanguage}`);
 }
 
 async function captureMicrophone() {
   if (!navigator.mediaDevices?.getUserMedia) {
-    throw new Error("This browser does not support microphone capture.");
+    throw new Error("这个浏览器不支持麦克风采集。");
   }
 
   const stream = await navigator.mediaDevices.getUserMedia({
@@ -172,20 +172,20 @@ async function captureMicrophone() {
   const audioTracks = stream.getAudioTracks();
   if (audioTracks.length === 0) {
     stream.getTracks().forEach((track) => track.stop());
-    throw new Error("No microphone audio was shared.");
+    throw new Error("没有获取到麦克风音频。");
   }
 
   audioTracks[0].addEventListener(
     "ended",
     () => {
-      void stop("Microphone sharing ended", "idle");
+      void stop("麦克风共享已结束", "idle");
     },
     { once: true },
   );
 
   const audioSettings = audioTracks[0].getSettings?.() ?? {};
-  captureState.textContent = `audio=${audioTracks[0].readyState}, sampleRate=${audioSettings.sampleRate ?? "unknown"}`;
-  logEvent("capture.started", `audio tracks=${audioTracks.length}`);
+  captureState.textContent = `音频=${audioTracks[0].readyState}，采样率=${audioSettings.sampleRate ?? "未知"}`;
+  logEvent("capture.started", `音轨数量=${audioTracks.length}`);
 
   return stream;
 }
@@ -216,7 +216,7 @@ function handleRealtimeEvent(message) {
   try {
     event = JSON.parse(message.data);
   } catch {
-    logEvent("message", "Received non-JSON data channel message.");
+    logEvent("message", "收到非 JSON 的数据通道消息。");
     return;
   }
 
@@ -332,7 +332,7 @@ function createEmptyDiagnostics() {
 
 function resetDiagnostics() {
   diagnostics = createEmptyDiagnostics();
-  captureState.textContent = "Starting";
+  captureState.textContent = "正在启动";
   eventLog.textContent = "";
   updateDiagnostics();
 }
