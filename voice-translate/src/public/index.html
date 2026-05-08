@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Speak Chinese. Hear English.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live Family Translator</p>
+          <h1>Speak Chinese. Hear English.</h1>
+          <p class="summary">
+            Open this page, allow the microphone, and start talking. The app
+            listens to live speech and plays back English translation in real
+            time.
+          </p>
+          <div class="language-strip" aria-label="Translation direction">
+            <span class="language-pill">Input: Chinese or mixed speech</span>
+            <span class="language-pill accent">Output: English</span>
+          </div>
+        </div>
+
+        <div class="status-card" aria-live="polite">
+          <p class="panel-label">Session status</p>
+          <div class="status-panel">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="statusText">Ready</span>
+          </div>
+          <p class="status-note">
+            Headphones help if the translated voice is feeding back into the
+            microphone.
+          </p>
+        </div>
+      </section>
+
+      <section class="control-panel" aria-label="Translation controls">
+        <div class="button-row">
+          <button id="startButton" type="button">Start microphone translation</button>
+          <button id="stopButton" type="button" class="secondary" disabled>
+            Stop
+          </button>
+        </div>
+        <p class="support-copy">
+          This page keeps the OpenAI API key on the server. Only a short-lived
+          session secret reaches the browser.
+        </p>
+      </section>
+
+      <section class="meters" aria-label="Audio and connection status">
+        <div class="meter-card">
+          <span>Microphone level</span>
+          <meter id="inputMeter" min="0" max="1" value="0"></meter>
+        </div>
+        <div class="meter-card">
+          <span>WebRTC connection</span>
+          <progress id="queueProgress" max="1" value="0"></progress>
+        </div>
+      </section>
+
+      <section class="transcript-grid">
+        <article class="transcript-card">
+          <h2>What was heard</h2>
+          <div id="sourceTranscript" class="transcript source" aria-live="polite"></div>
+        </article>
+
+        <article class="transcript-card translated-card">
+          <h2>English translation</h2>
+          <div id="translatedTranscript" class="transcript translated" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <article class="guide-card">
+          <h2>How to use it</h2>
+          <ol>
+            <li>Tap <strong>Start microphone translation</strong>.</li>
+            <li>Allow microphone access when the browser asks.</li>
+            <li>Speak naturally. The page will speak English back.</li>
+          </ol>
+          <dl class="diagnostics">
+            <div>
+              <dt>Capture</dt>
+              <dd id="captureState">Not started</dd>
+            </div>
+            <div>
+              <dt>WebRTC state</dt>
+              <dd id="chunksSent">new</dd>
+            </div>
+            <div>
+              <dt>Data channel</dt>
+              <dd id="activeInputFrames">connecting</dd>
+            </div>
+            <div>
+              <dt>Peak level</dt>
+              <dd id="peakInputLevel">0.000</dd>
+            </div>
+            <div>
+              <dt>Remote audio</dt>
+              <dd><span id="outputAudioDeltas">0</span> tracks</dd>
+            </div>
+            <div>
+              <dt>Source transcript</dt>
+              <dd><span id="sourceTranscriptDeltas">0</span> deltas</dd>
+            </div>
+            <div>
+              <dt>English transcript</dt>
+              <dd><span id="transcriptDeltas">0</span> deltas</dd>
+            </div>
+            <div>
+              <dt>Last event</dt>
+              <dd id="lastEventType">none</dd>
+            </div>
+          </dl>
+        </article>
+
+        <details class="log-shell">
+          <summary>Technical event log</summary>
+          <div id="eventLog" class="log" aria-live="polite"></div>
+        </details>
+      </section>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
