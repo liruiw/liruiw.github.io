@@ -1,18 +1,22 @@
 const TRANSLATION_CALL_URL =
   "https://api.openai.com/v1/realtime/translations/calls";
-const TARGET_LANGUAGE = "en";
 const API_BASE = resolveApiBase();
 
 const OUTPUT_TRANSCRIPT_EVENTS = new Set(["session.output_transcript.delta"]);
 const INPUT_TRANSCRIPT_EVENTS = new Set(["session.input_transcript.delta"]);
 
+const directionButtons = Array.from(
+  document.querySelectorAll("[data-target-language]"),
+);
 const startButton = document.querySelector("#startButton");
 const stopButton = document.querySelector("#stopButton");
 const statusDot = document.querySelector("#statusDot");
 const statusText = document.querySelector("#statusText");
 const inputMeter = document.querySelector("#inputMeter");
 const queueProgress = document.querySelector("#queueProgress");
+const modeHint = document.querySelector("#modeHint");
 const sourceTranscript = document.querySelector("#sourceTranscript");
+const translatedHeading = document.querySelector("#translatedHeading");
 const translatedTranscript = document.querySelector("#translatedTranscript");
 const eventLog = document.querySelector("#eventLog");
 const captureState = document.querySelector("#captureState");
@@ -33,6 +37,19 @@ let meterAnalyser = null;
 let meterTimer = null;
 let translatedAudio = null;
 let diagnostics = createEmptyDiagnostics();
+let targetLanguage = "en";
+
+for (const button of directionButtons) {
+  button.addEventListener("click", () => {
+    if (startButton.disabled) {
+      return;
+    }
+    targetLanguage = button.dataset.targetLanguage;
+    applyTargetLanguage();
+  });
+}
+
+applyTargetLanguage();
 
 startButton.addEventListener("click", async () => {
   clearTranscript();
@@ -65,7 +82,7 @@ async function createSession() {
   const response = await fetch(buildApiUrl("/session"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ targetLanguage: TARGET_LANGUAGE }),
+    body: JSON.stringify({ targetLanguage }),
   });
 
   const body = await response.json();
@@ -293,6 +310,9 @@ async function stop(message, state = "idle") {
 function setControls({ running }) {
   startButton.disabled = running;
   stopButton.disabled = !running;
+  for (const button of directionButtons) {
+    button.disabled = running;
+  }
 }
 
 function setStatus(message, state) {
@@ -353,6 +373,23 @@ function logEvent(type, detail) {
   entry.textContent = `[${new Date().toLocaleTimeString()}] ${type}: ${detail}`;
   eventLog.append(entry);
   eventLog.scrollTop = eventLog.scrollHeight;
+}
+
+function applyTargetLanguage() {
+  for (const button of directionButtons) {
+    const isSelected = button.dataset.targetLanguage === targetLanguage;
+    button.classList.toggle("selected", isSelected);
+    button.setAttribute("aria-pressed", String(isSelected));
+  }
+
+  if (targetLanguage === "en") {
+    modeHint.textContent = "当前输出语言：英文";
+    translatedHeading.textContent = "英文翻译";
+    return;
+  }
+
+  modeHint.textContent = "当前输出语言：中文";
+  translatedHeading.textContent = "中文翻译";
 }
 
 function buildApiUrl(path) {

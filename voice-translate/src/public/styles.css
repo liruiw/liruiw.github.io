@@ -111,27 +111,45 @@ h2 {
   line-height: 1.6;
 }
 
-.language-strip {
-  display: flex;
-  flex-wrap: wrap;
+.mode-block {
+  display: grid;
   gap: 10px;
 }
 
-.language-pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 38px;
-  padding: 0 14px;
-  border-radius: 999px;
-  background: rgba(31, 111, 120, 0.08);
-  color: var(--sea);
-  font-size: 0.92rem;
-  font-weight: 600;
+.mode-label {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
 }
 
-.language-pill.accent {
-  background: var(--accent-soft);
-  color: var(--accent-deep);
+.mode-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mode-button {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(31, 111, 120, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--sea);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.mode-button.selected {
+  border-color: transparent;
+  background: linear-gradient(135deg, #1f6f78 0, #3f9691 100%);
+  color: #f9fffd;
+}
+
+.mode-hint {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .status-card {
@@ -372,6 +390,10 @@ ol {
   }
 
   .button-row {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-switch {
     grid-template-columns: 1fr;
   }
 

@@ -27,7 +27,8 @@ test("serves the browser app from the root route", async () => {
     assert.match(response.headers.get("content-type") ?? "", /text\/html/);
     assert.match(body, /说中文，听英文/);
     assert.match(body, /开始麦克风翻译/);
-    assert.match(body, /输入：中文或中英混说/);
+    assert.match(body, /中文 -> 英文/);
+    assert.match(body, /English -> 中文/);
   });
 });
 

@@ -19,12 +19,32 @@
           <p class="eyebrow">家庭实时翻译</p>
           <h1>说中文，听英文</h1>
           <p class="summary">
-            打开这个页面，允许麦克风访问，然后直接说话。网页会实时听取语音，
-            并用英文播报翻译结果。
+            先选择你想听到的语言，然后直接说话。说中文可以翻成英文，
+            说英文也可以翻成中文。
           </p>
-          <div class="language-strip" aria-label="翻译方向">
-            <span class="language-pill">输入：中文或中英混说</span>
-            <span class="language-pill accent">输出：英文</span>
+          <div class="mode-block" aria-label="翻译方向">
+            <p class="mode-label">翻译方向</p>
+            <div class="mode-switch" role="group" aria-label="翻译方向选择">
+              <button
+                id="modeToEnglish"
+                class="mode-button selected"
+                type="button"
+                data-target-language="en"
+                aria-pressed="true"
+              >
+                中文 -> 英文
+              </button>
+              <button
+                id="modeToChinese"
+                class="mode-button"
+                type="button"
+                data-target-language="zh"
+                aria-pressed="false"
+              >
+                English -> 中文
+              </button>
+            </div>
+            <p id="modeHint" class="mode-hint">当前输出语言：英文</p>
           </div>
         </div>
 
@@ -70,7 +90,7 @@
         </article>
 
         <article class="transcript-card translated-card">
-          <h2>英文翻译</h2>
+          <h2 id="translatedHeading">英文翻译</h2>
           <div id="translatedTranscript" class="transcript translated" aria-live="polite"></div>
         </article>
       </section>
