@@ -21,6 +21,7 @@ Optional:
 ```bash
 OPENAI_TRANSLATION_MODEL=gpt-realtime-translate
 OPENAI_INPUT_TRANSCRIPTION_MODEL=gpt-realtime-whisper
+OPENAI_PHOTO_MODEL=gpt-4.1-mini
 PORT=8787
 HOST=0.0.0.0
 ```
@@ -33,6 +34,8 @@ npm run dev
 ```
 
 Open the printed local URL, allow microphone access, and start speaking.
+You can also take a photo or select one from the camera roll to translate text
+in the image.
 
 ## Validation
 
@@ -51,6 +54,7 @@ SMOKE_TARGET_LANGUAGE=es npm run smoke
 ## Notes
 
 - The browser uses `getUserMedia()` and sends only the microphone audio track.
+- Photo translation uses the Responses API with an image input and returns text.
 - WebRTC handles transport, so the browser does not need to resample audio or
   manually send PCM chunks.
 - The `/session` route sends CORS headers, so you can later split the frontend

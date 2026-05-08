@@ -72,6 +72,46 @@
         </p>
       </section>
 
+      <section class="photo-panel" aria-label="照片翻译">
+        <div class="photo-header">
+          <div>
+            <p class="panel-label">照片翻译</p>
+            <h2>拍照后直接翻译</h2>
+            <p class="photo-summary">
+              拍菜单、路牌、药盒或包装文字照片。网页会按当前方向，直接翻成英文或中文。
+            </p>
+          </div>
+          <div class="photo-actions">
+            <input
+              id="photoInput"
+              type="file"
+              accept="image/*"
+              capture="environment"
+              hidden
+            />
+            <button id="pickPhotoButton" type="button" class="secondary">
+              拍照或选照片
+            </button>
+          </div>
+        </div>
+        <p id="photoStatus" class="photo-status">还没有选择照片。</p>
+        <div class="photo-grid">
+          <article class="photo-card">
+            <h2>照片预览</h2>
+            <img
+              id="photoPreview"
+              class="photo-preview"
+              alt="待翻译照片预览"
+              hidden
+            />
+          </article>
+          <article class="photo-card">
+            <h2 id="photoTranslatedHeading">照片翻译结果</h2>
+            <div id="photoTranslation" class="photo-translation" aria-live="polite"></div>
+          </article>
+        </div>
+      </section>
+
       <section class="meters" aria-label="音频和连接状态">
         <div class="meter-card">
           <span>麦克风音量</span>

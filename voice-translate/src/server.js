@@ -3,12 +3,14 @@ import { createReadStream, existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { createPhotoTranslation } from "./photo.js";
 import { createClientSecret, normalizeTargetLanguage } from "./session.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DEFAULT_PUBLIC_ROOT = path.join(__dirname, "public");
 const MAX_JSON_BYTES = 1_000_000;
+const MAX_PHOTO_JSON_BYTES = 8_000_000;
 
 const CONTENT_TYPES = {
   ".css": "text/css; charset=utf-8",
@@ -29,13 +31,21 @@ export function buildServer({
     try {
       const url = new URL(request.url ?? "/", "http://localhost");
 
-      if (url.pathname === "/session" && request.method === "OPTIONS") {
+      if (
+        (url.pathname === "/session" || url.pathname === "/photo-translate") &&
+        request.method === "OPTIONS"
+      ) {
         sendEmpty(response, 204, corsHeaders());
         return;
       }
 
       if (request.method === "POST" && url.pathname === "/session") {
         await handleSessionRequest(request, response, { env, fetchImpl });
+        return;
+      }
+
+      if (request.method === "POST" && url.pathname === "/photo-translate") {
+        await handlePhotoTranslationRequest(request, response, { env, fetchImpl });
         return;
       }
 
@@ -71,7 +81,7 @@ export function loadEnvFiles(env = process.env, cwd = process.cwd()) {
 async function handleSessionRequest(request, response, { env, fetchImpl }) {
   let body;
   try {
-    body = await readJson(request);
+    body = await readJson(request, MAX_JSON_BYTES);
   } catch (error) {
     sendJson(
       response,
@@ -115,6 +125,84 @@ async function handleSessionRequest(request, response, { env, fetchImpl }) {
       targetLanguage,
       model: env.OPENAI_TRANSLATION_MODEL,
       inputTranscriptionModel: env.OPENAI_INPUT_TRANSCRIPTION_MODEL,
+      fetchImpl,
+    });
+    sendJson(response, 200, result, corsHeaders());
+  } catch (error) {
+    if (error?.name === "OpenAIRequestError") {
+      sendJson(
+        response,
+        502,
+        {
+          error: error.message,
+          status: error.status,
+          details: parseJsonOrText(error.body),
+        },
+        corsHeaders(),
+      );
+      return;
+    }
+    throw error;
+  }
+}
+
+async function handlePhotoTranslationRequest(request, response, { env, fetchImpl }) {
+  let body;
+  try {
+    body = await readJson(request, MAX_PHOTO_JSON_BYTES);
+  } catch (error) {
+    sendJson(
+      response,
+      400,
+      {
+        error: error instanceof Error ? error.message : "Invalid JSON body.",
+      },
+      corsHeaders(),
+    );
+    return;
+  }
+
+  let targetLanguage;
+  try {
+    targetLanguage = normalizeTargetLanguage(body.targetLanguage);
+  } catch (error) {
+    sendJson(
+      response,
+      400,
+      {
+        error: error instanceof Error ? error.message : "Invalid target language.",
+      },
+      corsHeaders(),
+    );
+    return;
+  }
+
+  if (typeof body.imageDataUrl !== "string" || !body.imageDataUrl.startsWith("data:image/")) {
+    sendJson(
+      response,
+      400,
+      { error: "A base64 image data URL is required." },
+      corsHeaders(),
+    );
+    return;
+  }
+
+  if (!env.OPENAI_API_KEY) {
+    sendJson(
+      response,
+      500,
+      { error: "OPENAI_API_KEY is not configured." },
+      corsHeaders(),
+    );
+    return;
+  }
+
+  try {
+    const result = await createPhotoTranslation({
+      apiKey: env.OPENAI_API_KEY,
+      imageDataUrl: body.imageDataUrl,
+      targetLanguage,
+      model: env.OPENAI_PHOTO_MODEL,
       fetchImpl,
     });
     sendJson(response, 200, result, corsHeaders());
@@ -182,13 +270,13 @@ function resolvePublicPath(urlPath, publicRoot) {
   return absolutePath;
 }
 
-async function readJson(request) {
+async function readJson(request, maxBytes) {
   const chunks = [];
   let totalBytes = 0;
 
   for await (const chunk of request) {
     totalBytes += chunk.length;
-    if (totalBytes > MAX_JSON_BYTES) {
+    if (totalBytes > maxBytes) {
       throw new Error("JSON body is too large.");
     }
     chunks.push(chunk);

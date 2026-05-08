@@ -29,6 +29,7 @@ test("serves the browser app from the root route", async () => {
     assert.match(body, /开始麦克风翻译/);
     assert.match(body, /中文 -> 英文/);
     assert.match(body, /English -> 中文/);
+    assert.match(body, /拍照或选照片/);
   });
 });
 
@@ -139,6 +140,72 @@ test("POST /session returns a browser-safe client secret response", async () => 
         transcription: { model: "gpt-realtime-whisper" },
         noise_reduction: null,
       });
+    },
+  );
+});
+
+test("POST /photo-translate validates the uploaded image", async () => {
+  await withServer({ env: { OPENAI_API_KEY: "sk-test" } }, async (baseUrl) => {
+    const response = await fetch(`${baseUrl}/photo-translate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ imageDataUrl: "bad", targetLanguage: "en" }),
+    });
+    const body = await response.json();
+
+    assert.equal(response.status, 400);
+    assert.match(body.error, /image data url/i);
+  });
+});
+
+test("POST /photo-translate returns translated photo text", async () => {
+  const requests = [];
+  await withServer(
+    {
+      env: { OPENAI_API_KEY: "sk-test" },
+      fetchImpl: async (url, init) => {
+        requests.push({ url, init });
+        return Response.json({
+          output: [
+            {
+              type: "message",
+              content: [
+                {
+                  type: "output_text",
+                  text: "Hello world",
+                },
+              ],
+            },
+          ],
+        });
+      },
+    },
+    async (baseUrl) => {
+      const response = await fetch(`${baseUrl}/photo-translate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          imageDataUrl: "data:image/jpeg;base64,abcd",
+          targetLanguage: "en",
+        }),
+      });
+      const body = await response.json();
+
+      assert.equal(response.status, 200);
+      assert.deepEqual(body, {
+        model: "gpt-4.1-mini",
+        targetLanguage: "en",
+        translation: "Hello world",
+      });
+      assert.equal(requests.length, 1);
+      const requestBody = JSON.parse(requests[0].init.body);
+      assert.equal(requestBody.model, "gpt-4.1-mini");
+      assert.equal(requestBody.input[0].content[1].type, "input_image");
+      assert.equal(
+        requestBody.input[0].content[1].image_url,
+        "data:image/jpeg;base64,abcd",
+      );
+      assert.match(requestBody.input[0].content[0].text, /Translate all visible text/);
     },
   );
 });

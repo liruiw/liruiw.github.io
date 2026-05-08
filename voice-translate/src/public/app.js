@@ -8,6 +8,8 @@ const INPUT_TRANSCRIPT_EVENTS = new Set(["session.input_transcript.delta"]);
 const directionButtons = Array.from(
   document.querySelectorAll("[data-target-language]"),
 );
+const photoInput = document.querySelector("#photoInput");
+const pickPhotoButton = document.querySelector("#pickPhotoButton");
 const startButton = document.querySelector("#startButton");
 const stopButton = document.querySelector("#stopButton");
 const statusDot = document.querySelector("#statusDot");
@@ -15,6 +17,10 @@ const statusText = document.querySelector("#statusText");
 const inputMeter = document.querySelector("#inputMeter");
 const queueProgress = document.querySelector("#queueProgress");
 const modeHint = document.querySelector("#modeHint");
+const photoStatus = document.querySelector("#photoStatus");
+const photoPreview = document.querySelector("#photoPreview");
+const photoTranslatedHeading = document.querySelector("#photoTranslatedHeading");
+const photoTranslation = document.querySelector("#photoTranslation");
 const sourceTranscript = document.querySelector("#sourceTranscript");
 const translatedHeading = document.querySelector("#translatedHeading");
 const translatedTranscript = document.querySelector("#translatedTranscript");
@@ -51,6 +57,20 @@ for (const button of directionButtons) {
 
 applyTargetLanguage();
 
+pickPhotoButton.addEventListener("click", () => {
+  photoInput.click();
+});
+
+photoInput.addEventListener("change", async () => {
+  const file = photoInput.files[0];
+  if (!file) {
+    return;
+  }
+
+  await translatePhoto(file);
+  photoInput.value = "";
+});
+
 startButton.addEventListener("click", async () => {
   clearTranscript();
   resetDiagnostics();
@@ -79,6 +99,32 @@ stopButton.addEventListener("click", async () => {
   await stop("已停止", "idle");
 });
 
+async function translatePhoto(file) {
+  setPhotoLoading(true);
+  photoTranslation.textContent = "";
+  photoStatus.textContent = "正在处理照片";
+
+  try {
+    const preparedPhoto = await preparePhoto(file);
+    photoPreview.src = preparedPhoto.previewDataUrl;
+    photoPreview.hidden = false;
+
+    photoStatus.textContent = "正在识别并翻译照片文字";
+    const result = await createPhotoTranslationRequest(preparedPhoto.requestDataUrl);
+    photoTranslation.textContent = result.translation;
+
+    if (result.targetLanguage === "zh") {
+      photoStatus.textContent = "照片已翻译成中文";
+    } else {
+      photoStatus.textContent = "照片已翻译成英文";
+    }
+  } catch (error) {
+    photoStatus.textContent = describePhotoError(error);
+  }
+
+  setPhotoLoading(false);
+}
+
 async function createSession() {
   const response = await fetch(buildApiUrl("/session"), {
     method: "POST",
@@ -89,6 +135,24 @@ async function createSession() {
   const body = await response.json();
   if (!response.ok) {
     throw new Error(body.error ?? "创建会话失败。");
+  }
+
+  return body;
+}
+
+async function createPhotoTranslationRequest(imageDataUrl) {
+  const response = await fetch(buildApiUrl("/photo-translate"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      imageDataUrl,
+      targetLanguage,
+    }),
+  });
+
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error(body.error ?? "照片翻译失败。");
   }
 
   return body;
@@ -386,11 +450,13 @@ function applyTargetLanguage() {
   if (targetLanguage === "en") {
     modeHint.textContent = "当前输出语言：英文";
     translatedHeading.textContent = "英文翻译";
+    photoTranslatedHeading.textContent = "照片翻译结果（英文）";
     return;
   }
 
   modeHint.textContent = "当前输出语言：中文";
   translatedHeading.textContent = "中文翻译";
+  photoTranslatedHeading.textContent = "照片翻译结果（中文）";
 }
 
 function buildApiUrl(path) {
@@ -432,4 +498,98 @@ function describeStartupError(error) {
   }
 
   return `启动失败：${message}`;
+}
+
+function describePhotoError(error) {
+  const message = error instanceof Error ? error.message : String(error);
+
+  if (message.includes("请选择图片文件")) {
+    return message;
+  }
+
+  if (message.includes("JSON body is too large")) {
+    return "照片太大了，请拍近一点，或换一张更清楚的小照片。";
+  }
+
+  if (
+    message.includes("Failed to fetch") ||
+    message.includes("NetworkError") ||
+    message.includes("ERR_NETWORK")
+  ) {
+    return "照片翻译失败：当前网络无法连接服务。";
+  }
+
+  return `照片翻译失败：${message}`;
+}
+
+function setPhotoLoading(loading) {
+  pickPhotoButton.disabled = loading;
+
+  if (loading) {
+    pickPhotoButton.textContent = "正在翻译照片";
+    return;
+  }
+
+  pickPhotoButton.textContent = "拍照或选照片";
+}
+
+async function preparePhoto(file) {
+  if (!file.type.startsWith("image/")) {
+    throw new Error("请选择图片文件。");
+  }
+
+  const originalDataUrl = await readFileAsDataUrl(file);
+  const image = await loadImage(originalDataUrl);
+  const size = scaleImageSize(image.naturalWidth, image.naturalHeight, 1600);
+  const canvas = document.createElement("canvas");
+  canvas.width = size.width;
+  canvas.height = size.height;
+
+  const context = canvas.getContext("2d");
+  context.drawImage(image, 0, 0, size.width, size.height);
+
+  const requestDataUrl = canvas.toDataURL("image/jpeg", 0.85);
+  return {
+    previewDataUrl: requestDataUrl,
+    requestDataUrl,
+  };
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      resolve(reader.result);
+    });
+    reader.addEventListener("error", () => {
+      reject(reader.error ?? new Error("读取图片失败。"));
+    });
+    reader.readAsDataURL(file);
+  });
+}
+
+function loadImage(dataUrl) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.addEventListener("load", () => {
+      resolve(image);
+    });
+    image.addEventListener("error", () => {
+      reject(new Error("加载图片失败。"));
+    });
+    image.src = dataUrl;
+  });
+}
+
+function scaleImageSize(width, height, maxSide) {
+  const longestSide = Math.max(width, height);
+  if (longestSide <= maxSide) {
+    return { width, height };
+  }
+
+  const scale = maxSide / longestSide;
+  return {
+    width: Math.round(width * scale),
+    height: Math.round(height * scale),
+  };
 }
