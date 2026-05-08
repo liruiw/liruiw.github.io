@@ -69,8 +69,9 @@ startButton.addEventListener("click", async () => {
 
     setStatus("正在听并翻译", "live");
   } catch (error) {
-    logEvent("error", error instanceof Error ? error.message : String(error));
-    await stop("启动失败，已停止", "error");
+    const message = describeStartupError(error);
+    logEvent("error", message);
+    await stop(message, "error");
   }
 });
 
@@ -411,4 +412,24 @@ function resolveApiBase() {
   }
 
   return value.endsWith("/") ? value.slice(0, -1) : value;
+}
+
+function describeStartupError(error) {
+  const message = error instanceof Error ? error.message : String(error);
+
+  if (message.includes("getUserMedia") || message.includes("麦克风")) {
+    return message;
+  }
+
+  if (
+    message.includes("Failed to fetch") ||
+    message.includes("NetworkError") ||
+    message.includes("ERR_NETWORK") ||
+    message.includes("api.openai.com") ||
+    message.includes("realtime")
+  ) {
+    return "启动失败：当前网络无法连接 OpenAI 实时语音服务。在中国大陆通常需要全局 VPN，且需要在使用这个网页的那台手机或电脑上开启。";
+  }
+
+  return `启动失败：${message}`;
 }
