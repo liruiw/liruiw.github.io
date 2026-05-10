@@ -1,0 +1,226 @@
+{
+  "research_verified_on": "2026-05-09",
+  "reading_guide": [
+    {
+      "title": "先看一句话，再看数字",
+      "body": "每个城市先给出核心优势和适合买家，再把房价、学校、步行性和房屋存量代理指标放在同一张卡里，避免只看单一排名。"
+    },
+    {
+      "title": "学校列读官方数据",
+      "body": "学校不再用第三方 10/10 口碑站，改用加州教育厅 2024-25 Academic Indicator 的学区级 ELA/数学结果。数值是 distance from standard，越高越强。"
+    },
+    {
+      "title": "4M 购买力是最实用的房屋质量代理",
+      "body": "4M 购买力 = 4,000,000 / 当地典型房价。再叠加独栋占比、房龄和房间数，能更直观地看出在不同城市能买到怎样的 house。"
+    },
+    {
+      "title": "房源链接只代表核验当日",
+      "body": "下面 5 套 Redfin 链接都在 2026-05-09 手工复核过，适合用来校准真实市场感受，但它们的状态、价格和 open house 时间以后会变。"
+    }
+  ],
+  "areas": {
+    "Burlingame": {
+      "name_zh": "伯灵格姆",
+      "walk_score": 70,
+      "walk_label": "步行最强",
+      "walk_source_url": "https://www.walkscore.com/CA/Burlingame",
+      "school_district": "Burlingame Elementary",
+      "strength_title": "生活便利感最完整",
+      "strength_summary": "在这 6 个城市里，伯灵格姆最像“学校不差、生活半径小、出门就能用”的平衡型选择。",
+      "best_for": "想把 Burlingame Ave、Caltrain、公园和餐饮真正纳入日常生活的买家。",
+      "watchouts": [
+        "94010 这个 ZIP 会和 Hillsborough 的豪宅心智混在一起，买前要看具体街段和产品类型。",
+        "房子如果追求更大 lot 或更新建造，价格会明显往上跳。"
+      ],
+      "notes": [
+        "这组里城市步行分最高，和你要的“好理解”目标最一致：它的优势非常直观。",
+        "10 年累计涨幅也不弱，说明它不是只靠生活方式而没有价格支撑。"
+      ],
+      "school_caveat": "城市整体比较稳，但小学之间体感仍有差异，最后还是要落到具体街区。"
+    },
+    "San Mateo": {
+      "name_zh": "圣马特奥",
+      "walk_score": 68,
+      "walk_label": "步行较强",
+      "walk_source_url": "https://www.walkscore.com/CA/San_Mateo",
+      "school_district": "San Mateo-Foster City",
+      "strength_title": "4M 预算拉得最开",
+      "strength_summary": "同样的钱，在 San Mateo 更容易换到更新、更大、功能更完整的产品，尤其是愿意从城市核心向 hills 或新盘带看时。",
+      "best_for": "预算敏感，但又不想牺牲 Peninsula 通勤、商场、餐饮和基础便利度的买家。",
+      "watchouts": [
+        "城市平均学校表现明显不在 Palo Alto / Menlo Park / San Carlos 那一档。",
+        "好产品常常要在 walkability 和 house size 之间二选一。"
+      ],
+      "notes": [
+        "如果你用 4M 做决策，它是最容易把“房子本体”做厚的城市。",
+        "这也是为什么 San Mateo 常常是现实购买力最强的一档。"
+      ],
+      "school_caveat": "San Mateo 的学校体验分化不小，城市平均值只能做第一轮筛选。"
+    },
+    "Redwood City": {
+      "name_zh": "红木城",
+      "walk_score": 62,
+      "walk_label": "步行中上",
+      "walk_source_url": "https://www.walkscore.com/CA/Redwood_City",
+      "school_district": "Redwood City Elementary",
+      "strength_title": "最像价值弹性仓位",
+      "strength_summary": "价格、生活便利、天气和未来改善空间的组合感最好，但它要求你愿意做更细的边界研究。",
+      "best_for": "愿意用更多研究时间换更高性价比、且不把城市平均学校分当成最终结论的买家。",
+      "watchouts": [
+        "学校分化是这组里最明显的，不下钻边界就容易看错。",
+        "当前活跃房源里，经常要在学校、flood、步行性之间做更多权衡。"
+      ],
+      "notes": [
+        "它不是最省心的城市，但往往是最有“精挑后赚到”的感觉。",
+        "如果你愿意做实地和边界研究，Redwood City 仍然很值得盯。"
+      ],
+      "school_caveat": "城市平均学校表现偏弱，不代表具体 west side、North Star 或 Shores 这些小片区。"
+    },
+    "Menlo Park": {
+      "name_zh": "门洛帕克",
+      "walk_score": 58,
+      "walk_label": "步行一般",
+      "walk_source_url": "https://www.walkscore.com/CA/Menlo_Park",
+      "school_district": "Menlo Park City Elementary",
+      "strength_title": "核心区学区和位置兼得",
+      "strength_summary": "如果你想买的是真正的 Menlo Park 核心自住资产，它往往比 Palo Alto 略容易下手，但学区与稀缺性仍然很强。",
+      "best_for": "要 Menlo Park 地址、要核心小学，又不想把预算完全推到 Palo Alto 定价带的买家。",
+      "watchouts": [
+        "边界决定一切。核心 MPCSD 和更东侧或更边缘的体验不是一回事。",
+        "城市步行性一般，很多好房最终还是偏车生活。"
+      ],
+      "notes": [
+        "你给的 1036 Oakland Ave 就是很典型的 Menlo 自住资产样板。",
+        "这个城市的难点不是平均值，而是不要买错边界。"
+      ],
+      "school_caveat": "这里用的是核心 MPCSD 口径，不代表 Menlo Park 全域都能照抄这个结论。"
+    },
+    "Palo Alto": {
+      "name_zh": "帕罗奥图",
+      "walk_score": 61,
+      "walk_label": "步行中上",
+      "walk_source_url": "https://www.walkscore.com/CA/Palo_Alto",
+      "school_district": "Palo Alto Unified",
+      "strength_title": "学校品牌最硬",
+      "strength_summary": "如果你的底层需求是最强学校品牌、最稳的长期认知和最不需要解释的地址，Palo Alto 仍然是这组里的基准答案。",
+      "best_for": "愿意拿房子大小和预算效率去换学校确定性、中心生活和品牌稀缺性的买家。",
+      "watchouts": [
+        "4M 购买力是这组里最弱的，房子本体通常不会给你惊喜。",
+        "很多看起来不错的 house，本质上是在买学区和地址，不是在买面积。"
+      ],
+      "notes": [
+        "如果你把 Palo Alto 放进比较里，很多别的城市的优势会立刻变得更清楚。",
+        "它最适合作为“最高标准基准线”，不是适合作为默认答案。"
+      ],
+      "school_caveat": "Palo Alto 整体口径最稳定，但总价也最会把预算效率吃掉。"
+    },
+    "San Carlos": {
+      "name_zh": "圣卡洛斯",
+      "walk_score": 47,
+      "walk_label": "更依赖开车",
+      "walk_source_url": "https://www.walkscore.com/CA/San_Carlos",
+      "school_district": "San Carlos Elementary",
+      "strength_title": "强学校里最像家庭大房子",
+      "strength_summary": "如果你真正想买的是一家人住起来舒服的 house，而不是更强的中心步行感，San Carlos 很容易成为这组里的现实最优解。",
+      "best_for": "要强学校、要更大的独栋、要更像样的 lot 和家庭使用感，同时接受更明显的开车生活。",
+      "watchouts": [
+        "不少好房在 hills，通勤和步行便利不如 Burlingame / San Mateo / 核心 Palo Alto。",
+        "你得到的是 house quality，不是 city-core convenience。"
+      ],
+      "notes": [
+        "这组里 10 年涨幅最高，说明市场对这类“强学校 + 家庭 house”产品一直有真需求。",
+        "如果你重住感，它通常会比 Palo Alto 更有性价比。"
+      ],
+      "school_caveat": "整体口径较稳，但 hills 和 downtown 附近的生活体感还是不同。"
+    }
+  },
+  "listing_picks": [
+    {
+      "area": "Burlingame",
+      "title": "39 Humboldt Rd",
+      "url": "https://www.redfin.com/CA/Burlingame/39-Humboldt-Rd-94010/home/2057834",
+      "status": "For sale",
+      "list_price": 2650000,
+      "beds": 3,
+      "baths": 3.5,
+      "sqft": 1760,
+      "tagline": "伯灵格姆的生活便利样板",
+      "why_it_fits": "它把 Burlingame 最值钱的东西兑现得很直接：靠近 Burlingame Avenue、Town Square、Washington Park、Caltrain，日常生活半径很完整。",
+      "tradeoff": "主屋是 3 房，虽然有车库上方灵活空间，但不是传统意义的大户型路线。",
+      "verified_on": "2026-05-09"
+    },
+    {
+      "area": "San Mateo",
+      "title": "58 Bel Aire Ln",
+      "url": "https://www.redfin.com/CA/San-Mateo/58-Bel-Aire-Rd-94402/home/198756520",
+      "status": "For sale",
+      "list_price": 4775000,
+      "beds": 4,
+      "baths": 4.5,
+      "sqft": 3664,
+      "tagline": "San Mateo 的预算上探换新房样板",
+      "why_it_fits": "如果愿意把预算上探到 4.8M 左右，在 San Mateo 能拿到 2025 新建、3664 sqft、地面层卧室加私办公室这类产品，这在 Menlo Park / Palo Alto 同价段并不常见。",
+      "tradeoff": "更像 house-quality 选择，不是 city-center 步行生活路线，而且有 HOA。",
+      "verified_on": "2026-05-09"
+    },
+    {
+      "area": "Menlo Park",
+      "title": "1036 Oakland Ave",
+      "url": "https://www.redfin.com/CA/Menlo-Park/1036-Oakland-Ave-94025/home/1037714",
+      "status": "For sale",
+      "list_price": 3895000,
+      "beds": 4,
+      "baths": 3.0,
+      "sqft": 2492,
+      "tagline": "门洛帕克核心自住资产样板",
+      "why_it_fits": "Flood Park 核心区、2021 重建、Laurel Elementary 在挂牌页是 10/10，这种组合很像真正会被家庭长期持有的 Menlo 产品。",
+      "tradeoff": "城市步行感一般，而且总价已经打进核心 Menlo 带，预算利用率不会像 San Mateo 那样松。",
+      "verified_on": "2026-05-09"
+    },
+    {
+      "area": "Palo Alto",
+      "title": "1135 Emerson St",
+      "url": "https://www.redfin.com/CA/Palo-Alto/1135-Emerson-St-94301/home/1709648",
+      "status": "For sale",
+      "list_price": 4698000,
+      "beds": 4,
+      "baths": 2.5,
+      "sqft": 2194,
+      "tagline": "顶级学校品牌 + 高步行生活样板",
+      "why_it_fits": "Professorville 位置很硬，挂牌页写明可以步行到 Town & Country、Trader Joe's、Stanford 和 downtown Palo Alto，这正是 Palo Alto 最难替代的东西。",
+      "tradeoff": "总价上探到 4.7M 以后，房子本体仍然不算大，本质上是在为品牌和位置买单。",
+      "verified_on": "2026-05-09"
+    },
+    {
+      "area": "San Carlos",
+      "title": "1100 Greenbrier Rd",
+      "url": "https://www.redfin.com/CA/San-Carlos/1100-Greenbrier-Rd-94070/home/201726335",
+      "status": "For sale",
+      "list_price": 2998000,
+      "beds": 4,
+      "baths": 2.5,
+      "sqft": 2611,
+      "tagline": "强学校 + 大房子自住感样板",
+      "why_it_fits": "4 房 2611 sqft、8239 sqft lot、bonus space，加上挂牌页里直接写到 top-rated San Carlos schools 和 Carlmont High，这很符合 San Carlos 的家庭 house 逻辑。",
+      "tradeoff": "车依赖非常明显，核心便利度和步行感不如 Burlingame 或 Palo Alto。",
+      "verified_on": "2026-05-09"
+    }
+  ],
+  "listing_review_notes": [
+    "这 5 套不是机械地“每城一套”，而是我按 2026-05-09 当天活跃盘里更像“值得认真约看”的标准挑的。",
+    "Redwood City 这次没有放进前 5，不是因为它不值得买，而是我复核的活跃盘里最有代表性的选择往往要在学校边界、flood 或车依赖上做更大的权衡。"
+  ],
+  "trust_points": [
+    "房价增长来自 Zillow 城市级 ZHVI，本页用的是 2016-03-31 到 2026-03-31 的 10 年窗口。",
+    "学校表现来自 California Department of Education 的 2024-25 Academic Indicator 学区级原始数据文件。",
+    "房龄、独栋占比、房间数来自 2023 ACS 5-year place-level 数据。",
+    "步行分来自 Walk Score 的城市页。",
+    "Redfin 房源链接都带核验日期，避免把时间敏感信息写成永恒事实。"
+  ],
+  "maintenance_steps": [
+    "优先改 data/curated_research.json。这里放的是人工判断、城市优势和 Redfin 房源推荐。",
+    "重新运行 tools/generate_site_data.py。脚本会自动拉 Zillow、CDE、ACS，并把人工研究和自动数据合并成站点 JSON。",
+    "本地开静态服务器检查页面。这个项目没有打包器，维护成本很低。",
+    "如果只改文案或房源，不需要碰 app.js 的渲染逻辑。"
+  ]
+}

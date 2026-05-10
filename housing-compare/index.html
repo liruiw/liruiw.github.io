@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>湾区 4M 购房对比台</title>
+  <meta name="description" content="用中文对比伯灵格姆、圣马特奥、红木城、门洛帕克、帕罗奥图、圣卡洛斯的步行性、学校、房屋质量与房价增长，并内置购房与卖股计算器。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">湾区置业对比台</p>
+        <h1>把 4M 预算、学校、步行性和真实房源放到同一张桌上看</h1>
+        <p class="hero-text">
+          覆盖 <span>伯灵格姆</span>、<span>圣马特奥</span>、<span>红木城</span>、
+          <span>门洛帕克</span>、<span>帕罗奥图</span>、<span>圣卡洛斯</span>。
+          房价增长、官方学校数据、住房存量和你要的 <strong>1036 Oakland Ave</strong>
+          计算器都放在一页里。
+        </p>
+        <p class="hero-meta" id="data-verified"></p>
+        <div class="hero-actions">
+          <a class="button primary" href="#compare">先看城市对比</a>
+          <a class="button secondary" href="#listing-picks">看 5 套具体房源</a>
+          <a class="button secondary" href="#calculator">直接算房子</a>
+        </div>
+      </div>
+      <div class="hero-panel" id="hero-panel"></div>
+    </header>
+
+    <main>
+      <section class="section" id="guide">
+        <div class="section-heading">
+          <p class="eyebrow">阅读说明</p>
+          <h2>先告诉你这页怎么读</h2>
+          <p>目标不是堆数据，而是让你在 3 分钟内看清楚：每个区到底强在哪、要付出什么代价。</p>
+        </div>
+        <div class="guide-grid" id="guide-grid"></div>
+      </section>
+
+      <section class="section" id="summary">
+        <div class="section-heading">
+          <p class="eyebrow">一句话结论</p>
+          <h2>先给判断，再看细节</h2>
+        </div>
+        <div class="insight-grid" id="insight-grid"></div>
+      </section>
+
+      <section class="section" id="compare">
+        <div class="section-heading">
+          <p class="eyebrow">城市对比</p>
+          <h2>六个城市，按你最关心的维度排</h2>
+          <p>这里的“学校”改成了 <strong>加州教育厅官方学区级数据</strong>；“房屋质量”仍然用 <strong>4M 购买力</strong>、<strong>独栋占比</strong>、<strong>房龄</strong>、<strong>房间数</strong> 做代理。</p>
+        </div>
+        <div class="sorter">
+          <span>排序方式</span>
+          <div class="sorter-buttons" id="sorter-buttons"></div>
+        </div>
+        <div class="area-card-grid" id="area-card-grid"></div>
+      </section>
+
+      <section class="section" id="matrix">
+        <div class="section-heading">
+          <p class="eyebrow">矩阵视图</p>
+          <h2>你真正要比较的是哪种权衡</h2>
+          <p>如果你只想快速比较“学校 vs 房子 vs 预算效率”，这张表最直接。</p>
+        </div>
+        <div class="matrix-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>城市</th>
+                <th>步行性</th>
+                <th>官方学校表现</th>
+                <th>典型房价</th>
+                <th>10 年累计涨幅</th>
+                <th>年化涨幅</th>
+                <th>4M 购买力</th>
+                <th>房屋存量特征</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="listing-picks">
+        <div class="section-heading">
+          <p class="eyebrow">具体房源</p>
+          <h2>我现在会认真约看的 5 套 Redfin 房源</h2>
+          <p>这不是“每个城市硬塞一套”，而是按 2026-05-09 的真实盘面挑出来更值得你用来校准市场感受的样本。</p>
+        </div>
+        <div class="listing-grid" id="listing-grid"></div>
+        <div class="listing-notes">
+          <h3>这 5 套怎么理解</h3>
+          <ul id="listing-note-list"></ul>
+        </div>
+      </section>
+
+      <section class="section" id="calculator">
+        <div class="section-heading">
+          <p class="eyebrow">房源计算器</p>
+          <h2>直接按 1036 Oakland Ave, Menlo Park 来算</h2>
+          <p>默认值按你给的挂牌页口径预填：挂牌价、30 年固定、税、保险、80% 首付。</p>
+        </div>
+        <div class="calculator-layout">
+          <div class="calculator-card">
+            <div class="preset-row">
+              <span>首付预设</span>
+              <div class="preset-buttons" id="preset-buttons"></div>
+            </div>
+            <div class="form-grid">
+              <label>
+                <span>房源地址</span>
+                <input id="address" type="text">
+              </label>
+              <label>
+                <span>挂牌价</span>
+                <input id="list-price" type="number" step="1000">
+              </label>
+              <label>
+                <span>首付比例 %</span>
+                <input id="down-payment-pct" type="number" step="1">
+              </label>
+              <label>
+                <span>贷款年限</span>
+                <input id="loan-years" type="number" step="1">
+              </label>
+              <label>
+                <span>利率 %</span>
+                <input id="interest-rate-pct" type="number" step="0.01">
+              </label>
+              <label>
+                <span>房产税 / 月</span>
+                <input id="property-tax-monthly" type="number" step="1">
+              </label>
+              <label>
+                <span>房屋保险 / 月</span>
+                <input id="insurance-monthly" type="number" step="1">
+              </label>
+              <label>
+                <span>HOA / 月</span>
+                <input id="hoa-monthly" type="number" step="1">
+              </label>
+              <label>
+                <span>股票当前涨幅 %</span>
+                <input id="stock-gain-pct" type="number" step="1">
+              </label>
+              <label>
+                <span>税率近似 %</span>
+                <input id="capital-gains-tax-rate-pct" type="number" step="0.1">
+              </label>
+              <label>
+                <span>过户成本</span>
+                <input id="closing-costs" type="number" step="1000">
+              </label>
+              <label>
+                <span>家具预算</span>
+                <input id="furniture-budget" type="number" step="1000">
+              </label>
+            </div>
+          </div>
+
+          <div class="result-column">
+            <div class="result-card emphasis">
+              <p class="result-label">完整月供</p>
+              <p class="result-value" id="full-monthly-payment"></p>
+              <p class="result-subtext">本金 + 利息 + 房产税 + 保险 + HOA</p>
+            </div>
+            <div class="result-grid">
+              <div class="result-card">
+                <p class="result-label">本金 + 利息</p>
+                <p class="result-value" id="principal-interest-monthly"></p>
+              </div>
+              <div class="result-card">
+                <p class="result-label">首月利息</p>
+                <p class="result-value" id="first-month-interest"></p>
+              </div>
+              <div class="result-card">
+                <p class="result-label">首月还本金</p>
+                <p class="result-value" id="first-month-principal"></p>
+              </div>
+              <div class="result-card">
+                <p class="result-label">只看利息+税+保险+HOA</p>
+                <p class="result-value" id="carry-cost-monthly"></p>
+              </div>
+            </div>
+            <div class="result-card">
+              <p class="result-label">首付与贷款</p>
+              <div class="mini-metrics">
+                <div>
+                  <span>首付</span>
+                  <strong id="down-payment-amount"></strong>
+                </div>
+                <div>
+                  <span>贷款</span>
+                  <strong id="loan-amount"></strong>
+                </div>
+              </div>
+            </div>
+            <div class="result-card">
+              <p class="result-label">卖股覆盖现金需求</p>
+              <div class="stacked-metrics">
+                <div>
+                  <span>目标现金（首付 + closing + 家具）</span>
+                  <strong id="target-cash"></strong>
+                </div>
+                <div>
+                  <span>严格资本利得口径</span>
+                  <strong id="capital-gains-sale-needed"></strong>
+                </div>
+                <div>
+                  <span>保守全额计税近似</span>
+                  <strong id="conservative-sale-needed"></strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="notes">
+        <div class="section-heading">
+          <p class="eyebrow">可信度与维护</p>
+          <h2>为什么这页可信，以及后面怎么维护</h2>
+        </div>
+        <div class="notes-grid">
+          <div class="note-card">
+            <h3>为什么可信</h3>
+            <ul id="trust-list"></ul>
+          </div>
+          <div class="note-card">
+            <h3>怎么维护</h3>
+            <ul id="maintenance-list"></ul>
+            <pre><code>cd /home/liruiw/Projects/liruiw.github.io/housing-compare
+conda run --no-capture-output -n hb python tools/generate_site_data.py</code></pre>
+          </div>
+          <div class="note-card">
+            <h3>注意口径</h3>
+            <ul id="caveat-list"></ul>
+          </div>
+          <div class="note-card">
+            <h3>引用来源</h3>
+            <ul id="source-list"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="area-card-template">
+    <article class="area-card">
+      <div class="card-topline">
+        <p class="card-name"></p>
+        <span class="pill"></span>
+      </div>
+      <p class="card-title"></p>
+      <p class="card-summary"></p>
+      <div class="metric-duo">
+        <div>
+          <span>典型房价</span>
+          <strong class="price-value"></strong>
+        </div>
+        <div>
+          <span>4M 购买力</span>
+          <strong class="buying-power"></strong>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-chip walk-chip"></div>
+        <div class="score-chip school-chip"></div>
+      </div>
+      <p class="school-level-detail"></p>
+      <div class="growth-panel">
+        <div class="growth-item">
+          <span>10 年累计涨幅</span>
+          <strong class="growth-value"></strong>
+        </div>
+        <div class="growth-item">
+          <span>年化涨幅</span>
+          <strong class="annualized-value"></strong>
+        </div>
+      </div>
+      <div class="housing-panel">
+        <div><span>独栋占比</span><strong class="detached-value"></strong></div>
+        <div><span>房龄中位数</span><strong class="year-value"></strong></div>
+        <div><span>房间数中位数</span><strong class="rooms-value"></strong></div>
+      </div>
+      <div class="card-block">
+        <span>最适合买家</span>
+        <p class="best-for"></p>
+      </div>
+      <div class="dual-list">
+        <div>
+          <span class="list-title">为什么它值得看</span>
+          <ul class="note-list"></ul>
+        </div>
+        <div>
+          <span class="list-title">你要接受的代价</span>
+          <ul class="watch-list"></ul>
+        </div>
+      </div>
+      <p class="caveat-text"></p>
+    </article>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
